@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Discovery preferences</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFFBF8}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:54px 8px 8px;border-bottom:1px solid #EFE3DA}
+.ib{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.bar b{font-size:17px;font-weight:700}
+.save{padding:0 16px;font-size:16px;font-weight:800;color:#B8431F}
+.body{flex:1;overflow:hidden;padding:22px 20px 0}
+.blk{margin-bottom:30px}
+.hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+.hd b{font-size:16px;font-weight:700}
+.hd span{font-size:16px;font-weight:800;color:#B8431F}
+.trk{position:relative;height:6px;border-radius:3px;background:#EFE3DA;margin:0 12px}
+.fill{position:absolute;top:0;bottom:0;border-radius:3px;background:#E4572E}
+.knob{position:absolute;top:-9px;width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid #1A1A1A;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.note{margin:14px 0 0;font-size:13px;line-height:1.5;font-weight:500;color:#4A4A52}
+.chips span{display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:20px;border:1.5px solid #DCCBBE;font-size:14px;font-weight:600;margin:0 8px 8px 0}
+.chips span.sel{background:#1A1A1A;color:#fff;border-color:#1A1A1A}
+.sw{display:flex;align-items:center;justify-content:space-between;font-size:15px;font-weight:600}
+.sw i{width:52px;height:30px;border-radius:15px;background:#E4572E;position:relative}
+.sw i::after{content:"";position:absolute;top:3px;left:25px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.foot{padding:12px 20px 34px;border-top:1px solid #EFE3DA}
+.btn{display:flex;align-items:center;justify-content:center;height:54px;border-radius:14px;background:#1A1A1A;color:#fff;font-size:16px;font-weight:700}
+</style>
+</helmet>
+<div class="scr">
+  <header class="bar">
+    <a class="ib" href="MyProfile.dc.html" aria-label="Back"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+    <b>Discovery preferences</b>
+    <span class="ib"></span>
+  </header>
+  <main class="body">
+    <div class="blk">
+      <div class="chips"><b style="display:block;margin-bottom:12px;font-size:16px;font-weight:700">Show me</b><span>Men</span><span class="sel">Women</span><span>Non-binary people</span></div>
+    </div>
+    <div class="blk">
+      <div class="hd"><b>Age range</b><span>25 – 34</span></div>
+      <div class="trk"><div class="fill" style="left:21%;right:31%"></div><div class="knob" style="left:calc(21% - 12px)"></div><div class="knob" style="left:calc(69% - 12px)"></div></div>
+      <p class="note">People also need to be looking for someone your age.</p>
+    </div>
+    <div class="blk">
+      <div class="hd"><b>Maximum distance</b><span>25 km</span></div>
+      <div class="trk"><div class="fill" style="left:0;width:12%"></div><div class="knob" style="left:calc(12% - 12px)"></div></div>
+      <p class="note">When you run out of people nearby, we’ll suggest a wider distance.</p>
+    </div>
+    <div class="blk">
+      <div class="sw"><span>Show my distance on my profile</span><i role="switch" aria-checked="true" aria-label="Show distance"></i></div>
+    </div>
+  </main>
+  <div class="foot"><a class="btn" href="MyProfile.dc.html">Save preferences</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

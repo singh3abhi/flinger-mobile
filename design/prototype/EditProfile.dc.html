@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Edit profile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFFBF8}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ph{background:radial-gradient(circle at 50% 36%,rgba(255,255,255,.5) 0 11%,transparent 11.6%),radial-gradient(ellipse at 50% 104%,rgba(255,255,255,.5) 0 40%,transparent 40.6%),linear-gradient(165deg,hsl(var(--h) 72% 64%),hsl(var(--h) 60% 36%))}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:54px 8px 8px;border-bottom:1px solid #EFE3DA}
+.ib{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.bar b{font-size:17px;font-weight:700}
+.save{padding:0 16px;font-size:16px;font-weight:800;color:#B8431F}
+.body{flex:1;overflow:hidden;padding:16px 20px 0}
+.sec{margin:0 0 10px;font-size:13px;font-weight:700;color:#4A4A52;text-transform:uppercase;letter-spacing:.5px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.slot{position:relative;height:120px;border-radius:12px;overflow:hidden}
+.slot.e{border:2px dashed #A1A1AA;display:flex;align-items:center;justify-content:center;color:#5C5C63}
+.main{position:absolute;left:6px;bottom:6px;height:20px;padding:0 8px;border-radius:10px;background:#1A1A1A;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center}
+.hint{margin:8px 0 18px;font-size:12px;font-weight:500;color:#5C5C63}
+.pr{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:#F6EEE8;margin-bottom:8px}
+.pr div{flex:1;min-width:0}
+.pr small{display:block;font-size:12px;font-weight:700;color:#4A4A52}
+.pr span{display:block;margin-top:2px;font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pr .add{color:#5C5C63;font-weight:700}
+.li{display:flex;align-items:center;height:54px;border-bottom:1px solid #EFE3DA;font-size:15px;font-weight:600}
+.li small{margin-left:auto;margin-right:8px;font-size:14px;font-weight:500;color:#4A4A52;text-align:right}
+.li .c{color:#8A8A92}
+</style>
+</helmet>
+<div class="scr">
+  <header class="bar">
+    <a class="ib" href="MyProfile.dc.html" aria-label="Back"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+    <b>Edit profile</b>
+    <a class="save" href="MyProfile.dc.html">Save</a>
+  </header>
+  <main class="body">
+    <p class="sec">Photos</p>
+    <div class="grid">
+      <div class="slot ph" style="--h:205"><span class="main">Main</span></div>
+      <div class="slot ph" style="--h:18"></div>
+      <div class="slot ph" style="--h:150"></div>
+      <div class="slot ph" style="--h:280"></div>
+      <div class="slot e"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+      <div class="slot e"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+    </div>
+    <p class="hint">Touch and hold to reorder. You need at least 4 photos.</p>
+    <p class="sec">Prompts</p>
+    <div class="pr"><div><small>A perfect Sunday looks like…</small><span>Filter coffee, a long walk and way too many samosas.</span></div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:#5C5C63"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+    <div class="pr"><div><small>I’m weirdly good at…</small><span>Finding the best chai stall in any city.</span></div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:#5C5C63"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+    <div class="pr"><div><small>Prompt 3</small><span class="add">Choose a prompt</span></div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:#B8431F"><path d="M12 5v14M5 12h14"/></svg></div>
+    <p class="sec" style="margin-top:18px">About you</p>
+    <div class="li">First name<small>Rohan</small></div>
+    <div class="li">Birthday<small>14 Mar 1996 · locked</small><svg class="ico c" viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+    <div class="li">Gender<small>Man</small><svg class="ico c" viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px"><path d="m9 18 6-6-6-6"/></svg></div>
+    <div class="li">Interested in<small>Women</small><svg class="ico c" viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px"><path d="m9 18 6-6-6-6"/></svg></div>
+    <div class="li">Hoping to find<small>Long-term, Marriage</small><svg class="ico c" viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px"><path d="m9 18 6-6-6-6"/></svg></div>
+    <div class="li">Height<small>170 cm</small><svg class="ico c" viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px"><path d="m9 18 6-6-6-6"/></svg></div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

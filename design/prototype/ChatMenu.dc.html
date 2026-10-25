@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Conversation menu</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;background:#FFFBF8}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ph{background:radial-gradient(circle at 50% 36%,rgba(255,255,255,.5) 0 11%,transparent 11.6%),radial-gradient(ellipse at 50% 104%,rgba(255,255,255,.5) 0 40%,transparent 40.6%),linear-gradient(165deg,hsl(var(--h) 72% 64%),hsl(var(--h) 60% 36%))}
+.bar{display:flex;align-items:center;gap:10px;padding:54px 20px 10px;border-bottom:1px solid #EFE3DA}
+.av{width:40px;height:40px;border-radius:50%}
+.bar b{font-size:17px;font-weight:700}
+.b{margin:16px;max-width:240px;padding:10px 14px;border-radius:18px;background:#F6EEE8;font-size:15px}
+.dim{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#FFFBF8;border-radius:24px 24px 0 0;padding:10px 20px 34px}
+.grab{width:40px;height:5px;border-radius:3px;background:#DCCBBE;margin:0 auto 12px}
+.ttl{display:flex;align-items:center;gap:12px;padding:6px 0 14px;border-bottom:1px solid #EFE3DA;margin-bottom:6px}
+.ttl .av{width:44px;height:44px}
+.ttl b{font-size:17px;font-weight:700}
+.ttl small{display:block;font-size:13px;font-weight:500;color:#4A4A52}
+.it{display:flex;align-items:center;gap:14px;height:56px;font-size:16px;font-weight:600}
+.it.d{color:#B3261E}
+.it span.c{margin-left:auto;color:#8A8A92}
+.cancel{margin-top:10px;display:flex;align-items:center;justify-content:center;height:52px;border-radius:14px;background:#F6EEE8;font-size:16px;font-weight:700}
+</style>
+</helmet>
+<div class="scr">
+  <header class="bar"><div class="av ph" style="--h:14"></div><b>Aanya</b></header>
+  <div class="b">Hi Rohan! That view is from Coorg, last monsoon.</div>
+  <div class="dim"></div>
+  <div class="sheet" role="dialog" aria-label="Options for Aanya">
+    <div class="grab"></div>
+    <div class="ttl"><div class="av ph" style="--h:14"></div><div><b>Aanya</b><small>Matched today</small></div></div>
+    <a class="it" href="Chats.dc.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m17 8 5 5M22 8l-5 5"/></svg>Unmatch</a>
+    <a class="it" href="Report.dc.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 22V4M4 4h13l-2 4 2 4H4"/></svg>Report</a>
+    <a class="it d" href="BlockConfirm.dc.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>Block</a>
+    <a class="cancel" href="Thread.dc.html">Cancel</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

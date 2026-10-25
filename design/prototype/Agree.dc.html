@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Review and agree</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFF3EA}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.top{padding:60px 20px 0}
+.prog{height:4px;border-radius:4px;background:#F0DDD0;overflow:hidden}
+.prog i{display:block;height:100%;background:#E4572E;border-radius:4px}
+.step{margin-top:6px;font-size:12px;font-weight:600}
+.back{width:36px;height:36px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 4px rgba(0,0,0,.25);margin:18px 20px 0}
+.head{padding:22px 20px 0}
+.t-h{margin:0;font-size:32px;line-height:1.15;font-weight:800;color:#1A1A1A;letter-spacing:-.3px}
+.t-s{margin:12px 0 0;font-size:15px;line-height:1.5;font-weight:500}
+.body{flex:1;padding:26px 20px 0}
+.doc{display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 16px;border-radius:14px;background:#fff;border:1.5px solid #1A1A1A;font-size:16px;font-weight:600;margin-bottom:10px}
+.ck{display:flex;gap:12px;align-items:flex-start;margin-top:18px;font-size:14px;line-height:1.5;font-weight:600}
+.box{flex:none;width:26px;height:26px;border-radius:8px;background:#1A1A1A;color:#fff;display:flex;align-items:center;justify-content:center}
+.foot{padding:12px 20px 34px}
+.btn{display:flex;align-items:center;justify-content:center;height:52px;border-radius:14px;background:#E4572E;font-size:16px;font-weight:700;box-shadow:0 4px 0 #1A1A1A;border:1.5px solid #1A1A1A}
+</style>
+</helmet>
+<div class="scr">
+  <div class="top"><div class="prog"><i style="width:100%"></i></div><div class="step">Step 13 of 13</div></div>
+  <a class="back" href="Location.dc.html" aria-label="Back"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+  <div class="head">
+    <h1 class="t-h">Almost there</h1>
+    <p class="t-s">Please review these before you start meeting people.</p>
+  </div>
+  <div class="body">
+    <a class="doc" href="#terms">Terms of Service<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+    <a class="doc" href="#privacy">Privacy Policy<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+    <a class="doc" href="#guidelines">Community Guidelines<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+    <div class="ck"><span class="box"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:16px;height:16px;stroke-width:3"><path d="M20 6 9 17l-5-5"/></svg></span><span>I’m 18 or older and I agree to the Terms of Service and Privacy Policy.</span></div>
+    <div class="ck"><span class="box"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:16px;height:16px;stroke-width:3"><path d="M20 6 9 17l-5-5"/></svg></span><span>I’ll be kind and honest, and follow the Community Guidelines.</span></div>
+  </div>
+  <div class="foot"><a class="btn" href="Discover.dc.html">Create my profile</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

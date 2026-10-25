@@ -41,20 +41,22 @@ M1–M2 need **no backend** (they run on mocks/MSW), so they can start immediate
 **Exit:** every component renders to spec against Flutter references; D1–D4 decisions recorded.
 
 ### M3 — Screens + auth wiring (M)
-- Splash (native + boot logic), landing (video/poster), sign-in flow (OTP per backend ADR-0006), permission primer screens (real requests deferred to M4/M5 moments)
+- Splash (native + boot logic), landing (video/poster), **phone-or-email OTP flow** (identify → verify with resend countdown; backend ADR-0006), permission primer screens (real requests deferred to the moment of need)
 - Session manager (secure storage, refresh dedupe), auth state machine in root layout, error mapping, update-required gate
 - Wired to **staging auth** once backend P2 is live
 
 **Exit:** real sign-in/out on a physical device against staging; parity checklist ticked for each ported screen; first EAS preview/staging build distributed.
 
 ### M4 — Onboarding, profile & photos (L)
-- Net-new designs → screens: basics (name, birthdate 18+, gender), preferences, photo picker/upload with progress + moderation states, bio, location primer + permission
-- Onboarding progress + resume (MMKV draft); profile edit
+- **Port the 11-step questionnaire** already built in Flutter (name + 18+ birthday, gender, who to meet, intentions, height, values, kids/family, religion/politics, causes, photos) with stable option ids; add the **3 prompts** step if decision D2 = yes
+- Photos: **min 4 / max 6**, picker + crop, upload with progress and moderation states (`pending/approved/rejected`)
+- Onboarding progress persisted and resumable (MMKV draft + server draft once verified); profile edit screen (Profile tab is a stub today)
 
 **Exit:** a new user completes onboarding with approved photos on a real device; killed-app resume works.
 
 ### M5 — Discovery & matches (L)
-- Swipe deck (gestures, Reanimated, image prefetch), optimistic swipes with retry, match modal, matches list
+- Swipe deck (rebuild of the Flutter `swipe_cards` fork with Reanimated + Gesture Handler; like/pass), profile card (verified badge, About, Looking for, Values, Family, Lifestyle, Causes), optimistic swipes with retry, match modal, matches list, Liked You list, real Discover tab; **25 likes/day** UX
+- Like targeting (photo/prompt + comment) per decision D1
 - Empty/expand-distance states; daily-limit UX
 
 **Exit:** two test accounts match on devices; deck holds 60 fps on a mid-tier Android; deck/queue unit tests green.

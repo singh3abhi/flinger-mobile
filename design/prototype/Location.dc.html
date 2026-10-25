@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Location</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFF3EA}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.top{padding:60px 20px 0}
+.prog{height:4px;border-radius:4px;background:#F0DDD0;overflow:hidden}
+.prog i{display:block;height:100%;background:#E4572E;border-radius:4px}
+.step{margin-top:6px;font-size:12px;font-weight:600}
+.back{width:36px;height:36px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 4px rgba(0,0,0,.25);margin:18px 20px 0}
+.body{flex:1;padding:26px 20px 0}
+.art{width:128px;height:128px;object-fit:contain}
+.t-h{margin:26px 0 0;font-size:32px;line-height:1.15;font-weight:800;color:#1A1A1A;letter-spacing:-.3px}
+.t-s{margin:14px 0 0;font-size:16px;line-height:1.55;font-weight:500}
+.priv{display:flex;gap:10px;margin-top:22px;padding:14px;border-radius:14px;background:rgba(255,255,255,.9);font-size:13px;line-height:1.5;font-weight:500}
+.foot{padding:12px 20px 34px}
+.btn{display:flex;align-items:center;justify-content:center;height:52px;border-radius:14px;background:#E4572E;font-size:16px;font-weight:600;box-shadow:0 2px 0 rgba(0,0,0,.08)}
+.alt{display:block;margin-top:16px;text-align:center;font-size:15px;font-weight:700;text-decoration:underline}
+</style>
+</helmet>
+<div class="scr">
+  <div class="top"><div class="prog"><i style="width:92.3%"></i></div><div class="step">Step 12 of 13</div></div>
+  <a class="back" href="Prompts.dc.html" aria-label="Back"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+  <div class="body">
+    <img class="art" src="/_blob/a4f43625e015be8f48a4f308e266c8ea" alt="">
+    <h1 class="t-h">Discover people near you</h1>
+    <p class="t-s">Location access helps us show you people around you so connections feel real and relevant.</p>
+    <div class="priv"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>People only see how far away you are, like “3 km away”. Your exact location is never shown.</span></div>
+  </div>
+  <div class="foot">
+    <a class="btn" href="Agree.dc.html">Enable location</a>
+    <a class="alt" href="Agree.dc.html">Enter my city instead</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Causes and communities</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFF3EA}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.top{padding:60px 20px 0}
+.prog{height:4px;border-radius:4px;background:#F0DDD0;overflow:hidden}
+.prog i{display:block;height:100%;background:#E4572E;border-radius:4px}
+.step{margin-top:6px;font-size:12px;font-weight:600}
+.back{width:36px;height:36px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 4px rgba(0,0,0,.25);margin:18px 20px 0}
+.head{padding:22px 20px 0}
+.t-h{margin:0;font-size:32px;line-height:1.15;font-weight:800;color:#1A1A1A;letter-spacing:-.3px}
+.t-s{margin:12px 0 0;font-size:15px;line-height:1.5;font-weight:500}
+.body{flex:1;padding:24px 20px 0}
+.chip{display:inline-flex;align-items:center;height:40px;padding:0 15px;border-radius:20px;background:#fff;border:1.5px solid #1A1A1A;font-size:14px;font-weight:600;margin:0 8px 10px 0}
+.chip.sel{background:#1A1A1A;color:#fff;box-shadow:0 3px 0 rgba(0,0,0,.35)}
+.foot{display:flex;align-items:center;gap:16px;padding:12px 20px 34px}
+.skip{flex:1;font-size:15px;font-weight:700;text-decoration:underline}
+.cnt{font-size:13px;font-weight:600;margin-right:4px}
+.go{width:56px;height:56px;border-radius:50%;background:#E4572E;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 4px rgba(0,0,0,.25)}
+</style>
+</helmet>
+<div class="scr">
+  <div class="top"><div class="prog"><i style="width:69.2%"></i></div><div class="step">Step 9 of 13</div></div>
+  <a class="back" href="Beliefs.dc.html" aria-label="Back"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+  <div class="head">
+    <h1 class="t-h">Causes &amp; communities you care about</h1>
+    <p class="t-s">Pick up to 3 causes that matter to you most.</p>
+  </div>
+  <div class="body">
+    <span class="chip">Black Lives Matter</span><span class="chip">Disability rights</span><span class="chip">End religious hate</span>
+    <span class="chip sel">Environmental protection</span><span class="chip">Feminism</span><span class="chip sel">Human rights</span>
+    <span class="chip">Immigrant rights</span><span class="chip">Indigenous rights</span><span class="chip">LGBTQ+ rights</span>
+    <span class="chip">Neurodiversity</span><span class="chip">Reproductive rights</span><span class="chip">Stop Asian hate</span>
+    <span class="chip">Trans rights</span><span class="chip sel">Volunteering</span><span class="chip">Voting rights</span>
+  </div>
+  <div class="foot">
+    <a class="skip" href="Photos.dc.html">Skip</a>
+    <span class="cnt">3 of 3</span>
+    <a class="go" href="Photos.dc.html" aria-label="Next"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:30px;height:30px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

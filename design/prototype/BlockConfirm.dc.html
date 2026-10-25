@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Block confirmation</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;background:#FFFBF8}
+.ph{background:radial-gradient(circle at 50% 36%,rgba(255,255,255,.5) 0 11%,transparent 11.6%),radial-gradient(ellipse at 50% 104%,rgba(255,255,255,.5) 0 40%,transparent 40.6%),linear-gradient(165deg,hsl(var(--h) 72% 64%),hsl(var(--h) 60% 36%))}
+.bar{display:flex;align-items:center;gap:10px;padding:54px 20px 10px;border-bottom:1px solid #EFE3DA}
+.av{width:40px;height:40px;border-radius:50%}
+.bar b{font-size:17px;font-weight:700}
+.b{margin:16px;max-width:240px;padding:10px 14px;border-radius:18px;background:#F6EEE8;font-size:15px}
+.dim{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center}
+.dlg{width:300px;border-radius:18px;background:#FFFBF8;overflow:hidden;text-align:center}
+.dlg h2{margin:0;padding:22px 20px 6px;font-size:18px;line-height:1.3;font-weight:700}
+.dlg p{margin:0;padding:0 20px 20px;font-size:14px;line-height:1.5;font-weight:500;color:#3A3A40}
+.acts{display:flex;border-top:1px solid #EFE3DA}
+.acts a{flex:1;height:52px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:500}
+.acts a+a{border-left:1px solid #EFE3DA;font-weight:700;color:#B3261E}
+</style>
+</helmet>
+<div class="scr">
+  <header class="bar"><div class="av ph" style="--h:14"></div><b>Aanya</b></header>
+  <div class="b">Hi Rohan! That view is from Coorg, last monsoon.</div>
+  <div class="dim">
+    <div class="dlg" role="alertdialog" aria-labelledby="ttl">
+      <h2 id="ttl">Block Aanya?</h2>
+      <p>You won’t see each other on Flinger and your chat will close. You can unblock anytime in Settings.</p>
+      <div class="acts"><a href="ChatMenu.dc.html">Cancel</a><a href="Chats.dc.html">Block</a></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

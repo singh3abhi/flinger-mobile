@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Flinger design system</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+h1,h2,h3,p{margin:0}
+.wrap{width:1440px;min-height:2100px;background:#FFFBF8;padding:64px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#B8431F}
+h1{margin-top:10px;font-size:48px;line-height:1.05;font-weight:800;letter-spacing:-1px}
+.lead{margin-top:14px;max-width:780px;font-size:17px;line-height:1.6;font-weight:500;color:#3A3A40}
+h2{margin:56px 0 18px;font-size:24px;font-weight:800;letter-spacing:-.3px;padding-bottom:12px;border-bottom:2px solid #1A1A1A}
+.sw6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.sw{border-radius:14px;border:1px solid #EFE3DA;overflow:hidden;background:#fff}
+.sw i{display:block;height:84px}
+.sw div{padding:12px 14px}
+.sw b{display:block;font-size:14px;font-weight:700}
+.sw code{display:block;margin-top:2px;font-size:13px;font-weight:600;color:#3A3A40}
+.sw small{display:block;margin-top:6px;font-size:12px;line-height:1.45;font-weight:500;color:#4A4A52}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+.row{display:flex;align-items:baseline;gap:24px;padding:12px 0;border-bottom:1px solid #EFE3DA}
+.row span.k{flex:none;width:150px;font-size:12px;font-weight:700;color:#4A4A52}
+.panel{border-radius:18px;padding:28px}
+.cream{background:#FFF3EA}
+.page{background:#fff;border:1px solid #EFE3DA}
+.lab{margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;border-radius:14px;font-size:16px;font-weight:700;margin:0 12px 12px 0}
+.b-a{background:#E4572E;color:#1A1A1A;font-weight:800;box-shadow:0 4px 4px rgba(0,0,0,.2)}
+.b-k{background:#1A1A1A;color:#fff}
+.b-l{border:1.5px solid #1A1A1A;color:#1A1A1A}
+.b-d{background:#B3261E;color:#fff}
+.b-x{background:#1A1A1A;color:#fff;opacity:.5}
+.field{height:54px;width:300px;border-radius:14px;background:#fff;border:1.5px solid #1A1A1A;box-shadow:0 4px 0 #1A1A1A;padding:0 16px;display:flex;align-items:center;font-size:16px;font-weight:500;margin-bottom:18px}
+.tile{display:flex;align-items:center;width:300px;min-height:54px;padding:0 16px;border-radius:14px;background:#fff;border:1.5px solid #1A1A1A;font-size:16px;font-weight:600;margin-bottom:10px}
+.tile.sel{background:#1A1A1A;color:#fff}
+.chip{display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:20px;background:#fff;border:1.5px solid #1A1A1A;font-size:14px;font-weight:600;margin:0 8px 10px 0}
+.chip.sel{background:#1A1A1A;color:#fff}
+.pill{display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:16px;background:#FFE4D6;color:#7A2E14;font-size:13px;font-weight:700;margin-right:10px}
+.heart{display:inline-flex;width:52px;height:52px;border-radius:50%;background:#fff;color:#B8431F;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.2);margin-right:12px}
+.pass{display:inline-flex;width:56px;height:56px;border-radius:50%;background:#1A1A1A;color:#fff;align-items:center;justify-content:center;margin-right:12px}
+.ico{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.bub{display:inline-block;max-width:260px;padding:10px 14px;border-radius:18px;font-size:15px;line-height:1.45;font-weight:500;margin:0 10px 10px 0}
+.in{background:#F6EEE8;border-bottom-left-radius:6px}
+.out{background:#E4572E;color:#1A1A1A;border-bottom-right-radius:6px;font-weight:600}
+.sp{display:flex;align-items:flex-end;gap:14px}
+.sp div{background:#E4572E;border-radius:3px;width:28px}
+.rad{display:flex;gap:16px}
+.rad div{width:84px;height:84px;background:#1A1A1A;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px}
+.ul{margin:0;padding:0;list-style:none}
+.ul li{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #EFE3DA;font-size:15px;line-height:1.5;font-weight:500}
+.ul li b{flex:none;width:170px;font-weight:700}
+</style>
+</helmet>
+<div class="wrap">
+  <p class="eyebrow">Flinger · Design system v0.2 · Cream and ember</p>
+  <h1>Warm, calm, and easy to read</h1>
+  <p class="lead">Your orange, softened. Cream and warm white carry the screens; the accent orange is reserved for buttons, hearts, badges and progress, so nothing glows at full saturation. Every value below becomes a token in <b>tokens.ts</b> in the mobile app.</p>
+
+  <h2>Color</h2>
+  <div class="sw6">
+    <div class="sw"><i style="background:#E4572E"></i><div><b>accent</b><code>#E4572E</code><small>Buttons, hearts, badges, progress, active ring. Always carries ink text (4.7:1). White on it is 3.7:1, so it is not used.</small></div></div>
+    <div class="sw"><i style="background:#B8431F"></i><div><b>accent-ink</b><code>#B8431F</code><small>Orange as small text or icons. 5.3:1 on page, 5.0:1 on cream.</small></div></div>
+    <div class="sw"><i style="background:#FFE4D6"></i><div><b>accent-tint</b><code>#FFE4D6</code><small>Pills and banners. Pair with #7A2E14 text (7.8:1).</small></div></div>
+    <div class="sw"><i style="background:#1A1A1A"></i><div><b>ink</b><code>#1A1A1A</code><small>Text, dark buttons, selected states. 16.9:1 on page.</small></div></div>
+    <div class="sw"><i style="background:#FFF3EA"></i><div><b>cream</b><code>#FFF3EA</code><small>Onboarding backgrounds and prompt cards. Ink on cream: 16.0:1.</small></div></div>
+    <div class="sw"><i style="background:#FFFBF8"></i><div><b>page</b><code>#FFFBF8</code><small>Main app background, sheets, dialogs.</small></div></div>
+    <div class="sw"><i style="background:#F6EEE8"></i><div><b>surface</b><code>#F6EEE8</code><small>Cards, received chat bubbles, chips. Ink on it: 15.2:1.</small></div></div>
+    <div class="sw"><i style="background:#EFE3DA"></i><div><b>line</b><code>#EFE3DA</code><small>Dividers and hairlines (decorative). Progress track: #F0DDD0.</small></div></div>
+    <div class="sw"><i style="background:#8F7F72"></i><div><b>control</b><code>#8F7F72</code><small>Borders of form fields and off-state switches. 3.8:1 on page.</small></div></div>
+    <div class="sw"><i style="background:#3A3A40"></i><div><b>text-2</b><code>#3A3A40</code><small>Secondary text. 11.0:1 on page.</small></div></div>
+    <div class="sw"><i style="background:#4A4A52"></i><div><b>text-3</b><code>#4A4A52</code><small>Captions. 8.5:1 on page, 7.7:1 on surface.</small></div></div>
+    <div class="sw"><i style="background:#5C5C63"></i><div><b>text-muted</b><code>#5C5C63</code><small>Hints and timestamps. 6.5:1 on page, 5.8:1 on surface.</small></div></div>
+    <div class="sw"><i style="background:#B3261E"></i><div><b>danger</b><code>#B3261E</code><small>Block, delete, errors. 6.4:1 on page.</small></div></div>
+    <div class="sw"><i style="background:#1B6B3A"></i><div><b>success</b><code>#1B6B3A</code><small>Verified email, saved states. 6.4:1 on page.</small></div></div>
+    <div class="sw"><i style="background:#1D5FD1"></i><div><b>verified</b><code>#1D5FD1</code><small>Verified badge on profiles. 5.7:1 on page.</small></div></div>
+  </div>
+
+  <h2>Typography · Inter</h2>
+  <div class="two">
+    <div>
+      <div class="row"><span class="k">Display · 44 / 800</span><span style="font-size:44px;line-height:1.05;font-weight:800;letter-spacing:-.8px">It’s a match!</span></div>
+      <div class="row"><span class="k">Title · 32 / 800</span><span style="font-size:32px;line-height:1.15;font-weight:800;letter-spacing:-.3px">What’s your email?</span></div>
+      <div class="row"><span class="k">Heading · 28 / 800</span><span style="font-size:28px;line-height:1.2;font-weight:800;letter-spacing:-.4px">Aanya, 27</span></div>
+      <div class="row"><span class="k">Headline · 24 / 700</span><span style="font-size:24px;line-height:1.25;font-weight:700;letter-spacing:-.3px">Filter coffee and long walks</span></div>
+    </div>
+    <div>
+      <div class="row"><span class="k">Body L · 16 / 500</span><span style="font-size:16px;line-height:1.5;font-weight:500">We’ll use it to create your account and keep things secure.</span></div>
+      <div class="row"><span class="k">Body · 15 / 500</span><span style="font-size:15px;line-height:1.5;font-weight:500">Pick up to 3 causes that matter to you most.</span></div>
+      <div class="row"><span class="k">Caption · 13 / 500</span><span style="font-size:13px;line-height:1.5;font-weight:500">People only see how far away you are.</span></div>
+      <div class="row"><span class="k">Label · 16 / 700</span><span style="font-size:16px;font-weight:700">Create an account</span></div>
+    </div>
+  </div>
+  <p class="lead" style="margin-top:14px;font-size:14px">Weights in use: 500, 600, 700, 800. All text on the new palette passes 4.5:1.</p>
+
+  <h2>Components</h2>
+  <div class="two">
+    <div class="panel cream">
+      <p class="lab">Onboarding · on cream</p>
+      <span class="btn b-a">Continue</span><span class="btn b-l">Maybe later</span>
+      <div class="field">rohan.mehta@gmail.com</div>
+      <div class="tile sel">Woman</div>
+      <div class="tile">Man</div>
+      <span class="chip sel">Kindness</span><span class="chip">Curiosity</span><span class="chip">Loyalty</span>
+    </div>
+    <div class="panel page">
+      <p class="lab">App · on page and surface</p>
+      <span class="btn b-a">Send like</span><span class="btn b-k">Edit profile</span><span class="btn b-l">Preview</span><span class="btn b-d">Delete</span><span class="btn b-x">Disabled</span>
+      <div style="margin:10px 0 18px"><span class="pill">22 likes left</span><span class="pill">Verified</span></div>
+      <div style="margin-bottom:18px"><span class="heart"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span><span class="pass"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+      <span class="bub in">Hi Rohan! That view is from Coorg.</span><span class="bub out">Coorg in the monsoon is unreal.</span>
+    </div>
+  </div>
+
+  <h2>Spacing, radius, elevation, motion</h2>
+  <div class="two">
+    <div>
+      <p class="lab" style="color:#4A4A52">Spacing scale (px)</p>
+      <div class="sp"><div style="height:4px"></div><div style="height:8px"></div><div style="height:12px"></div><div style="height:16px"></div><div style="height:20px"></div><div style="height:24px"></div><div style="height:32px"></div><div style="height:40px"></div></div>
+      <p class="lead" style="margin-top:10px;font-size:13px">4 · 8 · 12 · 16 · 20 · 24 · 32 · 40. Screen edge padding is 20 (landing 16). Minimum tap target 44 × 44.</p>
+      <p class="lab" style="color:#4A4A52;margin-top:26px">Radius</p>
+      <div class="rad"><div style="border-radius:10px">10 · thumbs</div><div style="border-radius:14px">14 · buttons, fields</div><div style="border-radius:18px">18 · cards</div><div style="border-radius:24px 24px 0 0">24 · sheets</div><div style="border-radius:42px">Pill</div></div>
+    </div>
+    <div>
+      <p class="lab" style="color:#4A4A52">Elevation</p>
+      <ul class="ul">
+        <li><b>Hard shadow</b>0 4 0 ink, on text fields and the comment box (the Flinger signature)</li>
+        <li><b>Button soft</b>0 4 4 rgba(0,0,0,.2), accent buttons and back arrows</li>
+        <li><b>Floating</b>0 4 14 rgba(0,0,0,.2), like and pass buttons</li>
+        <li><b>Scrim</b>rgba(0,0,0,.55) behind sheets and dialogs</li>
+      </ul>
+      <p class="lab" style="color:#4A4A52;margin-top:26px">Motion</p>
+      <ul class="ul">
+        <li><b>Heartbeat</b>Splash logo, 1.2 s loop: 1 → 0.9 → 1.05 → 1</li>
+        <li><b>Steps</b>Onboarding page change 300 ms ease-out</li>
+        <li><b>Sheets</b>250 ms ease-out; respect Reduce Motion</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Accessibility rules baked in</h2>
+  <ul class="ul">
+    <li><b>Contrast</b>Text 4.5:1 or better everywhere. Accent fills always carry ink text; white text is not used on the accent.</li>
+    <li><b>Non-text</b>Field borders and off switches use the control color (3.8:1). Selected states use ink fills.</li>
+    <li><b>Tap targets</b>44 × 44 minimum, including icon-only buttons.</li>
+    <li><b>Labels</b>Every icon-only button has an accessibility label. Switches expose role and state.</li>
+    <li><b>Text size</b>Layouts hold at 130% font size; display text is capped.</li>
+    <li><b>Motion</b>Video and loops pause when Reduce Motion is on.</li>
+    <li><b>Icons</b>Line icons only, 2 px stroke, round caps. No emoji.</li>
+  </ul>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2100}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

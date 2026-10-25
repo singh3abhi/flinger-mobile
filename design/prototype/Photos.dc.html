@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Photos</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFF3EA}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.top{padding:60px 20px 0}
+.prog{height:4px;border-radius:4px;background:#F0DDD0;overflow:hidden}
+.prog i{display:block;height:100%;background:#E4572E;border-radius:4px}
+.step{margin-top:6px;font-size:12px;font-weight:600}
+.back{width:36px;height:36px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 4px rgba(0,0,0,.25);margin:18px 20px 0}
+.head{padding:22px 20px 0}
+.t-h{margin:0;font-size:32px;line-height:1.15;font-weight:800;color:#1A1A1A;letter-spacing:-.3px}
+.t-s{margin:12px 0 0;font-size:15px;line-height:1.5;font-weight:500}
+.body{flex:1;padding:24px 20px 0}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.slot{position:relative;height:148px;border-radius:14px;overflow:hidden;border:1.5px solid #1A1A1A}
+.slot.e{background:rgba(255,255,255,.35);border:2px dashed #1A1A1A;display:flex;align-items:center;justify-content:center}
+.ph{background:radial-gradient(circle at 50% 36%,rgba(255,255,255,.5) 0 11%,transparent 11.6%),radial-gradient(ellipse at 50% 104%,rgba(255,255,255,.5) 0 40%,transparent 40.6%),linear-gradient(165deg,hsl(var(--h) 72% 64%),hsl(var(--h) 60% 36%))}
+.main{position:absolute;left:6px;bottom:6px;height:22px;padding:0 8px;border-radius:11px;background:#1A1A1A;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center}
+.rm{position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
+.add{width:40px;height:40px;border-radius:50%;background:#fff;border:1.5px solid #1A1A1A;display:flex;align-items:center;justify-content:center}
+.tips{margin:18px 0 0;font-size:13px;line-height:1.5;font-weight:500}
+.foot{display:flex;align-items:center;gap:16px;padding:12px 20px 34px}
+.fine{flex:1;font-size:13px;line-height:1.45;font-weight:700}
+.go{width:56px;height:56px;border-radius:50%;background:#E4572E;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 4px rgba(0,0,0,.25)}
+</style>
+</helmet>
+<div class="scr">
+  <div class="top"><div class="prog"><i style="width:76.9%"></i></div><div class="step">Step 10 of 13</div></div>
+  <a class="back" href="Causes.dc.html" aria-label="Back"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+  <div class="head">
+    <h1 class="t-h">Show your best self</h1>
+    <p class="t-s">Add at least 4 photos. Your first photo is your main photo.</p>
+  </div>
+  <div class="body">
+    <div class="grid">
+      <div class="slot ph" style="--h:18"><span class="main">Main</span><span class="rm"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+      <div class="slot ph" style="--h:205"><span class="rm"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+      <div class="slot ph" style="--h:150"><span class="rm"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+      <div class="slot ph" style="--h:280"><span class="rm"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+      <div class="slot e"><span class="add"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></div>
+      <div class="slot e"><span class="add"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></div>
+    </div>
+    <p class="tips">Clear face, good light, and one photo of just you work best. Photos are checked before others can see them.</p>
+  </div>
+  <div class="foot">
+    <div class="fine">4 of 6 added · minimum 4</div>
+    <a class="go" href="Prompts.dc.html" aria-label="Next"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:30px;height:30px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-10-25T12:00:00Z" },
+  "title": "Flinger App Designs",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 700, "w": 390, "h": 844, "title": "01 Splash", "is_interactive": true },
+    "Landing.dc.html": { "x": 470, "y": 700, "w": 390, "h": 844, "title": "02 Landing", "is_interactive": true },
+    "IdentifyEmail.dc.html": { "x": 940, "y": 700, "w": 390, "h": 844, "title": "03 Sign in: email (Phase 0)", "is_interactive": true },
+    "IdentifyPhone.dc.html": { "x": 1410, "y": 700, "w": 390, "h": 844, "title": "03b Sign in: phone (Phase 1)", "is_interactive": true },
+    "VerifyOtp.dc.html": { "x": 1880, "y": 700, "w": 390, "h": 844, "title": "04 Verify code", "is_interactive": true },
+
+    "Name.dc.html": { "x": 0, "y": 1960, "w": 390, "h": 844, "title": "05 Name and birthday", "is_interactive": true },
+    "AgeConfirm.dc.html": { "x": 470, "y": 1960, "w": 390, "h": 844, "title": "05b Age confirmation", "is_interactive": true },
+    "Gender.dc.html": { "x": 940, "y": 1960, "w": 390, "h": 844, "title": "06 Gender", "is_interactive": true },
+    "WhoToMeet.dc.html": { "x": 1410, "y": 1960, "w": 390, "h": 844, "title": "07 Who to meet", "is_interactive": true },
+    "Intentions.dc.html": { "x": 1880, "y": 1960, "w": 390, "h": 844, "title": "08 Hoping to find", "is_interactive": true },
+    "Height.dc.html": { "x": 2350, "y": 1960, "w": 390, "h": 844, "title": "09 Height", "is_interactive": true },
+    "Values.dc.html": { "x": 2820, "y": 1960, "w": 390, "h": 844, "title": "10 Values", "is_interactive": true },
+
+    "KidsFamily.dc.html": { "x": 0, "y": 3220, "w": 390, "h": 844, "title": "11 Kids and family", "is_interactive": true },
+    "Beliefs.dc.html": { "x": 470, "y": 3220, "w": 390, "h": 844, "title": "12 Beliefs", "is_interactive": true },
+    "Causes.dc.html": { "x": 940, "y": 3220, "w": 390, "h": 844, "title": "13 Causes", "is_interactive": true },
+    "Photos.dc.html": { "x": 1410, "y": 3220, "w": 390, "h": 844, "title": "14 Photos (4 to 6)", "is_interactive": true },
+    "Prompts.dc.html": { "x": 1880, "y": 3220, "w": 390, "h": 844, "title": "15 Prompts", "is_interactive": true },
+    "Location.dc.html": { "x": 2350, "y": 3220, "w": 390, "h": 844, "title": "16 Location", "is_interactive": true },
+    "Agree.dc.html": { "x": 2820, "y": 3220, "w": 390, "h": 844, "title": "17 Review and agree", "is_interactive": true },
+
+    "Discover.dc.html": { "x": 0, "y": 4480, "w": 390, "h": 844, "title": "18 Discover", "is_interactive": true },
+    "DiscoverScrolled.dc.html": { "x": 470, "y": 4480, "w": 390, "h": 844, "title": "18b Discover, scrolled", "is_interactive": true },
+    "LikeSheet.dc.html": { "x": 940, "y": 4480, "w": 390, "h": 844, "title": "19 Like with a comment", "is_interactive": true },
+    "Match.dc.html": { "x": 1410, "y": 4480, "w": 390, "h": 844, "title": "20 It's a match", "is_interactive": true },
+    "LimitReached.dc.html": { "x": 1880, "y": 4480, "w": 390, "h": 844, "title": "21 Daily likes used", "is_interactive": true },
+    "Empty.dc.html": { "x": 2350, "y": 4480, "w": 390, "h": 844, "title": "22 All caught up", "is_interactive": true },
+    "LikedYou.dc.html": { "x": 2820, "y": 4480, "w": 390, "h": 844, "title": "23 Liked You", "is_interactive": true },
+    "LikedYouProfile.dc.html": { "x": 3290, "y": 4480, "w": 390, "h": 844, "title": "24 Liked You: profile", "is_interactive": true },
+
+    "Chats.dc.html": { "x": 0, "y": 5740, "w": 390, "h": 844, "title": "25 Chats", "is_interactive": true },
+    "Thread.dc.html": { "x": 470, "y": 5740, "w": 390, "h": 844, "title": "26 Conversation", "is_interactive": true },
+    "ChatMenu.dc.html": { "x": 940, "y": 5740, "w": 390, "h": 844, "title": "27 Conversation menu", "is_interactive": true },
+    "Report.dc.html": { "x": 1410, "y": 5740, "w": 390, "h": 844, "title": "28 Report", "is_interactive": true },
+    "BlockConfirm.dc.html": { "x": 1880, "y": 5740, "w": 390, "h": 844, "title": "29 Block confirmation", "is_interactive": true },
+    "NotifPrimer.dc.html": { "x": 2350, "y": 5740, "w": 390, "h": 844, "title": "30 Notifications primer", "is_interactive": true },
+
+    "MyProfile.dc.html": { "x": 0, "y": 7000, "w": 390, "h": 844, "title": "31 My profile", "is_interactive": true },
+    "EditProfile.dc.html": { "x": 470, "y": 7000, "w": 390, "h": 844, "title": "32 Edit profile", "is_interactive": true },
+    "Preferences.dc.html": { "x": 940, "y": 7000, "w": 390, "h": 844, "title": "33 Discovery preferences", "is_interactive": true },
+    "Settings.dc.html": { "x": 1410, "y": 7000, "w": 390, "h": 844, "title": "34 Settings", "is_interactive": true },
+    "DeleteAccount.dc.html": { "x": 1880, "y": 7000, "w": 390, "h": 844, "title": "35 Delete account", "is_interactive": true },
+
+    "UpdateRequired.dc.html": { "x": 0, "y": 8260, "w": 390, "h": 844, "title": "36 Update required" },
+    "OfflineChat.dc.html": { "x": 470, "y": 8260, "w": 390, "h": 844, "title": "37 Offline and failed message", "is_interactive": true },
+    "BottomNav.dc.html": { "x": 1000, "y": 8260, "w": 390, "h": 84, "title": "Shared: bottom navigation" },
+
+    "System.dc.html": { "x": 0, "y": 9520, "w": 1440, "h": 2100, "title": "38 Design system" },
+    "ThemeOptions.dc.html": { "x": 0, "y": -3400, "w": 1300, "h": 2800, "title": "00 Theme options (B chosen)" }
+  },
+  "order": [
+    "Main.dc.html", "Landing.dc.html", "IdentifyEmail.dc.html", "IdentifyPhone.dc.html", "VerifyOtp.dc.html",
+    "Name.dc.html", "AgeConfirm.dc.html", "Gender.dc.html", "WhoToMeet.dc.html", "Intentions.dc.html", "Height.dc.html", "Values.dc.html",
+    "KidsFamily.dc.html", "Beliefs.dc.html", "Causes.dc.html", "Photos.dc.html", "Prompts.dc.html", "Location.dc.html", "Agree.dc.html",
+    "Discover.dc.html", "DiscoverScrolled.dc.html", "LikeSheet.dc.html", "Match.dc.html", "LimitReached.dc.html", "Empty.dc.html", "LikedYou.dc.html", "LikedYouProfile.dc.html",
+    "Chats.dc.html", "Thread.dc.html", "ChatMenu.dc.html", "Report.dc.html", "BlockConfirm.dc.html", "NotifPrimer.dc.html",
+    "MyProfile.dc.html", "EditProfile.dc.html", "Preferences.dc.html", "Settings.dc.html", "DeleteAccount.dc.html",
+    "UpdateRequired.dc.html", "OfflineChat.dc.html", "BottomNav.dc.html", "System.dc.html", "ThemeOptions.dc.html"
+  ],
+  "notes": {
+    "t_theme": { "x": 0, "y": -3700, "text": "0 · Theme options (chosen: B, cream and ember)", "kind": "title1", "maxW": 1300 },
+    "t_a": { "x": 0, "y": 400, "text": "1 · Entry and sign-in", "kind": "title1", "maxW": 2270 },
+    "t_b": { "x": 0, "y": 1660, "text": "2 · Onboarding: about you", "kind": "title1", "maxW": 3210 },
+    "t_c": { "x": 0, "y": 2920, "text": "3 · Onboarding: photos, prompts, finish", "kind": "title1", "maxW": 3210 },
+    "t_d": { "x": 0, "y": 4180, "text": "4 · Discover and matching", "kind": "title1", "maxW": 3680 },
+    "t_e": { "x": 0, "y": 5440, "text": "5 · Chat and safety", "kind": "title1", "maxW": 2740 },
+    "t_f": { "x": 0, "y": 6700, "text": "6 · Profile and settings", "kind": "title1", "maxW": 2270 },
+    "t_g": { "x": 0, "y": 7960, "text": "7 · System states", "kind": "title1", "maxW": 1000 },
+    "t_s": { "x": 0, "y": 9220, "text": "8 · Design system", "kind": "title1", "maxW": 1440 },
+    "s_how": {
+      "x": 0, "y": -300, "w": 440, "fill": "blue",
+      "text": "HOW TO REVIEW\nEvery screen is one artboard (390 x 844). Press Play on any screen, then tap through: the buttons are linked, so you can walk the whole flow from Splash to Chat.\nScreens follow your Flutter designs (orange brand, Inter, hard-shadow inputs) with the Hinge-style additions we agreed: prompts, likes on a photo or prompt with a comment, 25 likes a day, 4 to 6 photos."
+    },
+    "s_dec1": {
+      "x": 500, "y": -300, "w": 440, "fill": "orange",
+      "text": "DECISIONS FOR YOU (1/2)\n1. Four tabs (Discover, Liked You, Chats, Profile). The Flutter app had five; Discover and People are merged.\n2. Theme: Cream and ember (option B), chosen to be easier on the eyes. Orange is now only for buttons, hearts, badges and progress; screens are cream or warm white. Every text pair passes 4.5:1.\n3. Gender step has no emoji; icons are line icons.\n4. Terms, Privacy and Community Guidelines pages are not designed yet."
+    },
+    "s_dec2": {
+      "x": 1000, "y": -300, "w": 440, "fill": "orange",
+      "text": "DECISIONS FOR YOU (2/2)\n5. Read receipts: Off by default (Settings, Privacy).\n6. Liked You shows everyone who liked you in v1. Seeing them all is the natural paid feature later.\n7. Prompt wording is placeholder copy; we need a library of about 30.\n8. Match Note, Standouts, Roses and voice prompts are not designed (fast follow or later).\n9. Photo and prompt content shown here is placeholder art, not real people."
+    },
+    "s_phase": {
+      "x": 1500, "y": -300, "w": 440, "fill": "green",
+      "text": "PHASE 0 vs PHASE 1\nPhase 0 (launch): sign in with email code. The Phone tab on the sign-in screen is shown as 'Soon'.\nPhase 1: SMS provider and DLT registration, then the Phone tab goes live (artboard 03b). Nothing else in the flow changes, because both use the same 6-digit code screen."
+    }
+  },
+  "designSystems": []
+}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Liked You</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFFBF8}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ph{background:radial-gradient(circle at 50% 36%,rgba(255,255,255,.5) 0 11%,transparent 11.6%),radial-gradient(ellipse at 50% 104%,rgba(255,255,255,.5) 0 40%,transparent 40.6%),linear-gradient(165deg,hsl(var(--h) 72% 64%),hsl(var(--h) 60% 36%))}
+.head{padding:58px 20px 12px}
+h1{margin:0;font-size:30px;font-weight:800;letter-spacing:-.5px}
+.sub{margin:6px 0 0;font-size:14px;line-height:1.5;font-weight:500;color:#4A4A52}
+.list{flex:1;overflow:hidden;padding:8px 20px 0}
+.row{display:flex;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #EFE3DA}
+.th{flex:none;width:68px;height:86px;border-radius:12px}
+.mn{flex:1;min-width:0}
+.nm{margin:0;font-size:17px;font-weight:700}
+.kind{margin:2px 0 0;font-size:13px;font-weight:500;color:#4A4A52;display:flex;align-items:center;gap:6px}
+.kind svg{color:#B8431F}
+.cm{margin:8px 0 0;padding:8px 10px;border-radius:10px;background:#F6EEE8;font-size:13px;line-height:1.4;font-weight:500}
+.chev{color:#8A8A92}
+</style>
+</helmet>
+<div class="scr">
+  <header class="head">
+    <h1>Liked You</h1>
+    <p class="sub">6 people liked your profile. Like them back to start a conversation.</p>
+  </header>
+  <main class="list">
+    <a class="row" href="LikedYouProfile.dc.html">
+      <div class="th ph" style="--h:205"></div>
+      <div class="mn"><p class="nm">Rohit, 29</p><p class="kind"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>Liked your photo</p><p class="cm">That chai stall photo made me smile.</p></div>
+      <svg class="ico chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    </a>
+    <a class="row" href="LikedYouProfile.dc.html">
+      <div class="th ph" style="--h:150"></div>
+      <div class="mn"><p class="nm">Meera, 26</p><p class="kind"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>Liked your prompt</p></div>
+      <svg class="ico chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    </a>
+    <a class="row" href="LikedYouProfile.dc.html">
+      <div class="th ph" style="--h:280"></div>
+      <div class="mn"><p class="nm">Kabir, 31</p><p class="kind"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>Liked your photo</p><p class="cm">Okay, we need to talk about that trek.</p></div>
+      <svg class="ico chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    </a>
+    <a class="row" href="LikedYouProfile.dc.html">
+      <div class="th ph" style="--h:340"></div>
+      <div class="mn"><p class="nm">Tara, 28</p><p class="kind"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>Liked your photo</p></div>
+      <svg class="ico chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    </a>
+  </main>
+  <dc-import name="BottomNav" active="liked" hint-size="390px,84px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

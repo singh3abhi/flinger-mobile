@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Daily likes used</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;background:#FFFBF8}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ph{background:radial-gradient(circle at 50% 36%,rgba(255,255,255,.5) 0 11%,transparent 11.6%),radial-gradient(ellipse at 50% 104%,rgba(255,255,255,.5) 0 40%,transparent 40.6%),linear-gradient(165deg,hsl(var(--h) 72% 64%),hsl(var(--h) 60% 36%))}
+.bgp{position:absolute;left:20px;right:20px;top:150px;height:420px;border-radius:18px}
+.dim{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#FFFBF8;border-radius:24px 24px 0 0;padding:10px 24px 36px;text-align:center}
+.grab{width:40px;height:5px;border-radius:3px;background:#DCCBBE;margin:0 auto 22px}
+.badge{width:64px;height:64px;border-radius:50%;background:#FFE4D6;color:#B8431F;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+h2{margin:0;font-size:24px;line-height:1.2;font-weight:800;letter-spacing:-.3px}
+p{margin:10px 0 0;font-size:15px;line-height:1.55;font-weight:500;color:#3A3A40}
+.meter{margin:20px 0 0;height:10px;border-radius:5px;background:#F6EEE8;overflow:hidden}
+.meter i{display:block;height:100%;width:100%;background:#E4572E}
+.cap{margin:8px 0 0;display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:#4A4A52}
+.btn{margin-top:22px;display:flex;align-items:center;justify-content:center;height:54px;border-radius:14px;background:#1A1A1A;color:#fff;font-size:16px;font-weight:700}
+.alt{display:block;margin-top:14px;font-size:15px;font-weight:700;text-decoration:underline}
+</style>
+</helmet>
+<div class="scr">
+  <div class="bgp ph" style="--h:14"></div>
+  <div class="dim"></div>
+  <div class="sheet" role="dialog" aria-label="Daily likes used">
+    <div class="grab"></div>
+    <div class="badge"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:30px;height:30px"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+    <h2>You’ve used all 25 likes today</h2>
+    <p>Your likes reset at 4:00 AM. You can keep looking through profiles and passing, and people who like you will still show up.</p>
+    <div class="meter"><i></i></div>
+    <div class="cap"><span>25 of 25 used</span><span>Resets in 6h 12m</span></div>
+    <a class="btn" href="Discover.dc.html">Got it</a>
+    <a class="alt" href="Preferences.dc.html">Adjust my preferences</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -32,7 +32,7 @@ eas build --profile development --platform ios   # dev client build
 ```
 
 ## Legacy
-`../flinger-flutter` is the visual reference (assets, copy, tokens, flows) — read-only. Fonts there are referenced as `assets/fonts/inter/` but live in `assets/fonts/Inter/`; use a lowercase path here.
+`../flinger-flutter` is the visual reference (assets, copy, tokens, flows) — read-only. **Use the remote branch `origin/abhinav`** (latest, ~9k lines, full onboarding questionnaire + swipe UI); `main`/`prod` are stale. Option ids live in `lib/core/constants/profile_mappings.dart`. Fonts there are referenced as `assets/fonts/inter/` but live in `assets/fonts/Inter/`; use a lowercase path here.
 
 ## Git
-Repos under `~/Development/Personal` use the personal SSH key and `abhinavsinghdeveloper@gmail.com` automatically (git `includeIf`). Conventional commit messages; small PRs against `main`.
+Repos under `~/Development/Personal` use the personal SSH key and `abhinavsinghdeveloper@gmail.com` automatically (git `includeIf`). Conventional commit messages. **Work on `uat-release`** (the integration branch; merges deploy to UAT). Small, focused commits; open PRs against `uat-release`.

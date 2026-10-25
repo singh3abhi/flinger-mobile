@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Gender</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFF3EA}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.top{padding:60px 20px 0}
+.prog{height:4px;border-radius:4px;background:#F0DDD0;overflow:hidden}
+.prog i{display:block;height:100%;background:#E4572E;border-radius:4px}
+.step{margin-top:6px;font-size:12px;font-weight:600}
+.back{width:36px;height:36px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 4px rgba(0,0,0,.25);margin:18px 20px 0}
+.head{padding:22px 20px 0}
+.t-h{margin:0;font-size:32px;line-height:1.15;font-weight:800;color:#1A1A1A;letter-spacing:-.3px}
+.t-s{margin:12px 0 0;font-size:15px;line-height:1.5;font-weight:500}
+.body{flex:1;padding:26px 20px 0}
+.q{margin:0 0 14px;font-size:17px;font-weight:700}
+.tile{display:flex;align-items:center;gap:14px;min-height:60px;padding:0 16px;border-radius:14px;background:#fff;border:1.5px solid #1A1A1A;font-size:16px;font-weight:600;margin-bottom:12px}
+.tile.sel{background:#1A1A1A;color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.35)}
+.chk{margin-left:auto;width:26px;height:26px;border-radius:50%;background:#E4572E;color:#1A1A1A;display:flex;align-items:center;justify-content:center}
+.more{margin-top:18px;font-size:13px;font-weight:600}
+.more a{text-decoration:underline}
+.foot{display:flex;align-items:center;gap:16px;padding:12px 20px 34px}
+.fine{flex:1;display:flex;gap:8px;font-size:13px;line-height:1.45;font-weight:500}
+.go{width:56px;height:56px;border-radius:50%;background:#E4572E;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 4px rgba(0,0,0,.25)}
+</style>
+</helmet>
+<div class="scr">
+  <div class="top"><div class="prog"><i style="width:15.4%"></i></div><div class="step">Step 2 of 13</div></div>
+  <a class="back" href="Name.dc.html" aria-label="Back"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+  <div class="head">
+    <h1 class="t-h">Tell us a bit about you</h1>
+    <p class="t-s">This helps us personalize your experience and show you more relevant matches.</p>
+  </div>
+  <div class="body">
+    <p class="q">How do you identify?</p>
+    <div class="tile sel"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:26px;height:26px"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M9 18h6"/></svg>Woman<span class="chk"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:16px;height:16px;stroke-width:3"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+    <div class="tile"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:26px;height:26px"><circle cx="10" cy="14" r="5"/><path d="M14 10l6-6M15 4h5v5"/></svg>Man</div>
+    <div class="tile"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:26px;height:26px"><circle cx="12" cy="12" r="4"/><path d="M12 2v6M12 16v6"/></svg>Non-binary</div>
+    <p class="more"><a href="#gender-info">Learn how gender works on Flinger</a></p>
+  </div>
+  <div class="foot">
+    <div class="fine"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>You can edit this later from your profile.</span></div>
+    <a class="go" href="WhoToMeet.dc.html" aria-label="Next"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:30px;height:30px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

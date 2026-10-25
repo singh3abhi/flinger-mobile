@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Verify code</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFF3EA}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.back{width:36px;height:36px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 4px rgba(0,0,0,.25);margin:60px 20px 0}
+.head{padding:24px 20px 0}
+.t-h{margin:0;font-size:32px;line-height:1.15;font-weight:800;color:#1A1A1A;letter-spacing:-.3px}
+.t-s{margin:12px 0 0;font-size:16px;line-height:1.5;font-weight:500;color:#1A1A1A}
+.t-s b{font-weight:700}
+.body{flex:1;padding:32px 20px 0}
+.cells{display:flex;gap:10px}
+.cell{flex:1;height:60px;border-radius:14px;background:#fff;border:1.5px solid #1A1A1A;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700}
+.cell.act{box-shadow:0 4px 0 #1A1A1A}
+.caret{width:2px;height:28px;background:#1A1A1A}
+.btn{margin-top:28px;display:flex;align-items:center;justify-content:center;height:52px;border-radius:14px;background:#E4572E;font-size:16px;font-weight:600;box-shadow:0 2px 0 rgba(0,0,0,.08)}
+.resend{margin:20px 0 0;text-align:center;font-size:14px;font-weight:500}
+.resend b{font-weight:700}
+.edit{display:block;margin-top:12px;text-align:center;font-size:14px;font-weight:700;text-decoration:underline}
+.foot{padding:12px 20px 34px;display:flex;gap:8px;font-size:13px;line-height:1.45;font-weight:500}
+</style>
+</helmet>
+<div class="scr">
+  <a class="back" href="IdentifyEmail.dc.html" aria-label="Back"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+  <div class="head">
+    <h1 class="t-h">Check your email</h1>
+    <p class="t-s">We’ve sent a 6-digit code to <b>r••••••a@gmail.com</b>. It expires in 10 minutes.</p>
+  </div>
+  <div class="body">
+    <div class="cells" role="group" aria-label="6-digit code">
+      <div class="cell">4</div><div class="cell">8</div><div class="cell">2</div><div class="cell">9</div>
+      <div class="cell act"><span class="caret"></span></div><div class="cell"></div>
+    </div>
+    <a class="btn" href="Name.dc.html">Verify</a>
+    <p class="resend">Resend code in <b>1:42</b></p>
+    <a class="edit" href="IdentifyEmail.dc.html">Wrong email? Edit</a>
+  </div>
+  <div class="foot"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Never share this code with anyone. Flinger will never ask for it.</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

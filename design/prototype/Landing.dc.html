@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Landing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;background:#1A1A1A}
+.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 70%}
+.scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.18) 32%,rgba(0,0,0,.4) 52%,rgba(0,0,0,.9) 100%)}
+.in{position:relative;height:100%;display:flex;flex-direction:column;padding:64px 16px 24px}
+.brand{display:flex;align-items:flex-end;justify-content:center;gap:6px}
+.brand img{width:42px;height:45px}
+.brand b{font-size:42px;line-height:1;font-weight:700;color:#FFF3EA;letter-spacing:-.5px}
+.tag{margin:10px 0 0;text-align:center;font-size:14px;font-weight:700;color:#FFC9B3;line-height:1.8}
+.hl{margin:0 0 30px;text-align:center;font-size:36px;line-height:1.15;font-weight:700;color:#FFF3EA;letter-spacing:-.4px}
+.btn{display:flex;align-items:center;justify-content:center;height:50px;border-radius:12px;font-size:15px;font-weight:600;margin-bottom:12px}
+.btn.w{background:#E4572E;color:#1A1A1A;box-shadow:0 2px 0 rgba(0,0,0,.04)}
+.btn.o{border:1px solid #fff;color:#fff}
+.legal{margin:12px 0 16px;text-align:center;font-size:12px;line-height:1.5;font-weight:500;color:#fff}
+.legal a{text-decoration:underline}
+</style>
+</helmet>
+<div class="scr">
+  <img class="bg" src="/_blob/a6ef6e00058314ca09f41fd17015f580" alt="">
+  <div class="scrim"></div>
+  <div class="in">
+    <div>
+      <div class="brand"><img src="/_blob/e942fb8603cc2d4ef4cfe09d8184e67e" alt=""><b>Flinger</b></div>
+      <p class="tag">Flings, Love &amp; Stories</p>
+    </div>
+    <div style="flex:1"></div>
+    <h1 class="hl">Meet people who feel real</h1>
+    <a class="btn w" href="IdentifyEmail.dc.html">Create an account</a>
+    <a class="btn o" href="IdentifyEmail.dc.html">I have an account</a>
+    <p class="legal">By signing up, you agree to our <a href="#terms">Terms</a>. See how we use your data in our <a href="#privacy">Privacy Policy</a>.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

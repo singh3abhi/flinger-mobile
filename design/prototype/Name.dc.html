@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Name and birthday</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFF3EA}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.top{padding:60px 20px 0}
+.prog{height:4px;border-radius:4px;background:#F0DDD0;overflow:hidden}
+.prog i{display:block;height:100%;background:#E4572E;border-radius:4px}
+.step{margin-top:6px;font-size:12px;font-weight:600}
+.head{padding:30px 20px 0}
+.t-h{margin:0;font-size:32px;line-height:1.15;font-weight:800;color:#1A1A1A;letter-spacing:-.3px}
+.t-s{margin:12px 0 0;font-size:15px;line-height:1.5;font-weight:500}
+.body{flex:1;padding:28px 20px 0}
+.lab{font-size:15px;font-weight:700;margin:0 0 4px}
+.sub{font-size:13px;font-weight:500;margin:0 0 10px}
+.field{height:54px;border-radius:14px;background:#fff;border:1.5px solid #1A1A1A;box-shadow:0 4px 0 #1A1A1A;padding:0 16px;display:flex;align-items:center;font-size:16px;font-weight:500}
+.dob{display:flex;gap:10px}
+.dob .field{justify-content:center;font-weight:600}
+.foot{display:flex;align-items:center;gap:16px;padding:12px 20px 34px}
+.fine{flex:1;display:flex;gap:8px;font-size:13px;line-height:1.45;font-weight:500}
+.go{width:56px;height:56px;border-radius:50%;background:#E4572E;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 4px rgba(0,0,0,.25)}
+</style>
+</helmet>
+<div class="scr">
+  <div class="top"><div class="prog"><i style="width:7.7%"></i></div><div class="step">Step 1 of 13</div></div>
+  <div class="head">
+    <h1 class="t-h">Let’s get to know you</h1>
+    <p class="t-s">You must be at least 18 years old to use this app.</p>
+  </div>
+  <div class="body">
+    <p class="lab">Your first name</p>
+    <p class="sub">What should we call you?</p>
+    <div class="field">Rohan</div>
+    <p class="lab" style="margin-top:28px">Your birthday</p>
+    <p class="sub">We promise no birthday spam.</p>
+    <div class="dob">
+      <div class="field" style="flex:1">14</div>
+      <div class="field" style="flex:1">03</div>
+      <div class="field" style="flex:1.6">1996</div>
+    </div>
+    <p class="sub" style="margin-top:12px">DD · MM · YYYY</p>
+  </div>
+  <div class="foot">
+    <div class="fine"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Only your age is shown on your profile, never your birthdate.</span></div>
+    <a class="go" href="AgeConfirm.dc.html" aria-label="Next"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:30px;height:30px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

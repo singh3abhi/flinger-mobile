@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Theme options</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#111;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+h1,h2,p{margin:0}
+.wrap{width:1300px;min-height:2800px;background:#fff;padding:56px 48px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#B8431F}
+h1{margin-top:10px;font-size:40px;line-height:1.1;font-weight:800;letter-spacing:-.8px}
+.row{display:flex;gap:28px;align-items:flex-start;padding:36px 0;border-bottom:2px solid #E4E4E7}
+.info{flex:none;width:300px}
+.key{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#111;color:#fff;font-size:16px;font-weight:800}
+.info h2{margin-top:12px;font-size:26px;font-weight:800;letter-spacing:-.4px}
+.sw{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.sw div{width:52px}
+.sw i{display:block;height:44px;border-radius:10px;border:1px solid rgba(0,0,0,.12)}
+.sw small{display:block;margin-top:5px;font-size:10px;line-height:1.3;font-weight:600;color:#3A3A40;word-break:break-all}
+.facts{margin:18px 0 0;padding:0;list-style:none}
+.facts li{padding:7px 0;border-bottom:1px solid #EEEEF0;font-size:13px;line-height:1.4;font-weight:500;color:#3A3A40}
+
+/* device + shared mini-screen styles, driven by CSS variables */
+.dev{flex:none;position:relative;width:272px;height:572px;border:6px solid #111;border-radius:36px;overflow:hidden;background:var(--page)}
+.s1{position:relative;height:100%;background:var(--bg);padding:40px 16px 0}
+.pr{height:4px;border-radius:2px;background:var(--track);overflow:hidden}
+.pr i{display:block;height:100%;background:var(--fill)}
+.st{margin-top:5px;font-size:9px;font-weight:600;color:var(--body)}
+.h{margin:22px 0 0;font-size:23px;line-height:1.15;font-weight:800;letter-spacing:-.3px;color:var(--h1)}
+.sb{margin:10px 0 16px;font-size:12px;line-height:1.5;font-weight:500;color:var(--body)}
+.tl{display:flex;align-items:center;justify-content:space-between;height:42px;padding:0 12px;border-radius:11px;background:var(--field);color:var(--fieldfg);border:1.5px solid var(--bd);font-size:12px;font-weight:600;margin-bottom:8px}
+.tl.sel{background:var(--selbg);color:var(--selfg);border-color:var(--selbg)}
+.tl .ck{width:18px;height:18px;border-radius:50%;background:var(--accent);color:var(--accentfg);display:flex;align-items:center;justify-content:center}
+.go{position:absolute;right:16px;bottom:22px;width:44px;height:44px;border-radius:50%;background:var(--btn);color:var(--btnfg);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 6px rgba(0,0,0,.25)}
+.ico{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.s2{position:relative;height:100%;background:var(--page);padding:38px 14px 0;color:var(--ink)}
+.tb{display:flex;align-items:center;justify-content:space-between}
+.lg{font-size:17px;font-weight:800;color:var(--accenttext);letter-spacing:-.3px}
+.pl{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:11px;background:var(--tint);color:var(--tintfg);font-size:9px;font-weight:700}
+.nm{margin-top:10px;font-size:20px;font-weight:800;letter-spacing:-.3px;color:var(--ink)}
+.lc{margin-top:1px;font-size:10px;font-weight:500;color:var(--muted)}
+.pic{position:relative;height:236px;margin-top:9px;border-radius:14px;overflow:hidden}
+.ph{background:radial-gradient(circle at 50% 36%,rgba(255,255,255,.5) 0 11%,transparent 11.6%),radial-gradient(ellipse at 50% 104%,rgba(255,255,255,.5) 0 40%,transparent 40.6%),linear-gradient(165deg,hsl(var(--h) 62% 62%),hsl(var(--h) 52% 34%))}
+.ht{position:absolute;right:10px;bottom:10px;width:40px;height:40px;border-radius:50%;background:var(--accent);color:var(--accentfg);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(0,0,0,.28)}
+.ch{display:flex;gap:6px;margin-top:9px}
+.ch i{font-style:normal;display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:12px;background:var(--card);color:var(--ink);font-size:9px;font-weight:600}
+.pc{margin-top:9px;padding:11px;border-radius:13px;background:var(--card)}
+.pc small{display:block;font-size:9px;font-weight:700;color:var(--muted)}
+.pc p{margin-top:4px;font-size:14px;line-height:1.25;font-weight:700;color:var(--ink)}
+.nv{position:absolute;left:0;right:0;bottom:0;height:50px;display:flex;border-top:1px solid var(--line);background:var(--page)}
+.nv span{flex:1;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;color:var(--muted)}
+.nv span.on{color:var(--accenttext);font-weight:800}
+.s3{position:relative;height:100%;background:var(--page);color:var(--ink)}
+.hd{display:flex;align-items:center;gap:8px;padding:38px 14px 10px;border-bottom:1px solid var(--line)}
+.av{width:28px;height:28px;border-radius:50%}
+.hd b{font-size:13px;font-weight:700;color:var(--ink)}
+.ms{padding:14px 12px;display:flex;flex-direction:column;gap:7px}
+.bb{max-width:170px;padding:8px 11px;border-radius:15px;font-size:11px;line-height:1.4;font-weight:500}
+.bb.in{align-self:flex-start;background:var(--in);color:var(--infg);border-bottom-left-radius:5px}
+.bb.out{align-self:flex-end;background:var(--out);color:var(--outfg);border-bottom-right-radius:5px;font-weight:600}
+.cp{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:8px;padding:8px 12px 18px;border-top:1px solid var(--line);background:var(--page)}
+.ip{flex:1;height:34px;border-radius:17px;background:var(--in);padding:0 12px;display:flex;align-items:center;font-size:11px;font-weight:500;color:var(--muted)}
+.sd{width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--accentfg);display:flex;align-items:center;justify-content:center}
+
+/* four themes */
+.tA{--bg:#B84A24;--h1:#FFFFFF;--body:#FFFFFF;--track:rgba(255,255,255,.4);--fill:#fff;--field:#FFFFFF;--fieldfg:#1A1A1A;--bd:#1A1A1A;--selbg:#1A1A1A;--selfg:#FFFFFF;--btn:#FFFFFF;--btnfg:#1A1A1A;--page:#FFFFFF;--card:#F6F1EE;--ink:#1A1A1A;--muted:#5C5C63;--accent:#B84A24;--accentfg:#FFFFFF;--accenttext:#B84A24;--tint:#F8E4DB;--tintfg:#6B2410;--out:#B84A24;--outfg:#FFFFFF;--in:#F3F0EE;--infg:#1A1A1A;--line:#E7E2DF}
+.tB{--bg:#FFF3EA;--h1:#1A1A1A;--body:#3A3A40;--track:#F0DDD0;--fill:#E4572E;--field:#FFFFFF;--fieldfg:#1A1A1A;--bd:#E8D5C8;--selbg:#1A1A1A;--selfg:#FFFFFF;--btn:#E4572E;--btnfg:#1A1A1A;--page:#FFFBF8;--card:#FFF3EA;--ink:#1A1A1A;--muted:#5C5C63;--accent:#E4572E;--accentfg:#1A1A1A;--accenttext:#B8431F;--tint:#FFE4D6;--tintfg:#7A2E14;--out:#E4572E;--outfg:#1A1A1A;--in:#F6EEE8;--infg:#1A1A1A;--line:#EFE3DA}
+.tC{--bg:#EE8F72;--h1:#1A1A1A;--body:#1A1A1A;--track:rgba(26,26,26,.2);--fill:#1A1A1A;--field:#FFFFFF;--fieldfg:#1A1A1A;--bd:#1A1A1A;--selbg:#1A1A1A;--selfg:#FFFFFF;--btn:#1A1A1A;--btnfg:#FFFFFF;--page:#FFFFFF;--card:#FDEFE9;--ink:#1A1A1A;--muted:#5C5C63;--accent:#EE8F72;--accentfg:#1A1A1A;--accenttext:#A8431F;--tint:#FDEFE9;--tintfg:#6B2410;--out:#EE8F72;--outfg:#1A1A1A;--in:#F3F0EE;--infg:#1A1A1A;--line:#EDE7E3}
+.tD{--bg:#141414;--h1:#F4F4F5;--body:#C9C9CF;--track:#2E2E33;--fill:#FF6B3D;--field:#1F1F22;--fieldfg:#F4F4F5;--bd:#3A3A40;--selbg:#FF6B3D;--selfg:#141414;--btn:#FF6B3D;--btnfg:#141414;--page:#141414;--card:#1F1F22;--ink:#F4F4F5;--muted:#A1A1AA;--accent:#FF6B3D;--accentfg:#141414;--accenttext:#FF6B3D;--tint:#2A1A14;--tintfg:#FFB59A;--out:#FF6B3D;--outfg:#141414;--in:#26262A;--infg:#F4F4F5;--line:#2E2E33}
+</style>
+</helmet>
+<div class="wrap">
+  <p class="eyebrow">Theme options</p>
+  <h1>Four softer ways to wear Flinger</h1>
+
+  <div class="row">
+    <div class="info">
+      <span class="key">A</span>
+      <h2>Terracotta</h2>
+      <div class="sw"><div><i style="background:#B84A24"></i><small>#B84A24 brand</small></div><div><i style="background:#FFFFFF"></i><small>#FFFFFF</small></div><div><i style="background:#1A1A1A"></i><small>#1A1A1A ink</small></div><div><i style="background:#F8E4DB"></i><small>#F8E4DB tint</small></div></div>
+      <ul class="facts"><li>Deep, calm orange (saturation 67%, was 100%)</li><li>White on brand: 5.2:1, so white text works everywhere</li><li>Keeps full-color onboarding screens</li></ul>
+    </div>
+    <div class="dev tA"><div class="s1"><div class="pr"><i style="width:15%"></i></div><div class="st">Step 2 of 13</div><h4 class="h">Tell us a bit about you</h4><p class="sb">How do you identify?</p><div class="tl sel">Woman<span class="ck"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:11px;height:11px"><path d="M20 6 9 17l-5-5"/></svg></span></div><div class="tl">Man</div><div class="tl">Non-binary</div><div class="go"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div></div>
+    <div class="dev tA"><div class="s2"><div class="tb"><b class="lg">Flinger</b><span class="pl">22 likes left</span></div><div class="nm">Aanya, 27</div><div class="lc">Bengaluru · 3 km away</div><div class="pic ph" style="--h:14"><span class="ht"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span></div><div class="ch"><i>168 cm</i><i>Hindu</i><i>Open to kids</i></div><div class="pc"><small>A perfect Sunday looks like…</small><p>Filter coffee and a long walk.</p></div><div class="nv"><span class="on">Discover</span><span>Liked You</span><span>Chats</span><span>Profile</span></div></div></div>
+    <div class="dev tA"><div class="s3"><div class="hd"><div class="av ph" style="--h:14"></div><b>Aanya</b></div><div class="ms"><div class="bb in">Hi Rohan! That view is from Coorg.</div><div class="bb out">Coorg in the monsoon is unreal.</div><div class="bb in">Haha yes! Best chai stall too.</div><div class="bb out">Now I need the name of that stall.</div></div><div class="cp"><div class="ip">Message Aanya</div><span class="sd"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></span></div></div></div>
+  </div>
+
+  <div class="row">
+    <div class="info">
+      <span class="key">B</span>
+      <h2>Cream and ember</h2>
+      <div class="sw"><div><i style="background:#FFF3EA"></i><small>#FFF3EA cream</small></div><div><i style="background:#E4572E"></i><small>#E4572E accent</small></div><div><i style="background:#1A1A1A"></i><small>#1A1A1A ink</small></div><div><i style="background:#B8431F"></i><small>#B8431F small text</small></div></div>
+      <ul class="facts"><li>Warm cream backgrounds; orange only on buttons, hearts and highlights</li><li>Ink on accent: 4.7:1; ink on cream: 16:1</li><li>Least orange on screen, easiest on the eyes</li></ul>
+    </div>
+    <div class="dev tB"><div class="s1"><div class="pr"><i style="width:15%"></i></div><div class="st">Step 2 of 13</div><h4 class="h">Tell us a bit about you</h4><p class="sb">How do you identify?</p><div class="tl sel">Woman<span class="ck"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:11px;height:11px"><path d="M20 6 9 17l-5-5"/></svg></span></div><div class="tl">Man</div><div class="tl">Non-binary</div><div class="go"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div></div>
+    <div class="dev tB"><div class="s2"><div class="tb"><b class="lg">Flinger</b><span class="pl">22 likes left</span></div><div class="nm">Aanya, 27</div><div class="lc">Bengaluru · 3 km away</div><div class="pic ph" style="--h:14"><span class="ht"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span></div><div class="ch"><i>168 cm</i><i>Hindu</i><i>Open to kids</i></div><div class="pc"><small>A perfect Sunday looks like…</small><p>Filter coffee and a long walk.</p></div><div class="nv"><span class="on">Discover</span><span>Liked You</span><span>Chats</span><span>Profile</span></div></div></div>
+    <div class="dev tB"><div class="s3"><div class="hd"><div class="av ph" style="--h:14"></div><b>Aanya</b></div><div class="ms"><div class="bb in">Hi Rohan! That view is from Coorg.</div><div class="bb out">Coorg in the monsoon is unreal.</div><div class="bb in">Haha yes! Best chai stall too.</div><div class="bb out">Now I need the name of that stall.</div></div><div class="cp"><div class="ip">Message Aanya</div><span class="sd"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></span></div></div></div>
+  </div>
+
+  <div class="row">
+    <div class="info">
+      <span class="key">C</span>
+      <h2>Soft coral</h2>
+      <div class="sw"><div><i style="background:#EE8F72"></i><small>#EE8F72 brand</small></div><div><i style="background:#FDEFE9"></i><small>#FDEFE9 tint</small></div><div><i style="background:#1A1A1A"></i><small>#1A1A1A ink</small></div><div><i style="background:#A8431F"></i><small>#A8431F small text</small></div></div>
+      <ul class="facts"><li>Pastel coral (lightness 69%, was 50%) on full-color screens</li><li>Ink on brand: 7.3:1; white on brand fails, so buttons are ink</li><li>Friendliest and lightest, least punchy</li></ul>
+    </div>
+    <div class="dev tC"><div class="s1"><div class="pr"><i style="width:15%"></i></div><div class="st">Step 2 of 13</div><h4 class="h">Tell us a bit about you</h4><p class="sb">How do you identify?</p><div class="tl sel">Woman<span class="ck"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:11px;height:11px"><path d="M20 6 9 17l-5-5"/></svg></span></div><div class="tl">Man</div><div class="tl">Non-binary</div><div class="go"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div></div>
+    <div class="dev tC"><div class="s2"><div class="tb"><b class="lg">Flinger</b><span class="pl">22 likes left</span></div><div class="nm">Aanya, 27</div><div class="lc">Bengaluru · 3 km away</div><div class="pic ph" style="--h:14"><span class="ht"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span></div><div class="ch"><i>168 cm</i><i>Hindu</i><i>Open to kids</i></div><div class="pc"><small>A perfect Sunday looks like…</small><p>Filter coffee and a long walk.</p></div><div class="nv"><span class="on">Discover</span><span>Liked You</span><span>Chats</span><span>Profile</span></div></div></div>
+    <div class="dev tC"><div class="s3"><div class="hd"><div class="av ph" style="--h:14"></div><b>Aanya</b></div><div class="ms"><div class="bb in">Hi Rohan! That view is from Coorg.</div><div class="bb out">Coorg in the monsoon is unreal.</div><div class="bb in">Haha yes! Best chai stall too.</div><div class="bb out">Now I need the name of that stall.</div></div><div class="cp"><div class="ip">Message Aanya</div><span class="sd"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></span></div></div></div>
+  </div>
+
+  <div class="row" style="border-bottom:0">
+    <div class="info">
+      <span class="key">D</span>
+      <h2>Dark ember</h2>
+      <div class="sw"><div><i style="background:#141414"></i><small>#141414 base</small></div><div><i style="background:#1F1F22"></i><small>#1F1F22 surface</small></div><div><i style="background:#FF6B3D"></i><small>#FF6B3D accent</small></div><div><i style="background:#F4F4F5"></i><small>#F4F4F5 text</small></div></div>
+      <ul class="facts"><li>Near-black base from your Flutter tokens (charcoal, surface)</li><li>Accent on base: 6.5:1; text on base: 16.8:1</li><li>Gentlest at night; could also ship as a dark mode beside A, B or C</li></ul>
+    </div>
+    <div class="dev tD"><div class="s1"><div class="pr"><i style="width:15%"></i></div><div class="st">Step 2 of 13</div><h4 class="h">Tell us a bit about you</h4><p class="sb">How do you identify?</p><div class="tl sel">Woman<span class="ck"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:11px;height:11px"><path d="M20 6 9 17l-5-5"/></svg></span></div><div class="tl">Man</div><div class="tl">Non-binary</div><div class="go"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div></div>
+    <div class="dev tD"><div class="s2"><div class="tb"><b class="lg">Flinger</b><span class="pl">22 likes left</span></div><div class="nm">Aanya, 27</div><div class="lc">Bengaluru · 3 km away</div><div class="pic ph" style="--h:14"><span class="ht"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span></div><div class="ch"><i>168 cm</i><i>Hindu</i><i>Open to kids</i></div><div class="pc"><small>A perfect Sunday looks like…</small><p>Filter coffee and a long walk.</p></div><div class="nv"><span class="on">Discover</span><span>Liked You</span><span>Chats</span><span>Profile</span></div></div></div>
+    <div class="dev tD"><div class="s3"><div class="hd"><div class="av ph" style="--h:14"></div><b>Aanya</b></div><div class="ms"><div class="bb in">Hi Rohan! That view is from Coorg.</div><div class="bb out">Coorg in the monsoon is unreal.</div><div class="bb in">Haha yes! Best chai stall too.</div><div class="bb out">Now I need the name of that stall.</div></div><div class="cp"><div class="ip">Message Aanya</div><span class="sd"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></span></div></div></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1300,"height":2800}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

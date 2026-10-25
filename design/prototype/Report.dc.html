@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Report</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFFBF8}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:54px 12px 6px}
+.ib{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.body{flex:1;overflow:hidden;padding:0 20px}
+h1{margin:6px 0 0;font-size:28px;font-weight:800;letter-spacing:-.4px}
+.sub{margin:8px 0 18px;font-size:14px;line-height:1.55;font-weight:500;color:#3A3A40}
+.r{display:flex;align-items:center;gap:14px;min-height:52px;padding:0 14px;border-radius:14px;border:1.5px solid #8F7F72;font-size:15px;font-weight:600;margin-bottom:8px}
+.r.sel{border-color:#1A1A1A;background:#F6EEE8}
+.dot{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid #8A8A92}
+.r.sel .dot{border-color:#1A1A1A;background:radial-gradient(circle,#1A1A1A 0 45%,transparent 50%)}
+.ta{margin-top:10px;min-height:84px;border-radius:14px;border:1.5px solid #8F7F72;padding:12px 14px;font-size:15px;line-height:1.45;font-weight:500;color:#5C5C63}
+.blk{display:flex;align-items:center;justify-content:space-between;margin-top:14px;font-size:15px;font-weight:600}
+.sw{width:52px;height:30px;border-radius:15px;background:#8F7F72;position:relative}
+.sw i{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.foot{padding:12px 20px 34px;border-top:1px solid #EFE3DA}
+.btn{display:flex;align-items:center;justify-content:center;height:54px;border-radius:14px;background:#1A1A1A;color:#fff;font-size:16px;font-weight:700}
+</style>
+</helmet>
+<div class="scr">
+  <header class="bar"><a class="ib" href="ChatMenu.dc.html" aria-label="Close"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></a></header>
+  <main class="body">
+    <h1>Report Aanya</h1>
+    <p class="sub">Your report is private. We’ll review it and take action if it breaks our Community Guidelines.</p>
+    <div class="r"><span class="dot"></span>Fake profile or spam</div>
+    <div class="r sel"><span class="dot"></span>Inappropriate photos or messages</div>
+    <div class="r"><span class="dot"></span>Harassment or hate</div>
+    <div class="r"><span class="dot"></span>Seems under 18</div>
+    <div class="r"><span class="dot"></span>Scam or asking for money</div>
+    <div class="r"><span class="dot"></span>Something else</div>
+    <div class="ta">Add details (optional)</div>
+    <div class="blk"><span>Also block Aanya</span><span class="sw" role="switch" aria-checked="false" aria-label="Also block"><i></i></span></div>
+  </main>
+  <div class="foot"><a class="btn" href="Chats.dc.html">Submit report</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

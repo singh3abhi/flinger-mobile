@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Discover</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFFBF8}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ph{background:radial-gradient(circle at 50% 36%,rgba(255,255,255,.5) 0 11%,transparent 11.6%),radial-gradient(ellipse at 50% 104%,rgba(255,255,255,.5) 0 40%,transparent 40.6%),linear-gradient(165deg,hsl(var(--h) 72% 64%),hsl(var(--h) 60% 36%))}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:56px 20px 8px}
+.brand{display:flex;align-items:center;gap:8px;font-size:24px;font-weight:800;color:#B8431F;letter-spacing:-.5px}
+.brand img{width:24px;height:26px}
+.pill{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:16px;background:#FFE4D6;color:#7A2E14;font-size:13px;font-weight:700}
+.feed{flex:1;overflow:hidden;padding:6px 20px 0}
+.who{display:flex;align-items:center;justify-content:space-between}
+.nm{display:flex;align-items:center;gap:8px;font-size:28px;font-weight:800;letter-spacing:-.4px}
+.vf{width:22px;height:22px;border-radius:50%;background:#1D5FD1;color:#fff;display:flex;align-items:center;justify-content:center}
+.more{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#3A3A40}
+.loc{display:flex;align-items:center;gap:6px;margin:2px 0 14px;font-size:14px;font-weight:500;color:#4A4A52}
+.photo{position:relative;height:420px;border-radius:18px;overflow:hidden}
+.heart{position:absolute;right:14px;bottom:14px;width:52px;height:52px;border-radius:50%;background:#fff;color:#B8431F;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.22)}
+.vit{display:flex;gap:8px;margin-top:14px;overflow:hidden}
+.v{flex:none;display:inline-flex;align-items:center;height:34px;padding:0 12px;border-radius:17px;background:#F6EEE8;font-size:13px;font-weight:600}
+.pc{margin-top:16px;border-radius:18px;background:#F6EEE8;padding:18px;position:relative}
+.pl{margin:0;font-size:13px;font-weight:700;color:#4A4A52}
+.pa{margin:8px 0 0;font-size:24px;line-height:1.25;font-weight:700;letter-spacing:-.3px}
+.pass{position:absolute;left:20px;bottom:104px;width:56px;height:56px;border-radius:50%;background:#1A1A1A;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,.3)}
+</style>
+</helmet>
+<div class="scr">
+  <header class="bar">
+    <div class="brand"><img src="/_blob/e942fb8603cc2d4ef4cfe09d8184e67e" alt="">Flinger</div>
+    <span class="pill"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:16px;height:16px"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>22 likes left</span>
+  </header>
+  <main class="feed">
+    <div class="who">
+      <div class="nm">Aanya, 27 <span class="vf" aria-label="Verified"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px;stroke-width:3"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+      <a class="more" href="ChatMenu.dc.html" aria-label="More options"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></a>
+    </div>
+    <div class="loc"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:16px;height:16px"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Bengaluru · 3 km away</div>
+    <div class="photo ph" style="--h:14">
+      <a class="heart" href="LikeSheet.dc.html" aria-label="Like this photo"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:26px;height:26px"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></a>
+    </div>
+    <div class="vit"><span class="v">168 cm</span><span class="v">Hindu</span><span class="v">Open to kids</span><span class="v">Long-term relationship</span></div>
+    <div class="pc">
+      <p class="pl">A perfect Sunday looks like…</p>
+      <p class="pa">Filter coffee, a long walk and way too many samosas.</p>
+    </div>
+  </main>
+  <a class="pass" href="Discover.dc.html" aria-label="Pass on Aanya"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:26px;height:26px"><path d="M18 6 6 18M6 6l12 12"/></svg></a>
+  <dc-import name="BottomNav" active="discover" hint-size="390px,84px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

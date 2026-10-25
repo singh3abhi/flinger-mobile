@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Delete account</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFFBF8}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.bar{display:flex;align-items:center;padding:54px 8px 6px}
+.ib{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.body{flex:1;overflow:hidden;padding:0 20px}
+h1{margin:6px 0 0;font-size:28px;font-weight:800;letter-spacing:-.4px}
+.sub{margin:10px 0 18px;font-size:15px;line-height:1.55;font-weight:500;color:#3A3A40}
+.li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #EFE3DA;font-size:14px;line-height:1.5;font-weight:500}
+.li svg{margin-top:1px;color:#B3261E}
+.li b{display:block;font-weight:700;font-size:15px}
+.lab{margin:22px 0 8px;font-size:13px;font-weight:700}
+.field{height:54px;border-radius:14px;border:2px solid #1A1A1A;padding:0 16px;display:flex;align-items:center;font-size:16px;font-weight:600;letter-spacing:1px}
+.pause{display:flex;gap:12px;margin-top:20px;padding:14px;border-radius:14px;background:#F6EEE8;font-size:13px;line-height:1.5;font-weight:500}
+.pause b{display:block;font-size:14px;font-weight:700}
+.pause a{display:inline-block;margin-top:6px;font-weight:700;text-decoration:underline}
+.foot{padding:12px 20px 34px;border-top:1px solid #EFE3DA}
+.btn{display:flex;align-items:center;justify-content:center;height:54px;border-radius:14px;background:#B3261E;color:#fff;font-size:16px;font-weight:700}
+.alt{display:block;margin-top:14px;text-align:center;font-size:15px;font-weight:700}
+</style>
+</helmet>
+<div class="scr">
+  <header class="bar"><a class="ib" href="Settings.dc.html" aria-label="Back"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a></header>
+  <main class="body">
+    <h1>Delete your account?</h1>
+    <p class="sub">This is permanent. Here’s what will happen.</p>
+    <div class="li"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg><div><b>Your profile disappears now</b>You’ll be hidden from everyone straight away.</div></div>
+    <div class="li"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><div><b>Matches and chats are removed</b>You can’t get them back.</div></div>
+    <div class="li"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div><b>Your data is erased within 30 days</b>Including your photos and answers.</div></div>
+    <p class="lab">Type DELETE to confirm</p>
+    <div class="field">DELE</div>
+    <div class="pause"><div><b>Just need a break?</b>Pausing hides your profile but keeps your matches and chats.<br><a href="Settings.dc.html">Pause my account instead</a></div></div>
+  </main>
+  <div class="foot">
+    <a class="btn" href="Landing.dc.html" style="opacity:.5">Delete my account</a>
+    <a class="alt" href="Settings.dc.html">Keep my account</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFFBF8}
+.ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.bar{display:flex;align-items:center;gap:6px;padding:54px 8px 8px;border-bottom:1px solid #EFE3DA}
+.ib{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.bar b{font-size:17px;font-weight:700}
+.body{flex:1;overflow:hidden;padding:0 20px}
+.sec{margin:16px 0 4px;font-size:12px;font-weight:700;color:#4A4A52;text-transform:uppercase;letter-spacing:.6px}
+.r{display:flex;align-items:center;gap:12px;min-height:48px;border-bottom:1px solid #EFE3DA;font-size:15px;font-weight:600}
+.r small{margin-left:auto;font-size:13px;font-weight:500;color:#4A4A52}
+.r .c{color:#8A8A92}
+.ok{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#1B6B3A;margin-left:auto}
+.sw{margin-left:auto;width:48px;height:28px;border-radius:14px;background:#8F7F72;position:relative}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.sw.on{background:#E4572E}
+.sw.on::after{left:23px}
+.r.d{color:#B3261E}
+.ver{margin:14px 0 0;text-align:center;font-size:12px;font-weight:500;color:#5C5C63}
+.sub{display:block;font-size:12px;font-weight:500;color:#4A4A52;margin-top:1px}
+</style>
+</helmet>
+<div class="scr">
+  <header class="bar"><a class="ib" href="MyProfile.dc.html" aria-label="Back"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:22px;height:22px"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a><b>Settings</b></header>
+  <main class="body">
+    <p class="sec">Account</p>
+    <div class="r">Email<span class="ok"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px;stroke-width:3"><path d="M20 6 9 17l-5-5"/></svg>rohan.mehta@gmail.com</span></div>
+    <div class="r">Phone number<small>Add</small><svg class="ico c" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></div>
+    <p class="sec">Notifications</p>
+    <div class="r">New matches<span class="sw on" role="switch" aria-checked="true" aria-label="New matches"></span></div>
+    <div class="r">New messages<span class="sw on" role="switch" aria-checked="true" aria-label="New messages"></span></div>
+    <p class="sec">Privacy</p>
+    <div class="r"><span>Read receipts<span class="sub">Let people see when you’ve read their message</span></span><span class="sw" role="switch" aria-checked="false" aria-label="Read receipts"></span></div>
+    <div class="r">Show my distance<span class="sw on" role="switch" aria-checked="true" aria-label="Show my distance"></span></div>
+    <div class="r">Blocked people<small>2</small><svg class="ico c" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></div>
+    <p class="sec">Account status</p>
+    <div class="r"><span>Pause my account<span class="sub">Hide your profile. Your chats stay.</span></span><span class="sw" role="switch" aria-checked="false" aria-label="Pause my account"></span></div>
+    <p class="sec">About</p>
+    <div class="r">Terms, Privacy and Guidelines<svg class="ico c" viewBox="0 0 24 24" aria-hidden="true" style="margin-left:auto"><path d="m9 18 6-6-6-6"/></svg></div>
+    <a class="r" href="Landing.dc.html">Log out</a>
+    <a class="r d" href="DeleteAccount.dc.html">Delete account</a>
+    <p class="ver">Flinger 1.0.0 (1)</p>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

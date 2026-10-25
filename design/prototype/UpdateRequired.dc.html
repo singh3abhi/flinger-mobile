@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Update required</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#FFFBF8;padding:0 32px}
+.logo{width:84px;height:90px}
+h1{margin:28px 0 0;font-size:30px;line-height:1.15;font-weight:800;letter-spacing:-.4px}
+p{margin:14px 0 0;font-size:16px;line-height:1.55;font-weight:500;color:#3A3A40}
+.btn{margin-top:32px;width:100%;display:flex;align-items:center;justify-content:center;height:54px;border-radius:14px;background:#E4572E;color:#1A1A1A;font-size:16px;font-weight:800}
+</style>
+</helmet>
+<div class="scr">
+  <img class="logo" src="/_blob/e942fb8603cc2d4ef4cfe09d8184e67e" alt="Flinger logo">
+  <h1>Time to update</h1>
+  <p>This version of Flinger is no longer supported. Update the app to keep meeting people.</p>
+  <div class="btn">Update Flinger</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

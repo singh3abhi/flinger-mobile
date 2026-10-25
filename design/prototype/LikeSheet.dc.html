@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Like with a comment</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;background:#FFFBF8}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ph{background:radial-gradient(circle at 50% 36%,rgba(255,255,255,.5) 0 11%,transparent 11.6%),radial-gradient(ellipse at 50% 104%,rgba(255,255,255,.5) 0 40%,transparent 40.6%),linear-gradient(165deg,hsl(var(--h) 72% 64%),hsl(var(--h) 60% 36%))}
+.bgp{position:absolute;left:20px;right:20px;top:150px;height:420px;border-radius:18px}
+.dim{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#FFFBF8;border-radius:24px 24px 0 0;padding:10px 20px 34px}
+.grab{width:40px;height:5px;border-radius:3px;background:#DCCBBE;margin:0 auto 14px}
+.hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.hd h2{margin:0;font-size:20px;font-weight:800;letter-spacing:-.2px}
+.x{width:36px;height:36px;border-radius:50%;background:#F6EEE8;display:flex;align-items:center;justify-content:center}
+.tgt{display:flex;gap:12px;align-items:center;padding:10px;border-radius:14px;background:#F6EEE8}
+.th{flex:none;width:56px;height:70px;border-radius:10px}
+.tgt p{margin:0;font-size:14px;line-height:1.4;font-weight:600}
+.tgt small{display:block;font-size:12px;font-weight:500;color:#4A4A52;margin-top:2px}
+.lab{margin:16px 0 8px;font-size:13px;font-weight:700}
+.cm{min-height:96px;border-radius:14px;border:2px solid #1A1A1A;box-shadow:0 4px 0 #1A1A1A;padding:12px 14px;font-size:16px;line-height:1.45;font-weight:500}
+.cnt{margin:8px 2px 0;text-align:right;font-size:12px;font-weight:500;color:#5C5C63}
+.send{margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;height:54px;border-radius:14px;background:#E4572E;color:#1A1A1A;font-size:16px;font-weight:800}
+.alt{display:block;margin-top:14px;text-align:center;font-size:15px;font-weight:700;color:#3A3A40;text-decoration:underline}
+</style>
+</helmet>
+<div class="scr">
+  <div class="bgp ph" style="--h:14"></div>
+  <div class="dim"></div>
+  <div class="sheet" role="dialog" aria-label="Send a like">
+    <div class="grab"></div>
+    <div class="hd"><h2>Like Aanya’s photo</h2><a class="x" href="Discover.dc.html" aria-label="Close"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px"><path d="M18 6 6 18M6 6l12 12"/></svg></a></div>
+    <div class="tgt"><div class="th ph" style="--h:14"></div><p>Photo 1<small>22 likes left today</small></p></div>
+    <p class="lab">Add a comment (optional)</p>
+    <div class="cm">That view is unreal. Where was this taken?</div>
+    <p class="cnt">44 / 150</p>
+    <a class="send" href="Match.dc.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>Send like</a>
+    <a class="alt" href="Match.dc.html">Send without a comment</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

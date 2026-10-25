@@ -4,6 +4,9 @@ Status: Draft v0.1 · Tooling: GitHub Actions + **EAS** (Build, Submit, Update) 
 
 ## 1. Principles
 
+> **Branching (updated 2026-10-25):** all work happens on **`uat-release`**, the integration branch. Every merge to `uat-release` publishes an EAS Update to the **staging** channel as described below (read "`main`" in this doc as "`uat-release`"). A production branch/tag flow is added when we approach launch.
+
+
 1. **Trunk-based**, small PRs, `main` always shippable.
 2. **Native builds are slow and rare; JS updates are fast and common.** Use EAS Update (OTA) for JS/asset changes, EAS Build only when native code/config changes.
 3. **Three build profiles → three environments**, no config edited by hand per build.

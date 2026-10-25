@@ -11,9 +11,29 @@ The Flutter prototype is the **visual source of truth** for the first release. T
 3. **One definition, many consumers.** `src/core/theme/tokens.ts` is the single source; the Tailwind/NativeWind preset and any runtime style code import it. The same file is copied into `flinger-web` when it exists (extract to a package only if it starts to drift — [ADR-0001 backend](https://github.com/singh3abhi/flinger-backend/blob/main/docs/adr/0001-separate-repos-openapi-contract.md)).
 4. **Accessible by default.** Contrast, hit targets, dynamic type and reduce-motion are properties of the components, not per-screen chores.
 
-## 2. Tokens extracted from the Flutter app
+## 1.5 Theme v0.2 — "Cream and ember" (chosen 2026-10-25)
 
-Source: `flinger-flutter/lib/core/theme/app_colors.dart`, `app_text_styles.dart`, and the shared widgets.
+The Flutter palette used the full-saturation brand orange `#FF4000` as a **full-screen background**. It was too intense to look at and failed contrast for body text (white on it is 3.5:1). The owner chose option B from four mocked themes. The orange is kept as an **accent** only; screens are cream or warm white.
+
+| Token | Value | Use | Contrast |
+|---|---|---|---|
+| `accent` | `#E4572E` | Buttons, hearts, badges, progress, active ring | Ink on it 4.7:1. **White on it 3.7:1: not used** |
+| `accent-ink` | `#B8431F` | Orange as small text/icons | 5.3:1 on page, 5.0:1 on cream |
+| `accent-tint` | `#FFE4D6` (text `#7A2E14`) | Pills, banners | 7.8:1 |
+| `ink` | `#1A1A1A` | Text, dark buttons, selected states | 16.9:1 on page |
+| `cream` | `#FFF3EA` | Onboarding background, prompt cards | ink 16.0:1 |
+| `page` | `#FFFBF8` | App background, sheets, dialogs | — |
+| `surface` | `#F6EEE8` | Cards, received bubbles, chips | ink 15.2:1 |
+| `line` | `#EFE3DA` | Dividers (decorative); progress track `#F0DDD0` | — |
+| `control` | `#8F7F72` | Field borders, off-state switches | 3.8:1 on page |
+| `text-2 / text-3 / text-muted` | `#3A3A40 / #4A4A52 / #5C5C63` | Secondary text | 11.0 / 8.5 / 6.5 on page |
+| `danger / success / verified` | `#B3261E / #1B6B3A / #1D5FD1` | Block+delete / saved / verified badge | 6.4 / 6.4 / 5.7 on page |
+
+Resolves open decisions D1 (white body text on orange), D2 (no dark mode in v1; Dark ember kept as a future option) and D3 (error and success colors). The sections below record the **original Flutter values** as the source of truth for the port; the table above overrides them in the new designs. The logo asset itself still uses the original `#FF4000`.
+
+## 2. Tokens extracted from the Flutter app (original palette, superseded by 1.5)
+
+Source: `flinger-flutter` branch **`abhinav`** — `lib/core/theme/app_colors.dart`, `app_text_styles.dart`, and the shared widgets. (`main` is stale; the values below were re-read from `abhinav`.)
 
 ### 2.1 Colors (raw palette)
 
@@ -24,9 +44,11 @@ Source: `flinger-flutter/lib/core/theme/app_colors.dart`, `app_text_styles.dart`
 | `blackColor` | `#000000` | Text on white buttons |
 | `charcoal` | `#121212` | Dark base (defined, not yet widely used) |
 | `surface` | `#1C1C1E` | Dark surface (defined, not yet widely used) |
-| `textPrimary` | `#FFFFFF` | Text on dark |
-| `textSecondary` | `#B5B5B5` | Secondary text on dark |
+| `textPrimary` | `#111111` (`abhinav`; was `#FFFFFF` on `main`) | Text on light surfaces |
+| `textSecondary` | `#555555` (`abhinav`; was `#B5B5B5`) | Secondary text on light surfaces |
 | `textMuted` | `#8E8E93` | Muted text |
+| `onDarkPrimary` / `onDarkSecondary` / `onDarkMuted` | `#FFFFFF` / `#EEEEEE` / `#BDBDBD` (added on `abhinav`) | Text on brand/dark backgrounds |
+| `blueColor` | blue (verified badge) | "Verified" check on profile cards |
 | `border` | `#2C2C2E` | Dividers/borders on dark |
 
 ### 2.2 Proposed semantic roles (initial mapping)
@@ -129,8 +151,8 @@ Build the minimum that screens need; each component has a documented prop API an
 
 | # | Decision | Needed by |
 |---|---|---|
-| D1 | White-on-orange body text: option 1, 2 or 3 above | Port of auth screens (M3) |
-| D2 | Light/dark theme in v1? (default: no) | M3 |
-| D3 | Error / success / warning colors | M3 |
+| D1 | White-on-orange body text | ✅ Resolved by Theme v0.2 (orange is now an accent only) |
+| D2 | Light/dark theme in v1? | ✅ No dark mode in v1 (Dark ember is a future option) |
+| D3 | Error / success / warning colors | ✅ danger `#B3261E`, success `#1B6B3A`; warning still TBD |
 | D4 | Text-field focus/error states: prototype has **no** visible focus change and black error text — define them | M3 |
 | D5 | Brand assets: final logo files, app icon (current icon is a launcher PNG set) | Before store build |

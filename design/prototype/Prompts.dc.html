@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prompts</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFF3EA}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.top{padding:60px 20px 0}
+.prog{height:4px;border-radius:4px;background:#F0DDD0;overflow:hidden}
+.prog i{display:block;height:100%;background:#E4572E;border-radius:4px}
+.step{margin-top:6px;font-size:12px;font-weight:600}
+.back{width:36px;height:36px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 4px rgba(0,0,0,.25);margin:18px 20px 0}
+.head{padding:22px 20px 0}
+.t-h{margin:0;font-size:32px;line-height:1.15;font-weight:800;color:#1A1A1A;letter-spacing:-.3px}
+.t-s{margin:12px 0 0;font-size:15px;line-height:1.5;font-weight:500}
+.body{flex:1;padding:24px 20px 0}
+.card{border-radius:16px;background:#fff;border:1.5px solid #1A1A1A;box-shadow:0 4px 0 #1A1A1A;padding:16px;margin-bottom:18px}
+.pl{margin:0;font-size:13px;font-weight:700;color:#B8431F}
+.pa{margin:8px 0 0;font-size:18px;line-height:1.35;font-weight:600}
+.cnt{margin:8px 0 0;text-align:right;font-size:12px;font-weight:500;color:#5C5C63}
+.card.e{background:rgba(255,255,255,.35);border:2px dashed #1A1A1A;box-shadow:none;display:flex;align-items:center;gap:12px;font-size:16px;font-weight:700}
+.add{width:36px;height:36px;border-radius:50%;background:#fff;border:1.5px solid #1A1A1A;display:flex;align-items:center;justify-content:center}
+.foot{display:flex;align-items:center;gap:16px;padding:12px 20px 34px}
+.fine{flex:1;font-size:13px;line-height:1.45;font-weight:700}
+.go{width:56px;height:56px;border-radius:50%;background:#E4572E;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 4px rgba(0,0,0,.25)}
+</style>
+</helmet>
+<div class="scr">
+  <div class="top"><div class="prog"><i style="width:84.6%"></i></div><div class="step">Step 11 of 13</div></div>
+  <a class="back" href="Photos.dc.html" aria-label="Back"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+  <div class="head">
+    <h1 class="t-h">Add 3 prompts</h1>
+    <p class="t-s">Prompts give people something to talk about. Keep each answer under 150 characters.</p>
+  </div>
+  <div class="body">
+    <div class="card">
+      <p class="pl">A perfect Sunday looks like…</p>
+      <p class="pa">Filter coffee, a long walk at Cubbon Park and an unreasonable number of samosas.</p>
+      <p class="cnt">79 / 150</p>
+    </div>
+    <div class="card">
+      <p class="pl">I’m weirdly good at…</p>
+      <p class="pa">Finding the best chai stall in any city.</p>
+      <p class="cnt">40 / 150</p>
+    </div>
+    <div class="card e"><span class="add"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>Choose a prompt</div>
+  </div>
+  <div class="foot">
+    <div class="fine">2 of 3 added</div>
+    <a class="go" href="Location.dc.html" aria-label="Next"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:30px;height:30px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

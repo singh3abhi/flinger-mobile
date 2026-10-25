@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Beliefs and values</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFF3EA}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.top{padding:60px 20px 0}
+.prog{height:4px;border-radius:4px;background:#F0DDD0;overflow:hidden}
+.prog i{display:block;height:100%;background:#E4572E;border-radius:4px}
+.step{margin-top:6px;font-size:12px;font-weight:600}
+.back{width:36px;height:36px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 4px rgba(0,0,0,.25);margin:18px 20px 0}
+.head{padding:20px 20px 0}
+.t-h{margin:0;font-size:32px;line-height:1.15;font-weight:800;color:#1A1A1A;letter-spacing:-.3px}
+.why{display:inline-block;margin-top:10px;font-size:13px;font-weight:700;text-decoration:underline}
+.body{flex:1;padding:18px 20px 0}
+.q{margin:0 0 10px;font-size:16px;font-weight:700}
+.chip{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:18px;background:#fff;border:1.5px solid #1A1A1A;font-size:13px;font-weight:600;margin:0 6px 8px 0}
+.chip.sel{background:#1A1A1A;color:#fff;box-shadow:0 3px 0 rgba(0,0,0,.35)}
+.sec{margin-bottom:14px}
+.foot{display:flex;align-items:center;gap:16px;padding:12px 20px 34px}
+.skip{flex:1;font-size:15px;font-weight:700;text-decoration:underline}
+.go{width:56px;height:56px;border-radius:50%;background:#E4572E;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 4px rgba(0,0,0,.25)}
+</style>
+</helmet>
+<div class="scr">
+  <div class="top"><div class="prog"><i style="width:61.5%"></i></div><div class="step">Step 8 of 13</div></div>
+  <a class="back" href="KidsFamily.dc.html" aria-label="Back"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+  <div class="head">
+    <h1 class="t-h">Beliefs &amp; values</h1>
+    <a class="why" href="#why-this-matters">Learn why this matters</a>
+  </div>
+  <div class="body">
+    <div class="sec">
+      <p class="q">Religion</p>
+      <span class="chip">Agnostic</span><span class="chip">Atheist</span><span class="chip">Buddhist</span><span class="chip">Catholic</span><span class="chip">Christian</span>
+      <span class="chip sel">Hindu</span><span class="chip">Jain</span><span class="chip">Jewish</span><span class="chip">Muslim</span><span class="chip">Sikh</span>
+      <span class="chip">Zoroastrian</span><span class="chip">Spiritual</span><span class="chip">Religious</span><span class="chip">Other</span>
+    </div>
+    <div class="sec">
+      <p class="q">Politics</p>
+      <span class="chip">Apolitical</span><span class="chip sel">Moderate</span><span class="chip">Left</span><span class="chip">Right</span><span class="chip">Socialist</span><span class="chip">Communist</span>
+    </div>
+  </div>
+  <div class="foot">
+    <a class="skip" href="Causes.dc.html">Skip</a>
+    <a class="go" href="Causes.dc.html" aria-label="Next"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:30px;height:30px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

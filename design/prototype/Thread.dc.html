@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Conversation</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+.scr{position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column;background:#FFFBF8}
+.ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ph{background:radial-gradient(circle at 50% 36%,rgba(255,255,255,.5) 0 11%,transparent 11.6%),radial-gradient(ellipse at 50% 104%,rgba(255,255,255,.5) 0 40%,transparent 40.6%),linear-gradient(165deg,hsl(var(--h) 72% 64%),hsl(var(--h) 60% 36%))}
+.bar{display:flex;align-items:center;gap:10px;padding:54px 8px 10px;border-bottom:1px solid #EFE3DA}
+.ib{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none}
+.av{width:40px;height:40px;border-radius:50%;flex:none}
+.who{flex:1;min-width:0}
+.who b{display:block;font-size:17px;font-weight:700}
+.who small{font-size:12px;font-weight:500;color:#4A4A52}
+.msgs{flex:1;overflow:hidden;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.sys{align-self:center;max-width:300px;text-align:center;padding:12px 14px;border-radius:14px;background:#FFE4D6;font-size:13px;line-height:1.5;font-weight:500;margin-bottom:6px}
+.sys b{display:block;font-size:13px;font-weight:700;color:#7A2E14;margin-bottom:2px}
+.day{align-self:center;font-size:12px;font-weight:600;color:#5C5C63;margin:4px 0}
+.b{max-width:260px;padding:10px 14px;border-radius:18px;font-size:15px;line-height:1.45;font-weight:500}
+.b.in{align-self:flex-start;background:#F6EEE8;border-bottom-left-radius:6px}
+.b.out{align-self:flex-end;background:#E4572E;color:#1A1A1A;border-bottom-right-radius:6px;font-weight:600}
+.st{align-self:flex-end;margin:-2px 4px 0;font-size:11px;font-weight:500;color:#5C5C63}
+.compose{display:flex;align-items:center;gap:10px;padding:10px 16px 34px;border-top:1px solid #EFE3DA;background:#FFFBF8}
+.inp{flex:1;height:46px;border-radius:23px;background:#F6EEE8;padding:0 16px;display:flex;align-items:center;font-size:15px;font-weight:500;color:#5C5C63}
+.send{width:46px;height:46px;border-radius:50%;background:#E4572E;color:#1A1A1A;display:flex;align-items:center;justify-content:center}
+</style>
+</helmet>
+<div class="scr">
+  <header class="bar">
+    <a class="ib" href="Chats.dc.html" aria-label="Back"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+    <div class="av ph" style="--h:14"></div>
+    <div class="who"><b>Aanya</b><small>Active now</small></div>
+    <a class="ib" href="ChatMenu.dc.html" aria-label="Conversation options"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></a>
+  </header>
+  <main class="msgs">
+    <div class="sys"><b>You matched with Aanya</b>Your like: “That view is unreal. Where was this taken?”</div>
+    <span class="day">Today</span>
+    <div class="b in">Hi Rohan! That view is from Coorg, last monsoon.</div>
+    <div class="b out">Coorg in the monsoon is unreal. Did you stay at a homestay?</div>
+    <div class="b in">Haha yes! Also found the best chai stall there.</div>
+    <div class="b out">Okay, now I need the name of that stall.</div>
+    <span class="st">Delivered</span>
+  </main>
+  <div class="compose">
+    <div class="inp">Message Aanya</div>
+    <a class="send" href="Thread.dc.html" aria-label="Send message"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
