@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   brandRow: { flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center', gap: 6 },
   logo: { width: 42, height: 45 },
   wordmark: { color: colors.cream, fontSize: 42, lineHeight: 44 },
-  tagline: { color: '#FFC9B3', textAlign: 'center', marginTop: 8, fontSize: 14 },
+  tagline: { color: colors.accentOnDark, textAlign: 'center', marginTop: 8, fontSize: 14 },
   headline: { color: colors.cream, textAlign: 'center', marginBottom: 28, fontSize: 36, lineHeight: 41 },
   outline: { marginTop: 12 },
   legal: { color: colors.white, textAlign: 'center', marginTop: 16, lineHeight: 18 },

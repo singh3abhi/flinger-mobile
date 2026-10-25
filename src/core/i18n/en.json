@@ -3,7 +3,8 @@
     "back": "Back",
     "next": "Next",
     "retry": "Try again",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "close": "Close"
   },
   "landing": {
     "tagline": "Flings, Love & Stories",
@@ -54,6 +55,196 @@
     "RATE_LIMITED": "Too many attempts. Please try again later.",
     "ACCOUNT_UNAVAILABLE": "This account is not available. Please contact support.",
     "SERVICE_UNAVAILABLE": "We couldn’t send the email. Please try again in a moment.",
-    "UNAUTHORIZED": "Please sign in again."
+    "UNAUTHORIZED": "Please sign in again.",
+    "PROFILE_UNDERAGE": "You must be at least 18 to use Flinger.",
+    "BIRTHDATE_LOCKED": "Your birthday can’t be changed. Contact support if it’s wrong.",
+    "PROMPT_NOT_FOUND": "That prompt is no longer available. Please choose another.",
+    "CONSENT_VERSION_MISMATCH": "These terms have been updated. Please review them again."
+  },
+  "onboarding": {
+    "stepOf": "Step {{step}} of {{total}}",
+    "skip": "Skip",
+    "editLater": "You can edit this later from your profile.",
+    "pickUpTo": "Pick up to {{count}}.",
+    "selectedOf": "{{count}} of {{max}} selected",
+    "name": {
+      "title": "Let’s get to know you",
+      "subtitle": "You must be at least 18 years old to use this app.",
+      "nameLabel": "Your first name",
+      "nameHint": "What should we call you?",
+      "namePlaceholder": "First name",
+      "birthdayLabel": "Your birthday",
+      "birthdayHint": "We promise no birthday spam.",
+      "birthdayLocked": "Your birthday is set and can’t be changed.",
+      "day": "Day",
+      "month": "Month",
+      "year": "Year",
+      "dateFormat": "DD · MM · YYYY",
+      "note": "Only your age is shown on your profile, never your birthdate.",
+      "invalidName": "Please enter your first name (2 to 30 letters).",
+      "invalidDate": "Please enter a real date.",
+      "underage": "You must be at least 18 to use Flinger.",
+      "confirmTitle": "Is this your birthday?",
+      "confirmBody": "You were born on {{date}}, so you’re {{age}}. You can’t change this later.",
+      "edit": "Edit",
+      "confirm": "Confirm"
+    },
+    "gender": {
+      "title": "Tell us a bit about you",
+      "subtitle": "This helps us personalize your experience and show you more relevant matches.",
+      "question": "How do you identify?"
+    },
+    "whoToMeet": {
+      "title": "Who would you like to meet?",
+      "subtitle": "Select everyone you’re open to meeting. You can change this anytime.",
+      "everyone": "Everyone",
+      "note": "Only people who also want to meet you will appear."
+    },
+    "intentions": {
+      "title": "What are you hoping to find right now?"
+    },
+    "height": {
+      "title": "How tall are you?",
+      "subtitle": "Scroll to choose your height. It shows on your profile.",
+      "cm": "{{cm}} cm",
+      "about": "That’s about {{feet}}",
+      "a11y": "Height"
+    },
+    "values": {
+      "title": "What do you value most in a person?"
+    },
+    "kids": {
+      "title": "Kids & family plans",
+      "subtitle": "This helps set expectations. You can skip or change it anytime.",
+      "haveKids": "Do you have kids?",
+      "future": "What about kids in the future?"
+    },
+    "beliefs": {
+      "title": "Beliefs & values",
+      "religion": "Religion",
+      "politics": "Politics"
+    },
+    "causes": {
+      "title": "Causes & communities you care about",
+      "subtitle": "Pick up to {{count}} causes that matter to you most."
+    },
+    "prompts": {
+      "title": "Add 3 prompts",
+      "subtitle": "Prompts give people something to talk about. Keep each answer under {{max}} characters.",
+      "added": "{{count}} of {{max}} added",
+      "choose": "Choose a prompt",
+      "editHint": "Edit this answer",
+      "pickTitle": "Choose a prompt",
+      "change": "Change prompt",
+      "placeholder": "Write your answer",
+      "save": "Save answer",
+      "remove": "Remove this prompt"
+    },
+    "agree": {
+      "title": "Almost there",
+      "subtitle": "Please review these before you start meeting people.",
+      "docs": {
+        "terms": "Terms of Service",
+        "privacy": "Privacy Policy",
+        "guidelines": "Community Guidelines"
+      },
+      "docSoon": "This document is being finalised and will be available before launch.",
+      "terms": "I’m 18 or older and I agree to the Terms of Service and Privacy Policy.",
+      "guidelines": "I’ll be kind and honest, and follow the Community Guidelines.",
+      "finish": "Create my profile"
+    },
+    "pending": {
+      "photos": "Photos",
+      "location": "Location",
+      "body": "This step is being built. Tap Next to continue."
+    }
+  },
+  "options": {
+    "gender": {
+      "woman": "Woman",
+      "man": "Man",
+      "non_binary": "Non-binary"
+    },
+    "interestedIn": {
+      "men": "Men",
+      "women": "Women",
+      "non_binary": "Non-binary people"
+    },
+    "hopingToFind": {
+      "long_term_relationship": "Long-term relationship",
+      "life_partner": "Life partner",
+      "casual": "Something casual",
+      "intimacy_no_commitment": "Intimacy, no commitment",
+      "marriage": "Marriage",
+      "ethical_non_monogamy": "Ethical non-monogamy"
+    },
+    "values": {
+      "ambition": "Ambition",
+      "confidence": "Confidence",
+      "curiosity": "Curiosity",
+      "emotional_intelligence": "Emotional intelligence",
+      "kindness": "Kindness",
+      "honesty": "Honesty",
+      "sense_of_humor": "Sense of humor",
+      "empathy": "Empathy",
+      "open_mindedness": "Open-mindedness",
+      "good_communication": "Good communication",
+      "emotional_availability": "Emotional availability",
+      "independence": "Independence",
+      "loyalty": "Loyalty",
+      "growth_mindset": "Growth mindset",
+      "respect": "Respect"
+    },
+    "kidsStatus": {
+      "have_kids": "Have kids",
+      "no_kids": "Don’t have kids"
+    },
+    "familyPlans": {
+      "dont_want_kids": "Don’t want kids",
+      "want_kids": "Want kids",
+      "open_to_kids": "Open to kids",
+      "not_sure": "Not sure"
+    },
+    "religion": {
+      "agnostic": "Agnostic",
+      "atheist": "Atheist",
+      "buddhist": "Buddhist",
+      "catholic": "Catholic",
+      "christian": "Christian",
+      "hindu": "Hindu",
+      "jain": "Jain",
+      "jewish": "Jewish",
+      "muslim": "Muslim",
+      "sikh": "Sikh",
+      "zoroastrian": "Zoroastrian",
+      "spiritual": "Spiritual",
+      "religious": "Religious",
+      "other": "Other"
+    },
+    "politics": {
+      "apolitical": "Apolitical",
+      "moderate": "Moderate",
+      "left": "Left",
+      "right": "Right",
+      "socialist": "Socialist",
+      "communist": "Communist"
+    },
+    "causes": {
+      "black_lives_matter": "Black Lives Matter",
+      "disability_rights": "Disability rights",
+      "end_religious_hate": "End religious hate",
+      "environmental_protection": "Environmental protection",
+      "feminism": "Feminism",
+      "human_rights": "Human rights",
+      "immigrant_rights": "Immigrant rights",
+      "indigenous_rights": "Indigenous rights",
+      "lgbtq_plus_rights": "LGBTQ+ rights",
+      "neurodiversity": "Neurodiversity",
+      "reproductive_rights": "Reproductive rights",
+      "stop_asian_hate": "Stop Asian hate",
+      "trans_rights": "Trans rights",
+      "volunteering": "Volunteering",
+      "voting_rights": "Voting rights"
+    }
   }
 }

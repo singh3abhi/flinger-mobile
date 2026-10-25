@@ -7,6 +7,7 @@ export const colors = {
   accentInk: '#B8431F', // orange as small text/icons on light backgrounds
   accentTint: '#FFE4D6',
   accentTintInk: '#7A2E14',
+  accentOnDark: '#FFC9B3', // small accent text on photos and dark backgrounds
   ink: '#1A1A1A',
   cream: '#FFF3EA', // onboarding backgrounds
   page: '#FFFBF8', // app background

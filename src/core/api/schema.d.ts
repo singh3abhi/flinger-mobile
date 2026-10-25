@@ -140,12 +140,82 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/me/profile": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** My profile and onboarding progress (where to resume) */
+        get: operations["MyProfileController_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Save onboarding answers (send only what changed) */
+        patch: operations["MyProfileController_update"];
+        trace?: never;
+    };
+    "/v1/me/prompts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Set my prompt answers, in display order (up to 3) */
+        put: operations["MyProfileController_setPrompts"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/consents": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Accept the Terms, Privacy Policy and Community Guidelines */
+        post: operations["MyProfileController_acceptConsents"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/prompts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** The prompt library */
+        get: operations["PromptsController_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         ClientConfigDto: {
             minSupportedAppVersion: string;
+            legalVersion: string;
             flags: {
                 [key: string]: boolean;
             };
@@ -205,10 +275,82 @@ export interface components {
             id: string;
             /** @enum {string} */
             status: "pending" | "active" | "paused" | "suspended" | "deleted";
-            email: string[];
+            email: string | null;
             onboardingCompleted: boolean;
             /** Format: date-time */
             createdAt: string;
+        };
+        MyProfileDto: {
+            displayName: string | null;
+            /** Format: date */
+            birthDate: string | null;
+            age: number | null;
+            /** @enum {string|null} */
+            gender: "woman" | "man" | "non_binary" | null;
+            heightCm: number | null;
+            /** @enum {string|null} */
+            kidsStatus: "have_kids" | "no_kids" | null;
+            /** @enum {string|null} */
+            familyPlans: "dont_want_kids" | "want_kids" | "open_to_kids" | "not_sure" | null;
+            /** @enum {string|null} */
+            religion: "agnostic" | "atheist" | "buddhist" | "catholic" | "christian" | "hindu" | "jain" | "jewish" | "muslim" | "sikh" | "zoroastrian" | "spiritual" | "religious" | "other" | null;
+            /** @enum {string|null} */
+            politics: "apolitical" | "moderate" | "left" | "right" | "socialist" | "communist" | null;
+            bio: string | null;
+            interestedIn: ("men" | "women" | "non_binary")[];
+            hopingToFind: ("long_term_relationship" | "life_partner" | "casual" | "intimacy_no_commitment" | "marriage" | "ethical_non_monogamy")[];
+            values: ("ambition" | "confidence" | "curiosity" | "emotional_intelligence" | "kindness" | "honesty" | "sense_of_humor" | "empathy" | "open_mindedness" | "good_communication" | "emotional_availability" | "independence" | "loyalty" | "growth_mindset" | "respect")[];
+            causes: ("black_lives_matter" | "disability_rights" | "end_religious_hate" | "environmental_protection" | "feminism" | "human_rights" | "immigrant_rights" | "indigenous_rights" | "lgbtq_plus_rights" | "neurodiversity" | "reproductive_rights" | "stop_asian_hate" | "trans_rights" | "volunteering" | "voting_rights")[];
+            prompts: {
+                promptId: string;
+                text: string;
+                answer: string;
+                position: number;
+            }[];
+            onboarding: {
+                completed: boolean;
+                /** @enum {string|null} */
+                nextStep: "basics" | "gender" | "interested_in" | "hoping_to_find" | "height" | "values" | "photos" | "prompts" | "location" | "consents" | null;
+                missing: ("basics" | "gender" | "interested_in" | "hoping_to_find" | "height" | "values" | "photos" | "prompts" | "location" | "consents")[];
+            };
+        };
+        UpdateProfileDto: {
+            displayName?: string;
+            /** Format: date */
+            birthDate?: string;
+            /** @enum {string} */
+            gender?: "woman" | "man" | "non_binary";
+            heightCm?: number;
+            /** @enum {string|null} */
+            kidsStatus?: "have_kids" | "no_kids" | null;
+            /** @enum {string|null} */
+            familyPlans?: "dont_want_kids" | "want_kids" | "open_to_kids" | "not_sure" | null;
+            /** @enum {string|null} */
+            religion?: "agnostic" | "atheist" | "buddhist" | "catholic" | "christian" | "hindu" | "jain" | "jewish" | "muslim" | "sikh" | "zoroastrian" | "spiritual" | "religious" | "other" | null;
+            /** @enum {string|null} */
+            politics?: "apolitical" | "moderate" | "left" | "right" | "socialist" | "communist" | null;
+            bio?: string | null;
+            interestedIn?: ("men" | "women" | "non_binary")[];
+            hopingToFind?: ("long_term_relationship" | "life_partner" | "casual" | "intimacy_no_commitment" | "marriage" | "ethical_non_monogamy")[];
+            values?: ("ambition" | "confidence" | "curiosity" | "emotional_intelligence" | "kindness" | "honesty" | "sense_of_humor" | "empathy" | "open_mindedness" | "good_communication" | "emotional_availability" | "independence" | "loyalty" | "growth_mindset" | "respect")[];
+            causes?: ("black_lives_matter" | "disability_rights" | "end_religious_hate" | "environmental_protection" | "feminism" | "human_rights" | "immigrant_rights" | "indigenous_rights" | "lgbtq_plus_rights" | "neurodiversity" | "reproductive_rights" | "stop_asian_hate" | "trans_rights" | "volunteering" | "voting_rights")[];
+        };
+        SetPromptsDto: {
+            prompts: {
+                promptId: string;
+                answer: string;
+            }[];
+        };
+        AcceptConsentsDto: {
+            documents: ("terms" | "privacy" | "guidelines")[];
+            version: string;
+        };
+        PromptListDto: {
+            items: {
+                id: string;
+                text: string;
+                category: string;
+            }[];
         };
     };
     responses: never;
@@ -225,6 +367,11 @@ export type SchemaAuthResultDto = components['schemas']['AuthResultDto'];
 export type SchemaRefreshDto = components['schemas']['RefreshDto'];
 export type SchemaTokensDto = components['schemas']['TokensDto'];
 export type SchemaMeDto = components['schemas']['MeDto'];
+export type SchemaMyProfileDto = components['schemas']['MyProfileDto'];
+export type SchemaUpdateProfileDto = components['schemas']['UpdateProfileDto'];
+export type SchemaSetPromptsDto = components['schemas']['SetPromptsDto'];
+export type SchemaAcceptConsentsDto = components['schemas']['AcceptConsentsDto'];
+export type SchemaPromptListDto = components['schemas']['PromptListDto'];
 export type $defs = Record<string, never>;
 export interface operations {
     HealthController_liveness: {
@@ -482,6 +629,111 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["MeDto"];
+                };
+            };
+        };
+    };
+    MyProfileController_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MyProfileDto"];
+                };
+            };
+        };
+    };
+    MyProfileController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateProfileDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MyProfileDto"];
+                };
+            };
+        };
+    };
+    MyProfileController_setPrompts: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SetPromptsDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MyProfileDto"];
+                };
+            };
+        };
+    };
+    MyProfileController_acceptConsents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AcceptConsentsDto"];
+            };
+        };
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    PromptsController_list: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PromptListDto"];
                 };
             };
         };

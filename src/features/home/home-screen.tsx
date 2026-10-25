@@ -1,6 +1,7 @@
 import { Feather } from '@expo/vector-icons';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Image } from 'expo-image';
+import { Redirect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { errorMessage } from '@/core/i18n';
@@ -20,6 +21,9 @@ export function HomeScreen() {
   const { t } = useTranslation();
   const me = useQuery({ queryKey: ['me'], queryFn: fetchMe });
   const logout = useMutation({ mutationFn: signOut });
+
+  // Accounts that have not finished onboarding resume it.
+  if (me.data?.status === 'pending') return <Redirect href="/onboarding" />;
 
   return (
     <Screen>
