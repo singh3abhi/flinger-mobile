@@ -1,82 +1,46 @@
-import { Feather } from '@expo/vector-icons';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { Image } from 'expo-image';
+import { useQuery } from '@tanstack/react-query';
 import { Redirect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { queryKeys } from '@/core/api/query-keys';
 import { errorMessage } from '@/core/i18n';
-import { colors, radius } from '@/core/theme/tokens';
-import { fetchMe, signOut } from '@/features/auth/api';
+import { colors } from '@/core/theme/tokens';
+import { fetchMe } from '@/features/auth';
 import { Button } from '@/shared/ui/button';
-import { Screen } from '@/shared/ui/screen';
 import { Text } from '@/shared/ui/text';
 
-const logo = require('../../../assets/images/logo.png');
-
-/**
- * Temporary signed-in screen for F1: proves the session works end to end (GET /v1/me) and lets
- * you sign out. Replaced by onboarding (F2) and the main tabs (F3).
- */
+/** Where a signed-in member lands: onboarding until it is finished, then Discover. */
 export function HomeScreen() {
   const { t } = useTranslation();
   const me = useQuery({ queryKey: queryKeys.me, queryFn: fetchMe });
-  const logout = useMutation({ mutationFn: signOut });
 
-  // Accounts that have not finished onboarding resume it.
-  if (me.data?.status === 'pending') return <Redirect href="/onboarding" />;
-
+  if (me.data) {
+    return <Redirect href={me.data.status === 'pending' ? '/onboarding' : '/discover'} />;
+  }
   return (
-    <Screen>
-      <View style={styles.center}>
-        <Image source={logo} style={styles.logo} contentFit="contain" />
-        <Text variant="heading" accessibilityRole="header" style={styles.text}>
-          {t('home.title')}
-        </Text>
-        {me.isPending ? (
-          <ActivityIndicator color={colors.ink} style={styles.gap} />
-        ) : me.isError ? (
-          <Text variant="body" color="danger" style={[styles.text, styles.gap]}>
+    <View style={styles.center}>
+      {me.isError ? (
+        <>
+          <Text variant="body" style={styles.text}>
             {errorMessage(me.error)}
           </Text>
-        ) : (
-          <View style={[styles.card, styles.gap]}>
-            <Feather name="mail" size={18} color={colors.accentInk} />
-            <Text testID="signed-in-as" variant="body" style={styles.cardText}>
-              {t('home.signedInAs', { email: me.data.email ?? '' })}
-            </Text>
-          </View>
-        )}
-        <Text variant="body" color="text2" style={[styles.text, styles.gap]}>
-          {t('home.next')}
-        </Text>
-      </View>
-      <Button
-        testID="sign-out"
-        variant="dark"
-        label={t('common.signOut')}
-        onPress={() => logout.mutate()}
-        loading={logout.isPending}
-        style={styles.bottom}
-      />
-    </Screen>
+          <Button variant="dark" label={t('common.retry')} onPress={() => me.refetch()} />
+        </>
+      ) : (
+        <ActivityIndicator color={colors.ink} />
+      )}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  logo: { width: 72, height: 77, marginBottom: 24 },
-  text: { textAlign: 'center' },
-  gap: { marginTop: 16 },
-  card: {
-    flexDirection: 'row',
+  center: {
+    flex: 1,
     alignItems: 'center',
-    gap: 10,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderRadius: radius.control,
-    backgroundColor: colors.surface,
+    justifyContent: 'center',
+    gap: 16,
+    padding: 24,
+    backgroundColor: colors.page,
   },
-  cardText: { flexShrink: 1 },
-  bottom: { marginBottom: 16 },
+  text: { textAlign: 'center' },
 });

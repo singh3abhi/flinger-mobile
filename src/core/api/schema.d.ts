@@ -330,6 +330,142 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/likes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Like someone via one photo or prompt, with an optional comment */
+        post: operations["MatchingController_like"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/passes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Pass on someone */
+        post: operations["MatchingController_pass"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/limits": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Likes left today and when they refill */
+        get: operations["MatchingController_limits"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/likes/received": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Liked You: who liked me, on what, with their comment */
+        get: operations["MatchingController_received"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/matches": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** My matches, newest first */
+        get: operations["MatchingController_matches"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/matches/{matchId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Unmatch (for both people, permanently) */
+        delete: operations["MatchingController_unmatch"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/discovery/deck": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** The next Discover cards (refills and re-checks automatically) */
+        get: operations["DiscoveryController_deck"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/profiles/{userId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** A member’s full profile (only people from my deck, likes or matches) */
+        get: operations["DiscoveryController_profile"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -486,6 +622,8 @@ export interface components {
             values: ("ambition" | "confidence" | "curiosity" | "emotional_intelligence" | "kindness" | "honesty" | "sense_of_humor" | "empathy" | "open_mindedness" | "good_communication" | "emotional_availability" | "independence" | "loyalty" | "growth_mindset" | "respect")[];
             causes: ("black_lives_matter" | "disability_rights" | "end_religious_hate" | "environmental_protection" | "feminism" | "human_rights" | "immigrant_rights" | "indigenous_rights" | "lgbtq_plus_rights" | "neurodiversity" | "reproductive_rights" | "stop_asian_hate" | "trans_rights" | "volunteering" | "voting_rights")[];
             prompts: {
+                /** Format: uuid */
+                id: string;
                 promptId: string;
                 text: string;
                 answer: string;
@@ -586,6 +724,163 @@ export interface components {
                 category: string;
             }[];
         };
+        LikeDto: {
+            /** Format: uuid */
+            targetId: string;
+            /** @enum {string} */
+            itemType: "photo" | "prompt";
+            /** Format: uuid */
+            itemId: string;
+            comment?: string;
+        };
+        LikeResultDto: {
+            matched: boolean;
+            /** Format: uuid */
+            matchId: string | null;
+            likesRemaining: number;
+            /** Format: date-time */
+            resetsAt: string;
+        };
+        PassDto: {
+            /** Format: uuid */
+            targetId: string;
+        };
+        LimitsDto: {
+            likesPerDay: number;
+            likesUsed: number;
+            likesRemaining: number;
+            /** Format: date-time */
+            resetsAt: string;
+        };
+        ReceivedLikesDto: {
+            items: {
+                /** Format: uuid */
+                likeId: string;
+                from: {
+                    /** Format: uuid */
+                    userId: string;
+                    displayName: string;
+                    age: number;
+                    city: string | null;
+                    /** Format: uri */
+                    photoUrl: string;
+                };
+                item: {
+                    /** @enum {string} */
+                    type: "photo" | "prompt";
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uri */
+                    photoUrl: string | null;
+                    promptText: string | null;
+                    promptAnswer: string | null;
+                };
+                comment: string | null;
+                /** Format: date-time */
+                createdAt: string;
+            }[];
+            nextCursor: string | null;
+        };
+        MatchListDto: {
+            items: {
+                /** Format: uuid */
+                matchId: string;
+                member: {
+                    /** Format: uuid */
+                    userId: string;
+                    displayName: string;
+                    age: number;
+                    city: string | null;
+                    /** Format: uri */
+                    photoUrl: string;
+                };
+                /** Format: date-time */
+                createdAt: string;
+            }[];
+            nextCursor: string | null;
+        };
+        DeckDto: {
+            items: {
+                /** Format: uuid */
+                userId: string;
+                displayName: string;
+                age: number;
+                city: string | null;
+                distanceKm: number | null;
+                /** @enum {string} */
+                gender: "woman" | "man" | "non_binary";
+                heightCm: number | null;
+                hopingToFind: ("long_term_relationship" | "life_partner" | "casual" | "intimacy_no_commitment" | "marriage" | "ethical_non_monogamy")[];
+                values: ("ambition" | "confidence" | "curiosity" | "emotional_intelligence" | "kindness" | "honesty" | "sense_of_humor" | "empathy" | "open_mindedness" | "good_communication" | "emotional_availability" | "independence" | "loyalty" | "growth_mindset" | "respect")[];
+                causes: ("black_lives_matter" | "disability_rights" | "end_religious_hate" | "environmental_protection" | "feminism" | "human_rights" | "immigrant_rights" | "indigenous_rights" | "lgbtq_plus_rights" | "neurodiversity" | "reproductive_rights" | "stop_asian_hate" | "trans_rights" | "volunteering" | "voting_rights")[];
+                /** @enum {string|null} */
+                kidsStatus: "have_kids" | "no_kids" | null;
+                /** @enum {string|null} */
+                familyPlans: "dont_want_kids" | "want_kids" | "open_to_kids" | "not_sure" | null;
+                /** @enum {string|null} */
+                religion: "agnostic" | "atheist" | "buddhist" | "catholic" | "christian" | "hindu" | "jain" | "jewish" | "muslim" | "sikh" | "zoroastrian" | "spiritual" | "religious" | "other" | null;
+                /** @enum {string|null} */
+                politics: "apolitical" | "moderate" | "left" | "right" | "socialist" | "communist" | null;
+                bio: string | null;
+                photos: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uri */
+                    url: string;
+                    width: number | null;
+                    height: number | null;
+                }[];
+                prompts: {
+                    /** Format: uuid */
+                    id: string;
+                    promptId: string;
+                    text: string;
+                    answer: string;
+                    position: number;
+                }[];
+            }[];
+            radiusKm: number;
+            widened: boolean;
+        };
+        PublicProfileDto: {
+            /** Format: uuid */
+            userId: string;
+            displayName: string;
+            age: number;
+            city: string | null;
+            distanceKm: number | null;
+            /** @enum {string} */
+            gender: "woman" | "man" | "non_binary";
+            heightCm: number | null;
+            hopingToFind: ("long_term_relationship" | "life_partner" | "casual" | "intimacy_no_commitment" | "marriage" | "ethical_non_monogamy")[];
+            values: ("ambition" | "confidence" | "curiosity" | "emotional_intelligence" | "kindness" | "honesty" | "sense_of_humor" | "empathy" | "open_mindedness" | "good_communication" | "emotional_availability" | "independence" | "loyalty" | "growth_mindset" | "respect")[];
+            causes: ("black_lives_matter" | "disability_rights" | "end_religious_hate" | "environmental_protection" | "feminism" | "human_rights" | "immigrant_rights" | "indigenous_rights" | "lgbtq_plus_rights" | "neurodiversity" | "reproductive_rights" | "stop_asian_hate" | "trans_rights" | "volunteering" | "voting_rights")[];
+            /** @enum {string|null} */
+            kidsStatus: "have_kids" | "no_kids" | null;
+            /** @enum {string|null} */
+            familyPlans: "dont_want_kids" | "want_kids" | "open_to_kids" | "not_sure" | null;
+            /** @enum {string|null} */
+            religion: "agnostic" | "atheist" | "buddhist" | "catholic" | "christian" | "hindu" | "jain" | "jewish" | "muslim" | "sikh" | "zoroastrian" | "spiritual" | "religious" | "other" | null;
+            /** @enum {string|null} */
+            politics: "apolitical" | "moderate" | "left" | "right" | "socialist" | "communist" | null;
+            bio: string | null;
+            photos: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uri */
+                url: string;
+                width: number | null;
+                height: number | null;
+            }[];
+            prompts: {
+                /** Format: uuid */
+                id: string;
+                promptId: string;
+                text: string;
+                answer: string;
+                position: number;
+            }[];
+        };
     };
     responses: never;
     parameters: never;
@@ -616,6 +911,14 @@ export type SchemaSetLocationDto = components['schemas']['SetLocationDto'];
 export type SchemaSetLocationResultDto = components['schemas']['SetLocationResultDto'];
 export type SchemaAcceptConsentsDto = components['schemas']['AcceptConsentsDto'];
 export type SchemaPromptListDto = components['schemas']['PromptListDto'];
+export type SchemaLikeDto = components['schemas']['LikeDto'];
+export type SchemaLikeResultDto = components['schemas']['LikeResultDto'];
+export type SchemaPassDto = components['schemas']['PassDto'];
+export type SchemaLimitsDto = components['schemas']['LimitsDto'];
+export type SchemaReceivedLikesDto = components['schemas']['ReceivedLikesDto'];
+export type SchemaMatchListDto = components['schemas']['MatchListDto'];
+export type SchemaDeckDto = components['schemas']['DeckDto'];
+export type SchemaPublicProfileDto = components['schemas']['PublicProfileDto'];
 export type $defs = Record<string, never>;
 export interface operations {
     HealthController_liveness: {
@@ -1171,6 +1474,174 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["PromptListDto"];
+                };
+            };
+        };
+    };
+    MatchingController_like: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LikeDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LikeResultDto"];
+                };
+            };
+        };
+    };
+    MatchingController_pass: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PassDto"];
+            };
+        };
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    MatchingController_limits: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LimitsDto"];
+                };
+            };
+        };
+    };
+    MatchingController_received: {
+        parameters: {
+            query?: {
+                cursor?: string;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReceivedLikesDto"];
+                };
+            };
+        };
+    };
+    MatchingController_matches: {
+        parameters: {
+            query?: {
+                cursor?: string;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MatchListDto"];
+                };
+            };
+        };
+    };
+    MatchingController_unmatch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                matchId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    DiscoveryController_deck: {
+        parameters: {
+            query?: {
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DeckDto"];
+                };
+            };
+        };
+    };
+    DiscoveryController_profile: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                userId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PublicProfileDto"];
                 };
             };
         };

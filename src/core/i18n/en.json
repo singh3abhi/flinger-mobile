@@ -36,11 +36,6 @@
     "edit": "Wrong email? Edit",
     "warning": "Never share this code with anyone. Flinger will never ask for it."
   },
-  "home": {
-    "title": "You’re in!",
-    "signedInAs": "Signed in as {{email}}",
-    "next": "Your profile is ready. Discover comes next."
-  },
   "unreachable": {
     "title": "Can’t reach Flinger",
     "body": "Check your internet connection and try again."
@@ -70,7 +65,12 @@
     "LOCATION_OUTSIDE_SERVICE_AREA": "Flinger is only available in India for now.",
     "LOCATION_TOO_INACCURATE": "We couldn’t get an accurate location. Please try again.",
     "LOCATION_STALE": "That location was out of date. Please try again.",
-    "ONBOARDING_INCOMPLETE": "A few steps are still missing."
+    "ONBOARDING_INCOMPLETE": "A few steps are still missing.",
+    "LIKE_LIMIT_REACHED": "You’ve used all your likes for today.",
+    "ALREADY_PASSED": "You passed on this person.",
+    "LIKE_ITEM_INVALID": "That photo or prompt is no longer on their profile.",
+    "MEMBER_NOT_FOUND": "This profile is no longer available.",
+    "DISCOVERY_NOT_READY": "Finish your profile to start discovering."
   },
   "onboarding": {
     "stepOf": "Step {{step}} of {{total}}",
@@ -282,5 +282,68 @@
     "actionsTitle": "Photo",
     "a11yPhoto": "Photo {{position}}",
     "a11yActions": "Opens options for this photo"
+  },
+  "tabs": {
+    "discover": "Discover",
+    "likedYou": "Liked You",
+    "chats": "Chats",
+    "profile": "Profile"
+  },
+  "discover": {
+    "nameAge": "{{name}}, {{age}}",
+    "distance": "{{km}} km away",
+    "height": "{{cm}} cm",
+    "photoA11y": "{{name}}’s photo {{n}}",
+    "likePhoto": "Like this photo",
+    "likePrompt": "Like this prompt",
+    "pass": "Pass on {{name}}",
+    "likesLeft_one": "{{count}} like left",
+    "likesLeft_other": "{{count}} likes left",
+    "widened": "Nobody new nearby, so we’re showing people within {{km}} km.",
+    "empty": {
+      "title": "You’re all caught up",
+      "body": "New people appear as they join near you. Widening your distance or age range can show you more.",
+      "again": "Check again"
+    },
+    "like": {
+      "titlePhoto": "Like {{name}}’s photo",
+      "titlePrompt": "Like {{name}}’s prompt",
+      "photoN": "Photo {{n}}",
+      "left_one": "{{count}} like left today",
+      "left_other": "{{count}} likes left today",
+      "commentLabel": "Add a comment (optional)",
+      "commentPlaceholder": "Say something about it",
+      "send": "Send like",
+      "sendWithout": "Send without a comment"
+    },
+    "limit": {
+      "title": "You’ve used all {{count}} likes today",
+      "body": "Your likes reset at 4:00 AM. You can keep looking and passing, and people who like you will still show up.",
+      "resetsIn": "Resets in {{h}}h {{m}}m",
+      "ok": "Got it"
+    }
+  },
+  "match": {
+    "title": "It’s a match!",
+    "body": "You and {{name}} liked each other. Say hello while the spark is fresh.",
+    "sayHello": "Say hello",
+    "keepBrowsing": "Keep browsing"
+  },
+  "likedYou": {
+    "title": "Liked You",
+    "subtitle_one": "{{count}} person liked your profile. Like them back to start a conversation.",
+    "subtitle_other": "{{count}} people liked your profile. Like them back to start a conversation.",
+    "empty": "When someone likes you, they’ll show up here.",
+    "likedPhoto": "Liked your photo",
+    "likedPrompt": "Liked your prompt"
+  },
+  "chats": {
+    "title": "Chats",
+    "empty": "Your matches will show up here.",
+    "newMatch": "New match · messaging is coming soon"
+  },
+  "me": {
+    "title": "Profile",
+    "soon": "Editing your profile, preferences and settings are coming next."
   }
 }

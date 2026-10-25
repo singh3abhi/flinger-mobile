@@ -7,4 +7,8 @@ export const queryKeys = {
   me: ['me'] as const,
   myProfile: ['me', 'profile'] as const,
   config: ['config'] as const,
+  limits: ['me', 'limits'] as const,
+  likesReceived: ['likes', 'received'] as const,
+  matches: ['matches'] as const,
+  profile: (userId: string) => ['profiles', userId] as const,
 };
