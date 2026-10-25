@@ -23,3 +23,9 @@ GoogleService-Info.plist
 *.orig.*
 npm-debug.*
 coverage/
+expo-env.d.ts
+.metro-health-check*
+.kotlin/
+*.tsbuildinfo
+*.key
+*.pem

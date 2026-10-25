@@ -1,0 +1,59 @@
+{
+  "common": {
+    "back": "Back",
+    "next": "Next",
+    "retry": "Try again",
+    "signOut": "Sign out"
+  },
+  "landing": {
+    "tagline": "Flings, Love & Stories",
+    "headline": "Meet people who feel real",
+    "create": "Create an account",
+    "haveAccount": "I have an account",
+    "legal": "By signing up, you agree to our Terms. See how we use your data in our Privacy Policy."
+  },
+  "email": {
+    "title": "What’s your email?",
+    "subtitle": "We’ll use it to create your account and keep things secure.",
+    "tabEmail": "Email",
+    "tabPhone": "Phone",
+    "soon": "Soon",
+    "label": "Email address",
+    "placeholder": "you@example.com",
+    "hint": "We’ll send you a 6-digit code. No password to remember.",
+    "privacy": "We never share your email with anyone and it won’t appear on your profile.",
+    "invalid": "Please enter a valid email address."
+  },
+  "verify": {
+    "title": "Check your email",
+    "subtitle": "We’ve sent a 6-digit code to {{email}}. It expires in 10 minutes.",
+    "submit": "Verify",
+    "resendIn": "Resend code in {{time}}",
+    "resend": "Resend code",
+    "resent": "A new code is on its way.",
+    "edit": "Wrong email? Edit",
+    "warning": "Never share this code with anyone. Flinger will never ask for it."
+  },
+  "home": {
+    "title": "You’re in!",
+    "signedInAs": "Signed in as {{email}}",
+    "next": "Setting up your profile comes next."
+  },
+  "unreachable": {
+    "title": "Can’t reach Flinger",
+    "body": "Check your internet connection and try again."
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "NETWORK": "Could not reach Flinger. Check your connection.",
+    "VALIDATION_FAILED": "Please check what you entered.",
+    "OTP_INVALID": "That code is not right. Please try again.",
+    "OTP_EXPIRED": "That code has expired. Request a new one.",
+    "OTP_TOO_MANY_ATTEMPTS": "Too many wrong codes. Request a new one.",
+    "OTP_COOLDOWN": "Please wait a moment before asking for a new code.",
+    "RATE_LIMITED": "Too many attempts. Please try again later.",
+    "ACCOUNT_UNAVAILABLE": "This account is not available. Please contact support.",
+    "SERVICE_UNAVAILABLE": "We couldn’t send the email. Please try again in a moment.",
+    "UNAUTHORIZED": "Please sign in again."
+  }
+}

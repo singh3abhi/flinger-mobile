@@ -2,7 +2,7 @@
 
 The iOS + Android app for **Flinger** — a dating app ("Flings, Love & Stories"). Built with **React Native (Expo)** and TypeScript.
 
-> **Status:** planning. No code is scaffolded yet. Everything under [`docs/`](docs/README.md) is the plan we build against.
+> **Status:** in development on `uat-release`. Feature 1 (email OTP sign-in, session resume, sign-out) is done; onboarding/profile is next. The plan lives under [`docs/`](docs/README.md).
 
 ## Stack
 
@@ -13,8 +13,8 @@ The iOS + Android app for **Flinger** — a dating app ("Flings, Love & Stories"
 | Server state | TanStack Query |
 | Client state | Zustand |
 | Forms | React Hook Form + Zod |
-| Styling | NativeWind (Tailwind for RN) on shared design tokens |
-| API | Typed client **generated from the backend's OpenAPI spec** |
+| Styling | `StyleSheet` on typed design tokens (NativeWind deferred, ADR-0007) |
+| API | `openapi-fetch` typed from the backend's OpenAPI contract (ADR-0008) |
 | Realtime | socket.io-client |
 | Builds & releases | EAS Build / Submit / Update, GitHub Actions |
 
@@ -35,13 +35,14 @@ Backend: [`flinger-backend`](https://github.com/singh3abhi/flinger-backend) (Nes
 4. [Flutter → RN migration](docs/04-flutter-migration.md) — screen inventory and parity checklist
 5. [Roadmap](docs/08-roadmap.md)
 
-## Local development (planned)
+## Local development
 
 ```bash
 pnpm install
-cp .env.example .env            # EXPO_PUBLIC_API_URL etc.
-pnpm api:sync                   # regenerate API client from the backend OpenAPI spec
-pnpm start                      # Expo dev server (use a dev client build)
+cp .env.example .env            # EXPO_PUBLIC_API_URL=http://localhost:4000
+pnpm api:sync                   # refresh API types from ../flinger-backend/openapi/openapi.json
+pnpm ios                        # Expo dev server + Expo Go on the iOS simulator
+pnpm test && pnpm typecheck
 ```
 
-Commands become real in roadmap phase M1.
+Run the backend first (see `flinger-backend` README); sign-in codes arrive in Mailpit at http://localhost:8025.

@@ -1,0 +1,6 @@
+# React Native's bundler (Metro) works best with a flat node_modules.
+nodeLinker: hoisted
+
+# Dependency install scripts we allow (pnpm blocks them by default).
+allowBuilds:
+  '@parcel/watcher': false   # optional native file watcher; not needed
