@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { queryKeys } from '@/core/api/query-keys';
 import {
   acceptConsents,
   fetchClientConfig,
@@ -12,9 +13,9 @@ import {
 } from './api';
 
 export const profileKeys = {
-  mine: ['me', 'profile'] as const,
+  mine: queryKeys.myProfile,
   prompts: ['prompts'] as const,
-  config: ['config'] as const,
+  config: queryKeys.config,
 };
 
 export function useMyProfile() {

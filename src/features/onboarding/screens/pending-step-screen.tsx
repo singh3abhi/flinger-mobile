@@ -6,10 +6,9 @@ import { OnboardingFrame } from '../components/onboarding-frame';
 import { useStep } from '../use-step';
 
 /**
- * Temporary stand-in for the photos and location steps while their backends are built
- * (F2 slices 2c and 2d). Lets the rest of onboarding be walked end to end.
+ * Temporary stand-in for the location step while its backend is built (F2 slice 2d). Lets the rest of onboarding be walked end to end.
  */
-export function PendingStepScreen({ route }: { route: 'photos' | 'location' }) {
+export function PendingStepScreen({ route }: { route: 'location' }) {
   const { t } = useTranslation();
   const { goNext } = useStep(route);
   return (

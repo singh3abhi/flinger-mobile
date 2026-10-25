@@ -140,6 +140,75 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/me/photos": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** My photos in order (first = main) */
+        get: operations["PhotosController_list"];
+        put?: never;
+        /** Reserve a photo slot and get a short-lived upload URL */
+        post: operations["PhotosController_reserve"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/photos/{photoId}/complete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Confirm the upload finished; the photo goes to review */
+        post: operations["PhotosController_complete"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/photos/order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Reorder my photos (first = main) */
+        patch: operations["PhotosController_reorder"];
+        trace?: never;
+    };
+    "/v1/me/photos/{photoId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Remove a photo (a finished profile keeps at least 4) */
+        delete: operations["PhotosController_remove"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/me/profile": {
         parameters: {
             query?: never;
@@ -280,6 +349,69 @@ export interface components {
             /** Format: date-time */
             createdAt: string;
         };
+        PhotoListDto: {
+            items: {
+                /** Format: uuid */
+                id: string;
+                position: number;
+                /** @enum {string} */
+                status: "uploading" | "pending" | "approved" | "rejected";
+                /** Format: uri */
+                url: string | null;
+                width: number | null;
+                height: number | null;
+                rejectionReason: string | null;
+            }[];
+        };
+        CreatePhotoDto: {
+            /** @enum {string} */
+            contentType: "image/jpeg" | "image/png" | "image/webp" | "image/heic";
+            byteSize: number;
+        };
+        PhotoUploadDto: {
+            photo: {
+                /** Format: uuid */
+                id: string;
+                position: number;
+                /** @enum {string} */
+                status: "uploading" | "pending" | "approved" | "rejected";
+                /** Format: uri */
+                url: string | null;
+                width: number | null;
+                height: number | null;
+                rejectionReason: string | null;
+            };
+            upload: {
+                /** Format: uri */
+                url: string;
+                /** @enum {string} */
+                method: "PUT";
+                headers: {
+                    [key: string]: string;
+                };
+                /** Format: date-time */
+                expiresAt: string;
+            };
+        };
+        CompletePhotoDto: {
+            width: number;
+            height: number;
+        };
+        PhotoDto: {
+            /** Format: uuid */
+            id: string;
+            position: number;
+            /** @enum {string} */
+            status: "uploading" | "pending" | "approved" | "rejected";
+            /** Format: uri */
+            url: string | null;
+            width: number | null;
+            height: number | null;
+            rejectionReason: string | null;
+        };
+        ReorderPhotosDto: {
+            photoIds: string[];
+        };
         MyProfileDto: {
             displayName: string | null;
             /** Format: date */
@@ -306,6 +438,18 @@ export interface components {
                 text: string;
                 answer: string;
                 position: number;
+            }[];
+            photos: {
+                /** Format: uuid */
+                id: string;
+                position: number;
+                /** @enum {string} */
+                status: "uploading" | "pending" | "approved" | "rejected";
+                /** Format: uri */
+                url: string | null;
+                width: number | null;
+                height: number | null;
+                rejectionReason: string | null;
             }[];
             onboarding: {
                 completed: boolean;
@@ -367,6 +511,12 @@ export type SchemaAuthResultDto = components['schemas']['AuthResultDto'];
 export type SchemaRefreshDto = components['schemas']['RefreshDto'];
 export type SchemaTokensDto = components['schemas']['TokensDto'];
 export type SchemaMeDto = components['schemas']['MeDto'];
+export type SchemaPhotoListDto = components['schemas']['PhotoListDto'];
+export type SchemaCreatePhotoDto = components['schemas']['CreatePhotoDto'];
+export type SchemaPhotoUploadDto = components['schemas']['PhotoUploadDto'];
+export type SchemaCompletePhotoDto = components['schemas']['CompletePhotoDto'];
+export type SchemaPhotoDto = components['schemas']['PhotoDto'];
+export type SchemaReorderPhotosDto = components['schemas']['ReorderPhotosDto'];
 export type SchemaMyProfileDto = components['schemas']['MyProfileDto'];
 export type SchemaUpdateProfileDto = components['schemas']['UpdateProfileDto'];
 export type SchemaSetPromptsDto = components['schemas']['SetPromptsDto'];
@@ -630,6 +780,115 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["MeDto"];
                 };
+            };
+        };
+    };
+    PhotosController_list: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PhotoListDto"];
+                };
+            };
+        };
+    };
+    PhotosController_reserve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreatePhotoDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PhotoUploadDto"];
+                };
+            };
+        };
+    };
+    PhotosController_complete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                photoId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CompletePhotoDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PhotoDto"];
+                };
+            };
+        };
+    };
+    PhotosController_reorder: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReorderPhotosDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PhotoListDto"];
+                };
+            };
+        };
+    };
+    PhotosController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                photoId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };

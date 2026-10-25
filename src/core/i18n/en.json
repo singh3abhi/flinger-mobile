@@ -4,7 +4,8 @@
     "next": "Next",
     "retry": "Try again",
     "signOut": "Sign out",
-    "close": "Close"
+    "close": "Close",
+    "cancel": "Cancel"
   },
   "landing": {
     "tagline": "Flings, Love & Stories",
@@ -59,7 +60,12 @@
     "PROFILE_UNDERAGE": "You must be at least 18 to use Flinger.",
     "BIRTHDATE_LOCKED": "Your birthday can’t be changed. Contact support if it’s wrong.",
     "PROMPT_NOT_FOUND": "That prompt is no longer available. Please choose another.",
-    "CONSENT_VERSION_MISMATCH": "These terms have been updated. Please review them again."
+    "CONSENT_VERSION_MISMATCH": "These terms have been updated. Please review them again.",
+    "PHOTO_LIMIT_REACHED": "You can add up to 6 photos. Remove one to add another.",
+    "PHOTO_UPLOAD_MISSING": "We didn’t receive that photo. Please try again.",
+    "PHOTO_INVALID_IMAGE": "That file isn’t a supported photo.",
+    "PHOTO_MINIMUM": "Your profile needs at least 4 photos.",
+    "PHOTO_UPLOAD_FAILED": "The photo upload failed. Please try again."
   },
   "onboarding": {
     "stepOf": "Step {{step}} of {{total}}",
@@ -154,9 +160,14 @@
       "finish": "Create my profile"
     },
     "pending": {
-      "photos": "Photos",
       "location": "Location",
       "body": "This step is being built. Tap Next to continue."
+    },
+    "photos": {
+      "title": "Show your best self",
+      "subtitle": "Add at least {{min}} photos. Your first photo is your main photo.",
+      "count": "{{count}} of {{max}} added · minimum {{min}}",
+      "tips": "Clear face, good light, and one photo of just you work best. Photos are checked before others can see them."
     }
   },
   "options": {
@@ -246,5 +257,17 @@
       "volunteering": "Volunteering",
       "voting_rights": "Voting rights"
     }
+  },
+  "photos": {
+    "main": "Main",
+    "inReview": "In review",
+    "rejected": "Not approved",
+    "failed": "Upload failed. Tap to dismiss.",
+    "add": "Add a photo",
+    "remove": "Remove photo",
+    "makeMain": "Make main photo",
+    "actionsTitle": "Photo",
+    "a11yPhoto": "Photo {{position}}",
+    "a11yActions": "Opens options for this photo"
   }
 }
