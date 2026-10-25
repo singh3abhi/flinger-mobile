@@ -432,6 +432,24 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/devices/{deviceId}/push-token": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Register this install’s push token */
+        put: operations["DevicesController_register"];
+        post?: never;
+        /** Stop pushes to this install (call on sign-out) */
+        delete: operations["DevicesController_remove"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/discovery/deck": {
         parameters: {
             query?: never;
@@ -460,6 +478,58 @@ export interface paths {
         get: operations["DiscoveryController_profile"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/conversations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** My conversations (one per match), most recent first */
+        get: operations["ChatController_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/conversations/{conversationId}/messages": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Messages, oldest first: newest page, older with `before`, gap-fill with `after` */
+        get: operations["ChatController_messages"];
+        put?: never;
+        /** Send a message (idempotent by clientMsgId) */
+        post: operations["ChatController_send"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/conversations/{conversationId}/read": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Mark the conversation read up to a message */
+        post: operations["ChatController_read"];
         delete?: never;
         options?: never;
         head?: never;
@@ -799,6 +869,13 @@ export interface components {
             }[];
             nextCursor: string | null;
         };
+        PushTokenDto: {
+            /** @enum {string} */
+            provider: "expo";
+            token: string;
+            /** @enum {string} */
+            platform: "ios" | "android";
+        };
         DeckDto: {
             items: {
                 /** Format: uuid */
@@ -881,6 +958,72 @@ export interface components {
                 position: number;
             }[];
         };
+        ConversationListDto: {
+            items: {
+                /** Format: uuid */
+                id: string;
+                member: {
+                    /** Format: uuid */
+                    userId: string;
+                    displayName: string;
+                    age: number;
+                    city: string | null;
+                    /** Format: uri */
+                    photoUrl: string;
+                };
+                /** Format: date-time */
+                matchedAt: string;
+                lastMessage: {
+                    /** Format: uuid */
+                    id: string;
+                    body: string;
+                    fromMe: boolean;
+                    /** Format: date-time */
+                    createdAt: string;
+                } | null;
+                unreadCount: number;
+            }[];
+            nextCursor: string | null;
+            unreadConversations: number;
+        };
+        MessagePageDto: {
+            items: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                conversationId: string;
+                /** Format: uuid */
+                senderId: string | null;
+                body: string;
+                /** Format: uuid */
+                clientMsgId: string;
+                /** Format: date-time */
+                createdAt: string;
+            }[];
+            hasMore: boolean;
+        };
+        SendMessageDto: {
+            /** Format: uuid */
+            clientMsgId: string;
+            body: string;
+        };
+        MessageDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            conversationId: string;
+            /** Format: uuid */
+            senderId: string | null;
+            body: string;
+            /** Format: uuid */
+            clientMsgId: string;
+            /** Format: date-time */
+            createdAt: string;
+        };
+        MarkReadDto: {
+            /** Format: uuid */
+            upToMessageId: string;
+        };
     };
     responses: never;
     parameters: never;
@@ -917,8 +1060,14 @@ export type SchemaPassDto = components['schemas']['PassDto'];
 export type SchemaLimitsDto = components['schemas']['LimitsDto'];
 export type SchemaReceivedLikesDto = components['schemas']['ReceivedLikesDto'];
 export type SchemaMatchListDto = components['schemas']['MatchListDto'];
+export type SchemaPushTokenDto = components['schemas']['PushTokenDto'];
 export type SchemaDeckDto = components['schemas']['DeckDto'];
 export type SchemaPublicProfileDto = components['schemas']['PublicProfileDto'];
+export type SchemaConversationListDto = components['schemas']['ConversationListDto'];
+export type SchemaMessagePageDto = components['schemas']['MessagePageDto'];
+export type SchemaSendMessageDto = components['schemas']['SendMessageDto'];
+export type SchemaMessageDto = components['schemas']['MessageDto'];
+export type SchemaMarkReadDto = components['schemas']['MarkReadDto'];
 export type $defs = Record<string, never>;
 export interface operations {
     HealthController_liveness: {
@@ -1604,6 +1753,48 @@ export interface operations {
             };
         };
     };
+    DevicesController_register: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                deviceId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PushTokenDto"];
+            };
+        };
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    DevicesController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                deviceId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     DiscoveryController_deck: {
         parameters: {
             query?: {
@@ -1643,6 +1834,101 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["PublicProfileDto"];
                 };
+            };
+        };
+    };
+    ChatController_list: {
+        parameters: {
+            query?: {
+                cursor?: string;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ConversationListDto"];
+                };
+            };
+        };
+    };
+    ChatController_messages: {
+        parameters: {
+            query?: {
+                before?: string;
+                after?: string;
+                limit?: number;
+            };
+            header?: never;
+            path: {
+                conversationId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MessagePageDto"];
+                };
+            };
+        };
+    };
+    ChatController_send: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                conversationId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SendMessageDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MessageDto"];
+                };
+            };
+        };
+    };
+    ChatController_read: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                conversationId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MarkReadDto"];
+            };
+        };
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };

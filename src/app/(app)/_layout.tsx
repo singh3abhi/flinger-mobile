@@ -1,9 +1,1 @@
-import { Stack } from 'expo-router';
-
-export default function AppLayout() {
-  return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="match" options={{ presentation: 'fullScreenModal', animation: 'fade' }} />
-    </Stack>
-  );
-}
+export { SignedInLayout as default } from '@/features/navigation/signed-in-layout';

@@ -8,6 +8,8 @@ import { Platform } from 'react-native';
  */
 export const env = {
   apiUrl: process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost:4000',
+  /** The chat socket server (the backend's realtime process). */
+  realtimeUrl: process.env.EXPO_PUBLIC_REALTIME_URL ?? 'http://localhost:4001',
   appVersion: Constants.expoConfig?.version ?? '0.0.0',
   platform: (Platform.OS === 'ios' ? 'ios' : Platform.OS === 'android' ? 'android' : 'web') as
     | 'ios'

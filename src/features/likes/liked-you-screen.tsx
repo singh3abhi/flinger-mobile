@@ -9,6 +9,7 @@ import { queryKeys } from '@/core/api/query-keys';
 import { errorMessage } from '@/core/i18n';
 import { colors, radius } from '@/core/theme/tokens';
 import { Button } from '@/shared/ui/button';
+import { usePullToRefresh } from '@/shared/hooks/use-pull-to-refresh';
 import { Text } from '@/shared/ui/text';
 import { fetchLikesReceived, type ReceivedLike } from './api';
 
@@ -28,6 +29,7 @@ export function LikedYouScreen() {
   const { t } = useTranslation();
   const query = useLikesReceived();
   const items = query.data?.pages.flatMap((p) => p.items) ?? [];
+  const pull = usePullToRefresh(() => query.refetch());
 
   return (
     <SafeAreaView style={styles.fill} edges={['top']}>
@@ -51,8 +53,8 @@ export function LikedYouScreen() {
           data={items}
           keyExtractor={(item) => item.likeId}
           contentContainerStyle={styles.list}
-          onRefresh={() => query.refetch()}
-          refreshing={query.isRefetching}
+          onRefresh={pull.onRefresh}
+          refreshing={pull.refreshing}
           onEndReached={() => query.hasNextPage && query.fetchNextPage()}
           renderItem={({ item }) => (
             <Pressable

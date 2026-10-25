@@ -70,7 +70,8 @@
     "ALREADY_PASSED": "You passed on this person.",
     "LIKE_ITEM_INVALID": "That photo or prompt is no longer on their profile.",
     "MEMBER_NOT_FOUND": "This profile is no longer available.",
-    "DISCOVERY_NOT_READY": "Finish your profile to start discovering."
+    "DISCOVERY_NOT_READY": "Finish your profile to start discovering.",
+    "CONVERSATION_NOT_FOUND": "This conversation has ended."
   },
   "onboarding": {
     "stepOf": "Step {{step}} of {{total}}",
@@ -339,11 +340,40 @@
   },
   "chats": {
     "title": "Chats",
-    "empty": "Your matches will show up here.",
-    "newMatch": "New match · messaging is coming soon"
+    "empty": "When you match with someone, you can chat here.",
+    "newMatches": "New matches",
+    "messages": "Messages",
+    "you": "You: {{body}}",
+    "openWith": "Open chat with {{name}}",
+    "unread_one": "{{count}} unread message",
+    "unread_other": "{{count}} unread messages"
   },
   "me": {
     "title": "Profile",
     "soon": "Editing your profile, preferences and settings are coming next."
+  },
+  "thread": {
+    "matched": "You matched with {{name}}",
+    "matchedHint": "Say hello and ask about something on their profile.",
+    "matchedShort": "Matched",
+    "typing": "typing…",
+    "options": "Conversation options",
+    "viewProfile": "View {{name}}’s profile",
+    "offline": "You’re offline. Messages will send when you’re back online.",
+    "closed": "This conversation has ended.",
+    "placeholder": "Message {{name}}",
+    "send": "Send message",
+    "sending": "Sending…",
+    "notSent": "Not sent. Tap to retry",
+    "unmatch": "Unmatch",
+    "unmatchTitle": "Unmatch {{name}}?",
+    "unmatchBody": "You won’t see each other again and this conversation will be removed for both of you."
+  },
+  "primer": {
+    "matched": "You just matched with {{name}}",
+    "title": "Stay in the loop",
+    "body": "Enable notifications so you never miss new matches, messages, or important updates.",
+    "enable": "Enable notifications",
+    "later": "Maybe later"
   }
 }

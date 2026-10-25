@@ -16,8 +16,8 @@ import { useDeck, useDecisions, useLimits } from '../use-deck';
 const logo = require('../../../../assets/images/logo.png');
 const emptyArt = require('../../../../assets/images/location.png');
 
-export function matchHref(matchId: string, name: string, photoUrl: string): Href {
-  const q = new URLSearchParams({ matchId, name, photoUrl });
+export function matchHref(matchId: string, name: string, photoUrl: string, memberId?: string): Href {
+  const q = new URLSearchParams({ matchId, name, photoUrl, ...(memberId ? { memberId } : {}) });
   return `/match?${q.toString()}` as Href;
 }
 
@@ -50,7 +50,7 @@ export function DiscoverScreen() {
         onSuccess: (result) => {
           setTarget(null);
           if (result.matched && result.matchId) {
-            router.push(matchHref(result.matchId, card.displayName, card.photos[0]?.url ?? ''));
+            router.push(matchHref(result.matchId, card.displayName, card.photos[0]?.url ?? '', card.userId));
           }
           next();
         },

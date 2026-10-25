@@ -1,6 +1,6 @@
 import { Feather } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { router, useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams, type Href } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import { colors } from '@/core/theme/tokens';
@@ -8,12 +8,30 @@ import { Button } from '@/shared/ui/button';
 import { RoundButton } from '@/shared/ui/round-button';
 import { Screen } from '@/shared/ui/screen';
 import { Text } from '@/shared/ui/text';
+import { pushPermission } from '@/features/notifications';
 import { useMyMainPhoto } from '../use-deck';
 
-/** "It's a match!" with both main photos. Chat (F4) opens from "Say hello". */
+/** Open the conversation, asking for notifications first if we never have (it matters now). */
+async function sayHello(matchId: string, name: string, photoUrl: string, memberId?: string) {
+  const q = new URLSearchParams({ name, photoUrl, ...(memberId ? { memberId } : {}) });
+  const thread = `/chat/${matchId}?${q.toString()}`;
+  const permission = await pushPermission().catch(() => 'denied');
+  if (permission === 'undetermined') {
+    router.replace(`/notifications?${new URLSearchParams({ next: thread, name }).toString()}` as Href);
+  } else {
+    router.replace(thread as Href);
+  }
+}
+
+/** "It's a match!" with both main photos. "Say hello" opens the conversation. */
 export function MatchScreen() {
   const { t } = useTranslation();
-  const { name, photoUrl } = useLocalSearchParams<{ matchId: string; name: string; photoUrl: string }>();
+  const { matchId, name, photoUrl, memberId } = useLocalSearchParams<{
+    matchId: string;
+    name: string;
+    photoUrl: string;
+    memberId?: string;
+  }>();
   const myPhoto = useMyMainPhoto();
 
   return (
@@ -44,7 +62,7 @@ export function MatchScreen() {
       <Button
         testID="match-say-hello"
         label={t('match.sayHello')}
-        onPress={() => router.replace('/chats')}
+        onPress={() => void sayHello(matchId, name, photoUrl, memberId)}
       />
       <Button
         variant="outline"

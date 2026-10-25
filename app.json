@@ -37,7 +37,8 @@
         {
           "locationWhenInUsePermission": "Flinger uses your location to show you people nearby. Others only see how far away you are, never where you are."
         }
-      ]
+      ],
+      "expo-notifications"
     ],
     "experiments": {
       "typedRoutes": true,

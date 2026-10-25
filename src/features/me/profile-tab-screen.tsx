@@ -5,6 +5,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, radius } from '@/core/theme/tokens';
 import { signOut } from '@/features/auth';
+import { unregisterPush } from '@/features/notifications';
 import { Button } from '@/shared/ui/button';
 import { Text } from '@/shared/ui/text';
 import { useMyProfileSummary } from './api';
@@ -13,7 +14,12 @@ import { useMyProfileSummary } from './api';
 export function ProfileTabScreen() {
   const { t } = useTranslation();
   const profile = useMyProfileSummary();
-  const logout = useMutation({ mutationFn: signOut });
+  const logout = useMutation({
+    mutationFn: async () => {
+      await unregisterPush();
+      await signOut();
+    },
+  });
   const me = profile.data;
   const photo = me?.photos[0]?.url;
 

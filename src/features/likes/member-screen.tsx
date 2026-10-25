@@ -40,7 +40,7 @@ export function MemberScreen() {
         onSuccess: (result) => {
           setTarget(null);
           if (result.matched && result.matchId) {
-            router.replace(matchHref(result.matchId, member.displayName, member.photos[0]?.url ?? ''));
+            router.replace(matchHref(result.matchId, member.displayName, member.photos[0]?.url ?? '', member.userId));
           } else {
             router.back();
           }

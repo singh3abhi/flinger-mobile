@@ -3,6 +3,7 @@ import { Tabs } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import type { ColorValue } from 'react-native';
 import { colors, fonts } from '@/core/theme/tokens';
+import { useConversations } from '@/features/chat';
 import { useLikesReceived } from '@/features/likes';
 
 type IconName = 'compass' | 'heart' | 'message-circle' | 'user';
@@ -20,6 +21,7 @@ export function TabsLayout() {
   const firstPage = likes.data?.pages[0];
   const likeCount = firstPage?.items.length ?? 0;
   const badge = likeCount === 0 ? undefined : firstPage?.nextCursor ? '9+' : likeCount;
+  const unreadChats = useConversations().data?.pages[0]?.unreadConversations ?? 0;
 
   return (
     <Tabs
@@ -37,7 +39,14 @@ export function TabsLayout() {
         name="liked-you"
         options={{ title: t('tabs.likedYou'), tabBarIcon: icon('heart'), tabBarBadge: badge }}
       />
-      <Tabs.Screen name="chats" options={{ title: t('tabs.chats'), tabBarIcon: icon('message-circle') }} />
+      <Tabs.Screen
+        name="chats"
+        options={{
+          title: t('tabs.chats'),
+          tabBarIcon: icon('message-circle'),
+          tabBarBadge: unreadChats > 0 ? unreadChats : undefined,
+        }}
+      />
       <Tabs.Screen name="profile" options={{ title: t('tabs.profile'), tabBarIcon: icon('user') }} />
     </Tabs>
   );
