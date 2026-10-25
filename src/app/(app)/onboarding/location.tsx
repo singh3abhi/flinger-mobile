@@ -1,5 +1,1 @@
-import { PendingStepScreen } from '@/features/onboarding/screens/pending-step-screen';
-
-export default function Location() {
-  return <PendingStepScreen route="location" />;
-}
+export { LocationScreen as default } from '@/features/onboarding/screens/location-screen';

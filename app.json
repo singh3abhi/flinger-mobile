@@ -31,7 +31,13 @@
         }
       ],
       "expo-secure-store",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Flinger uses your location to show you people nearby. Others only see how far away you are, never where you are."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

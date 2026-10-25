@@ -1,14 +1,18 @@
 import { Feather } from '@expo/vector-icons';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Pressable, StyleSheet, View } from 'react-native';
+import { ApiError } from '@/core/api/errors';
+import { queryKeys } from '@/core/api/query-keys';
 import { errorMessage } from '@/core/i18n';
 import { colors, radius } from '@/core/theme/tokens';
 import { Button } from '@/shared/ui/button';
 import { Text } from '@/shared/ui/text';
+import { acceptConsents, completeOnboarding } from '../api';
 import { OnboardingFrame } from '../components/onboarding-frame';
-import { useAcceptConsents, useClientConfig } from '../queries';
+import { useClientConfig } from '../queries';
 
 const DOCUMENTS = ['terms', 'privacy', 'guidelines'] as const;
 
@@ -40,17 +44,34 @@ function Checkbox({ checked, label, onPress, testID }: {
 export function AgreeScreen() {
   const { t } = useTranslation();
   const config = useClientConfig();
-  const accept = useAcceptConsents();
+  const queryClient = useQueryClient();
   const [terms, setTerms] = useState(false);
   const [guidelines, setGuidelines] = useState(false);
 
-  const finish = () => {
-    if (!config.data) return;
-    accept.mutate(
-      { documents: [...DOCUMENTS], version: config.data.legalVersion },
-      // Finishing onboarding (photos, location, account activation) lands in the next F2 slices.
-      { onSuccess: () => router.replace('/home') },
-    );
+  // Record the consents, then finish: the account becomes active and the main app opens.
+  const finish = useMutation({
+    mutationFn: async (version: string) => {
+      await acceptConsents([...DOCUMENTS], version);
+      return completeOnboarding();
+    },
+    onSuccess: async (profile) => {
+      queryClient.setQueryData(queryKeys.myProfile, profile);
+      // Wait for the account to read as active, or Home would bounce back here from its cache.
+      await queryClient.refetchQueries({ queryKey: queryKeys.me });
+      router.replace('/home');
+    },
+    onError: (error) => {
+      // Something earlier is still missing (e.g. a photo was rejected): go back to it.
+      if (error instanceof ApiError && error.code === 'ONBOARDING_INCOMPLETE') {
+        void queryClient
+          .invalidateQueries({ queryKey: queryKeys.myProfile })
+          .then(() => router.replace('/onboarding'));
+      }
+    },
+  });
+
+  const submit = () => {
+    if (config.data) finish.mutate(config.data.legalVersion);
   };
 
   return (
@@ -58,15 +79,15 @@ export function AgreeScreen() {
       route="agree"
       title={t('onboarding.agree.title')}
       subtitle={t('onboarding.agree.subtitle')}
-      onNext={finish}
-      error={accept.isError ? errorMessage(accept.error) : undefined}
+      onNext={submit}
+      error={finish.isError ? errorMessage(finish.error) : undefined}
       footer={
         <View style={styles.footer}>
           <Button
             testID="agree-finish"
             label={t('onboarding.agree.finish')}
-            onPress={finish}
-            loading={accept.isPending}
+            onPress={submit}
+            loading={finish.isPending}
             disabled={!terms || !guidelines || !config.data}
           />
         </View>

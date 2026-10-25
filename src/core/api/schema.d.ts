@@ -227,6 +227,41 @@ export interface paths {
         patch: operations["MyProfileController_update"];
         trace?: never;
     };
+    "/v1/me/profile/complete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Finish onboarding (all required steps done); activates the account */
+        post: operations["MyProfileController_complete"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/preferences": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Who to show me: age range and distance */
+        get: operations["MyProfileController_getPreferences"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Change who to show me (send only what changed) */
+        patch: operations["MyProfileController_updatePreferences"];
+        trace?: never;
+    };
     "/v1/me/prompts": {
         parameters: {
             query?: never;
@@ -237,6 +272,23 @@ export interface paths {
         get?: never;
         /** Set my prompt answers, in display order (up to 3) */
         put: operations["MyProfileController_setPrompts"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/location": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Save my GPS location (no manual city); returns the city label */
+        put: operations["MyProfileController_setLocation"];
         post?: never;
         delete?: never;
         options?: never;
@@ -451,6 +503,12 @@ export interface components {
                 height: number | null;
                 rejectionReason: string | null;
             }[];
+            location: {
+                city: string | null;
+                state: string | null;
+                /** Format: date-time */
+                updatedAt: string;
+            } | null;
             onboarding: {
                 completed: boolean;
                 /** @enum {string|null} */
@@ -479,11 +537,43 @@ export interface components {
             values?: ("ambition" | "confidence" | "curiosity" | "emotional_intelligence" | "kindness" | "honesty" | "sense_of_humor" | "empathy" | "open_mindedness" | "good_communication" | "emotional_availability" | "independence" | "loyalty" | "growth_mindset" | "respect")[];
             causes?: ("black_lives_matter" | "disability_rights" | "end_religious_hate" | "environmental_protection" | "feminism" | "human_rights" | "immigrant_rights" | "indigenous_rights" | "lgbtq_plus_rights" | "neurodiversity" | "reproductive_rights" | "stop_asian_hate" | "trans_rights" | "volunteering" | "voting_rights")[];
         };
+        PreferencesDto: {
+            minAge: number;
+            maxAge: number;
+            maxDistanceKm: number;
+            showDistance: boolean;
+            expandRadiusWhenEmpty: boolean;
+        };
+        UpdatePreferencesDto: {
+            minAge?: number;
+            maxAge?: number;
+            maxDistanceKm?: number;
+            showDistance?: boolean;
+            expandRadiusWhenEmpty?: boolean;
+        };
         SetPromptsDto: {
             prompts: {
                 promptId: string;
                 answer: string;
             }[];
+        };
+        SetLocationDto: {
+            latitude: number;
+            longitude: number;
+            accuracyMeters: number;
+            /** @default false */
+            mocked: boolean;
+            /** Format: date-time */
+            capturedAt: string;
+        };
+        SetLocationResultDto: {
+            accepted: boolean;
+            location: {
+                city: string | null;
+                state: string | null;
+                /** Format: date-time */
+                updatedAt: string;
+            } | null;
         };
         AcceptConsentsDto: {
             documents: ("terms" | "privacy" | "guidelines")[];
@@ -519,7 +609,11 @@ export type SchemaPhotoDto = components['schemas']['PhotoDto'];
 export type SchemaReorderPhotosDto = components['schemas']['ReorderPhotosDto'];
 export type SchemaMyProfileDto = components['schemas']['MyProfileDto'];
 export type SchemaUpdateProfileDto = components['schemas']['UpdateProfileDto'];
+export type SchemaPreferencesDto = components['schemas']['PreferencesDto'];
+export type SchemaUpdatePreferencesDto = components['schemas']['UpdatePreferencesDto'];
 export type SchemaSetPromptsDto = components['schemas']['SetPromptsDto'];
+export type SchemaSetLocationDto = components['schemas']['SetLocationDto'];
+export type SchemaSetLocationResultDto = components['schemas']['SetLocationResultDto'];
 export type SchemaAcceptConsentsDto = components['schemas']['AcceptConsentsDto'];
 export type SchemaPromptListDto = components['schemas']['PromptListDto'];
 export type $defs = Record<string, never>;
@@ -934,6 +1028,67 @@ export interface operations {
             };
         };
     };
+    MyProfileController_complete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MyProfileDto"];
+                };
+            };
+        };
+    };
+    MyProfileController_getPreferences: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PreferencesDto"];
+                };
+            };
+        };
+    };
+    MyProfileController_updatePreferences: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdatePreferencesDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PreferencesDto"];
+                };
+            };
+        };
+    };
     MyProfileController_setPrompts: {
         parameters: {
             query?: never;
@@ -953,6 +1108,29 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["MyProfileDto"];
+                };
+            };
+        };
+    };
+    MyProfileController_setLocation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SetLocationDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SetLocationResultDto"];
                 };
             };
         };

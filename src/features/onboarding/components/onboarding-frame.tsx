@@ -13,6 +13,8 @@ export interface OnboardingFrameProps {
   route: OnboardingRoute;
   title: string;
   subtitle?: string;
+  /** Illustration shown above the title. */
+  hero?: ReactNode;
   children: ReactNode;
   /** Footer note next to the Next button. `lock` adds the padlock icon. */
   note?: string;
@@ -34,6 +36,7 @@ export function OnboardingFrame({
   route,
   title,
   subtitle,
+  hero,
   children,
   note,
   noteIcon,
@@ -78,7 +81,8 @@ export function OnboardingFrame({
         contentContainerStyle={styles.scroll}
         keyboardShouldPersistTaps="handled"
       >
-        <Text variant="title" accessibilityRole="header">
+        {hero}
+        <Text variant="title" accessibilityRole="header" style={hero ? styles.heroGap : undefined}>
           {title}
         </Text>
         {subtitle ? (
@@ -149,6 +153,7 @@ const styles = StyleSheet.create({
   back: { marginTop: 18, alignSelf: 'flex-start' },
   scroll: { paddingHorizontal: 20, paddingTop: 22, paddingBottom: 24 },
   subtitle: { marginTop: 12 },
+  heroGap: { marginTop: 26 },
   body: { marginTop: 26 },
   error: { paddingHorizontal: 20, paddingBottom: 4 },
   footer: {

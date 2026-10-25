@@ -30,3 +30,21 @@ export async function fetchClientConfig() {
 export async function acceptConsents(documents: ConsentDocument[], version: string): Promise<void> {
   ensureOk(await api.POST('/v1/me/consents', { body: { documents, version } }));
 }
+
+export type LocationFix = {
+  latitude: number;
+  longitude: number;
+  accuracyMeters: number;
+  mocked: boolean;
+  capturedAt: string;
+};
+
+/** Send a GPS fix; the server answers with the city label (never echoing coordinates). */
+export async function saveLocation(fix: LocationFix) {
+  return unwrap(await api.PUT('/v1/me/location', { body: fix }));
+}
+
+/** Finish onboarding: the account becomes active. */
+export async function completeOnboarding(): Promise<MyProfile> {
+  return unwrap(await api.POST('/v1/me/profile/complete'));
+}

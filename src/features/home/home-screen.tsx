@@ -4,6 +4,7 @@ import { Image } from 'expo-image';
 import { Redirect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { queryKeys } from '@/core/api/query-keys';
 import { errorMessage } from '@/core/i18n';
 import { colors, radius } from '@/core/theme/tokens';
 import { fetchMe, signOut } from '@/features/auth/api';
@@ -19,7 +20,7 @@ const logo = require('../../../assets/images/logo.png');
  */
 export function HomeScreen() {
   const { t } = useTranslation();
-  const me = useQuery({ queryKey: ['me'], queryFn: fetchMe });
+  const me = useQuery({ queryKey: queryKeys.me, queryFn: fetchMe });
   const logout = useMutation({ mutationFn: signOut });
 
   // Accounts that have not finished onboarding resume it.

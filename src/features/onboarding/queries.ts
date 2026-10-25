@@ -1,13 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { queryKeys } from '@/core/api/query-keys';
 import {
-  acceptConsents,
   fetchClientConfig,
   fetchMyProfile,
   fetchPromptLibrary,
   savePrompts,
   updateProfile,
-  type ConsentDocument,
   type MyProfile,
   type ProfileChanges,
 } from './api';
@@ -52,14 +50,5 @@ export function useClientConfig() {
     queryKey: profileKeys.config,
     queryFn: fetchClientConfig,
     staleTime: 60 * 60 * 1000,
-  });
-}
-
-export function useAcceptConsents() {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: ({ documents, version }: { documents: ConsentDocument[]; version: string }) =>
-      acceptConsents(documents, version),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: profileKeys.mine }),
   });
 }

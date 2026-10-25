@@ -39,7 +39,7 @@
   "home": {
     "title": "You’re in!",
     "signedInAs": "Signed in as {{email}}",
-    "next": "Setting up your profile comes next."
+    "next": "Your profile is ready. Discover comes next."
   },
   "unreachable": {
     "title": "Can’t reach Flinger",
@@ -65,7 +65,12 @@
     "PHOTO_UPLOAD_MISSING": "We didn’t receive that photo. Please try again.",
     "PHOTO_INVALID_IMAGE": "That file isn’t a supported photo.",
     "PHOTO_MINIMUM": "Your profile needs at least 4 photos.",
-    "PHOTO_UPLOAD_FAILED": "The photo upload failed. Please try again."
+    "PHOTO_UPLOAD_FAILED": "The photo upload failed. Please try again.",
+    "LOCATION_MOCKED": "Your location looks simulated. Turn off any fake-GPS app and try again.",
+    "LOCATION_OUTSIDE_SERVICE_AREA": "Flinger is only available in India for now.",
+    "LOCATION_TOO_INACCURATE": "We couldn’t get an accurate location. Please try again.",
+    "LOCATION_STALE": "That location was out of date. Please try again.",
+    "ONBOARDING_INCOMPLETE": "A few steps are still missing."
   },
   "onboarding": {
     "stepOf": "Step {{step}} of {{total}}",
@@ -159,15 +164,23 @@
       "guidelines": "I’ll be kind and honest, and follow the Community Guidelines.",
       "finish": "Create my profile"
     },
-    "pending": {
-      "location": "Location",
-      "body": "This step is being built. Tap Next to continue."
-    },
     "photos": {
       "title": "Show your best self",
       "subtitle": "Add at least {{min}} photos. Your first photo is your main photo.",
       "count": "{{count}} of {{max}} added · minimum {{min}}",
       "tips": "Clear face, good light, and one photo of just you work best. Photos are checked before others can see them."
+    },
+    "location": {
+      "title": "Discover people near you",
+      "subtitle": "Location access helps us show you people around you so connections feel real and relevant.",
+      "privacy": "People only see how far away you are, like “3 km away”. Your exact location is never shown.",
+      "enable": "Enable location",
+      "openSettings": "Open Settings",
+      "found": "You’re in {{city}}",
+      "foundNoCity": "Location saved",
+      "denied": "Flinger needs your location to show you people nearby.",
+      "blocked": "Location is off for Flinger. Turn it on in Settings › Flinger › Location, then come back.",
+      "unavailable": "We couldn’t get your location. Please try again."
     }
   },
   "options": {
