@@ -4,7 +4,15 @@ import { queryKeys } from '@/core/api/query-keys';
 import { realtime } from '@/core/realtime';
 import { fetchMe } from '@/features/auth';
 import type { Message } from './api';
-import { applyMessageToList, chatKeys, markListRead, mergeMessages, type ConversationsData, type MessagesData } from './cache';
+import {
+  applyMessageToList,
+  applyTheirRead,
+  chatKeys,
+  markListRead,
+  mergeMessages,
+  type ConversationsData,
+  type MessagesData,
+} from './cache';
 import { useChatStore } from './chat-store';
 
 const TYPING_SHOWS_MS = 4000;
@@ -36,6 +44,7 @@ export function useApplyMessage() {
 export function useChatEvents() {
   const queryClient = useQueryClient();
   const applyMessage = useApplyMessage();
+  const myId = useMyId();
 
   useEffect(() => {
     const offs = [
@@ -56,14 +65,27 @@ export function useChatEvents() {
         useChatStore.getState().setTyping(conversationId, Date.now() + TYPING_SHOWS_MS);
       }),
       realtime.on('read', (payload) => {
-        // I read it on another device.
-        const { conversationId } = payload as { conversationId: string };
-        queryClient.setQueryData<ConversationsData>(chatKeys.conversations, (d) => markListRead(d, conversationId));
+        const { conversationId, upToMessageId, readerId } = payload as {
+          conversationId: string;
+          upToMessageId: string;
+          readerId: string;
+        };
+        if (readerId === myId) {
+          // I read it on another device.
+          queryClient.setQueryData<ConversationsData>(chatKeys.conversations, (d) =>
+            markListRead(d, conversationId),
+          );
+        } else {
+          // They read my messages (both have read receipts on).
+          queryClient.setQueryData<MessagesData>(chatKeys.messages(conversationId), (d) =>
+            applyTheirRead(d, upToMessageId),
+          );
+        }
       }),
       realtime.on('reconnected', () => {
         void queryClient.invalidateQueries({ queryKey: chatKeys.conversations });
       }),
     ];
     return () => offs.forEach((off) => off());
-  }, [queryClient, applyMessage]);
+  }, [queryClient, applyMessage, myId]);
 }

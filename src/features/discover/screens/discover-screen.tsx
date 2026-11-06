@@ -5,9 +5,11 @@ import { useRef, useState, type ComponentRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { ApiError } from '@/core/api/errors';
 import { errorMessage } from '@/core/i18n';
 import { colors, radius } from '@/core/theme/tokens';
 import { Button } from '@/shared/ui/button';
+import { SafetySheet } from '@/features/safety';
 import { Text } from '@/shared/ui/text';
 import { ProfileCard, type LikeTarget } from '../components/profile-card';
 import { LikeSheet, LimitSheet } from '../components/sheets';
@@ -28,6 +30,7 @@ export function DiscoverScreen() {
   const { like, pass, isLimitError } = useDecisions();
   const [target, setTarget] = useState<LikeTarget | null>(null);
   const [limitOpen, setLimitOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const scroll = useRef<ComponentRef<typeof ScrollView>>(null);
   const card = deck.current;
 
@@ -101,7 +104,12 @@ export function DiscoverScreen() {
                 {t('discover.widened', { km: deck.meta.radiusKm })}
               </Text>
             ) : null}
-            <ProfileCard key={card.userId} profile={card} onLike={openLike} />
+            <ProfileCard
+              key={card.userId}
+              profile={card}
+              onLike={openLike}
+              onMore={() => setMoreOpen(true)}
+            />
           </ScrollView>
           <Pressable
             testID="discover-pass"
@@ -116,6 +124,23 @@ export function DiscoverScreen() {
       ) : deck.loading ? (
         <View style={styles.center}>
           <ActivityIndicator color={colors.ink} />
+        </View>
+      ) : deck.paused ? (
+        <View style={styles.center}>
+          <Feather name="pause-circle" size={48} color={colors.accentInk} />
+          <Text variant="headline" accessibilityRole="header" style={[styles.centerText, styles.gap]}>
+            {t('discover.paused.title')}
+          </Text>
+          <Text variant="body" color="text2" style={[styles.centerText, styles.gap]}>
+            {t('discover.paused.body')}
+          </Text>
+          <Button
+            testID="unpause"
+            variant="dark"
+            label={t('discover.paused.unpause')}
+            onPress={() => void deck.unpause()}
+            style={styles.wide}
+          />
         </View>
       ) : deck.error ? (
         <View style={styles.center}>
@@ -146,6 +171,19 @@ export function DiscoverScreen() {
         onSend={sendLike}
         onClose={() => setTarget(null)}
       />
+      {card ? (
+        <SafetySheet
+          visible={moreOpen}
+          onClose={() => setMoreOpen(false)}
+          userId={card.userId}
+          name={card.displayName}
+          onBlocked={() => {
+            // The queue drops them itself (onPersonBlocked); just start the next card at the top.
+            setMoreOpen(false);
+            scroll.current?.scrollTo({ y: 0, animated: false });
+          }}
+        />
+      ) : null}
       <LimitSheet
         visible={limitOpen}
         perDay={limits.data?.likesPerDay ?? 25}

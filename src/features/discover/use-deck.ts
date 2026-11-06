@@ -1,7 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ApiError } from '@/core/api/errors';
+import { api } from '@/core/api/client';
+import { ApiError, ensureOk } from '@/core/api/errors';
 import { queryKeys } from '@/core/api/query-keys';
+import { fetchMe } from '@/features/auth';
+import { onPersonBlocked } from '@/features/safety';
 import {
   fetchDeck,
   fetchLimits,
@@ -26,11 +29,17 @@ export function useLimits() {
   return useQuery({ queryKey: queryKeys.limits, queryFn: fetchLimits });
 }
 
+const isPausedError = (e: unknown) => e instanceof ApiError && e.code === 'ACCOUNT_PAUSED';
+
 /**
  * The Discover queue. The server pops cards as it serves them, so this keeps a local queue and
- * tops it up when it runs low; the head of the queue is the card on screen.
+ * tops it up when it runs low; the head of the queue is the card on screen. While my account is
+ * paused there is no queue; pausing or unpausing (here or in Settings) starts it over.
  */
 export function useDeck() {
+  const queryClient = useQueryClient();
+  const status = useQuery({ queryKey: queryKeys.me, queryFn: fetchMe }).data?.status;
+  const paused = status === 'paused';
   const [cards, setCards] = useState<PublicProfile[]>([]);
   const [meta, setMeta] = useState<{ radiusKm: number; widened: boolean } | null>(null);
   const [exhausted, setExhausted] = useState(false);
@@ -59,13 +68,6 @@ export function useDeck() {
     }
   }, []);
 
-  useEffect(() => {
-    if (cards.length <= LOW_WATER && !exhausted && !error) void loadMore();
-  }, [cards.length, exhausted, error, loadMore]);
-
-  /** Drop the card on screen (after a like or pass). */
-  const advance = useCallback(() => setCards((current) => current.slice(1)), []);
-
   /** Start again from the server (e.g. "Check again" on the empty state). */
   const reload = useCallback(() => {
     setCards([]);
@@ -73,15 +75,41 @@ export function useDeck() {
     setError(null);
   }, []);
 
+  const lastStatus = useRef(status);
+  useEffect(() => {
+    if (lastStatus.current !== undefined && lastStatus.current !== status) reload();
+    lastStatus.current = status;
+  }, [status, reload]);
+
+  useEffect(() => {
+    if (status !== undefined && !paused && cards.length <= LOW_WATER && !exhausted && !error) void loadMore();
+  }, [status, paused, cards.length, exhausted, error, loadMore]);
+
+  // Someone I blocked (here or from the report screen) leaves the queue.
+  useEffect(() => onPersonBlocked((id) => setCards((current) => current.filter((c) => c.userId !== id))), []);
+
+  /** Drop the card on screen (after a like or pass). */
+  const advance = useCallback(() => setCards((current) => current.slice(1)), []);
+
+  /** Show my profile again (Discover's paused state). */
+  const unpause = useCallback(async () => {
+    ensureOk(await api.DELETE('/v1/me/pause'));
+    reload();
+    await queryClient.invalidateQueries({ queryKey: queryKeys.me });
+  }, [queryClient, reload]);
+
+  const showPaused = paused || (cards.length === 0 && isPausedError(error));
   return {
-    current: cards[0] ?? null,
-    upcoming: cards.slice(1),
+    current: showPaused ? null : (cards[0] ?? null),
+    upcoming: showPaused ? [] : cards.slice(1),
     meta,
-    loading: loading && cards.length === 0,
+    paused: showPaused,
+    loading: !showPaused && (status === undefined || loading) && cards.length === 0,
     exhausted: exhausted && cards.length === 0,
-    error: cards.length === 0 ? error : null,
+    error: cards.length === 0 && !showPaused ? error : null,
     advance,
     reload,
+    unpause,
   };
 }
 

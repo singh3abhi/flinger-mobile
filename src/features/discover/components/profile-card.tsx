@@ -32,9 +32,12 @@ function HeartButton({ label, onPress, size = 52 }: { label: string; onPress: ()
 export function ProfileCard({
   profile,
   onLike,
+  onMore,
 }: {
   profile: PublicProfile;
   onLike?: (target: LikeTarget) => void;
+  /** Report / block options. */
+  onMore?: () => void;
 }) {
   const { t } = useTranslation();
   const where = [
@@ -127,9 +130,22 @@ export function ProfileCard({
 
   return (
     <View>
-      <Text variant="heading" accessibilityRole="header">
-        {t('discover.nameAge', { name: profile.displayName, age: profile.age })}
-      </Text>
+      <View style={styles.nameRow}>
+        <Text variant="heading" accessibilityRole="header" style={styles.flex}>
+          {t('discover.nameAge', { name: profile.displayName, age: profile.age })}
+        </Text>
+        {onMore ? (
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={t('safety.options', { name: profile.displayName })}
+            onPress={onMore}
+            hitSlop={8}
+            style={styles.more}
+          >
+            <Feather name="more-horizontal" size={22} color={colors.text2} />
+          </Pressable>
+        ) : null}
+      </View>
       {where ? (
         <View style={styles.where}>
           <Feather name="map-pin" size={14} color={colors.text3} />
@@ -144,6 +160,9 @@ export function ProfileCard({
 }
 
 const styles = StyleSheet.create({
+  flex: { flex: 1 },
+  nameRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  more: { width: 40, height: 40, alignItems: 'center', justifyContent: 'center' },
   where: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 2, marginBottom: 14 },
   photo: {
     height: 420,

@@ -123,6 +123,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/auth/logout-all": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Sign out every device */
+        post: operations["AuthController_logoutAll"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/me": {
         parameters: {
             query?: never;
@@ -134,7 +151,8 @@ export interface paths {
         get: operations["MeController_me"];
         put?: never;
         post?: never;
-        delete?: never;
+        /** Delete my account (type DELETE to confirm); erased after 30 days */
+        delete: operations["AccountController_remove"];
         options?: never;
         head?: never;
         patch?: never;
@@ -530,6 +548,128 @@ export interface paths {
         put?: never;
         /** Mark the conversation read up to a message */
         post: operations["ChatController_read"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/blocks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** People I blocked */
+        get: operations["SafetyController_list"];
+        put?: never;
+        /** Block someone (mutual; ends any match) */
+        post: operations["SafetyController_block"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/blocks/{userId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Unblock someone */
+        delete: operations["SafetyController_unblock"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/reports": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Report a person, photo, prompt or message (optionally block too) */
+        post: operations["SafetyController_report"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/settings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** My settings (read receipts, notifications) */
+        get: operations["AccountController_getSettings"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Change settings (send only what changed) */
+        patch: operations["AccountController_updateSettings"];
+        trace?: never;
+    };
+    "/v1/me/pause": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Pause: hide my profile from everyone (chats stay) */
+        post: operations["AccountController_pause"];
+        /** Unpause: show my profile again */
+        delete: operations["AccountController_unpause"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Download my data: builds a JSON file and returns a link */
+        post: operations["AccountController_requestExport"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/export/{exportId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** An export and its download link */
+        get: operations["AccountController_getExport"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -1001,6 +1141,8 @@ export interface components {
                 createdAt: string;
             }[];
             hasMore: boolean;
+            /** Format: uuid */
+            theirReadUpTo: string | null;
         };
         SendMessageDto: {
             /** Format: uuid */
@@ -1023,6 +1165,61 @@ export interface components {
         MarkReadDto: {
             /** Format: uuid */
             upToMessageId: string;
+        };
+        BlockDto: {
+            /** Format: uuid */
+            userId: string;
+        };
+        BlockedListDto: {
+            items: {
+                /** Format: uuid */
+                userId: string;
+                displayName: string;
+                /** Format: date-time */
+                blockedAt: string;
+            }[];
+        };
+        ReportDto: {
+            /** Format: uuid */
+            reportedId: string;
+            /** @enum {string} */
+            targetType: "user" | "photo" | "prompt" | "message";
+            /** Format: uuid */
+            targetId?: string;
+            /** @enum {string} */
+            reason: "fake_or_spam" | "inappropriate" | "harassment_or_hate" | "underage" | "scam" | "other";
+            details?: string;
+            /** @default false */
+            alsoBlock: boolean;
+        };
+        ReportResultDto: {
+            /** Format: uuid */
+            id: string;
+        };
+        SettingsDto: {
+            readReceipts: boolean;
+            notifyNewMatches: boolean;
+            notifyNewMessages: boolean;
+        };
+        UpdateSettingsDto: {
+            readReceipts?: boolean;
+            notifyNewMatches?: boolean;
+            notifyNewMessages?: boolean;
+        };
+        DeleteAccountDto: {
+            confirm: string;
+        };
+        ExportDto: {
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            status: "pending" | "ready" | "failed";
+            /** Format: uri */
+            url: string | null;
+            /** Format: date-time */
+            expiresAt: string | null;
+            /** Format: date-time */
+            createdAt: string;
         };
     };
     responses: never;
@@ -1068,6 +1265,14 @@ export type SchemaMessagePageDto = components['schemas']['MessagePageDto'];
 export type SchemaSendMessageDto = components['schemas']['SendMessageDto'];
 export type SchemaMessageDto = components['schemas']['MessageDto'];
 export type SchemaMarkReadDto = components['schemas']['MarkReadDto'];
+export type SchemaBlockDto = components['schemas']['BlockDto'];
+export type SchemaBlockedListDto = components['schemas']['BlockedListDto'];
+export type SchemaReportDto = components['schemas']['ReportDto'];
+export type SchemaReportResultDto = components['schemas']['ReportResultDto'];
+export type SchemaSettingsDto = components['schemas']['SettingsDto'];
+export type SchemaUpdateSettingsDto = components['schemas']['UpdateSettingsDto'];
+export type SchemaDeleteAccountDto = components['schemas']['DeleteAccountDto'];
+export type SchemaExportDto = components['schemas']['ExportDto'];
 export type $defs = Record<string, never>;
 export interface operations {
     HealthController_liveness: {
@@ -1310,6 +1515,23 @@ export interface operations {
             };
         };
     };
+    AuthController_logoutAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     MeController_me: {
         parameters: {
             query?: never;
@@ -1326,6 +1548,27 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["MeDto"];
                 };
+            };
+        };
+    };
+    AccountController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DeleteAccountDto"];
+            };
+        };
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };
@@ -1929,6 +2172,204 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+        };
+    };
+    SafetyController_list: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BlockedListDto"];
+                };
+            };
+        };
+    };
+    SafetyController_block: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BlockDto"];
+            };
+        };
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SafetyController_unblock: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                userId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SafetyController_report: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReportDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReportResultDto"];
+                };
+            };
+        };
+    };
+    AccountController_getSettings: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SettingsDto"];
+                };
+            };
+        };
+    };
+    AccountController_updateSettings: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateSettingsDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SettingsDto"];
+                };
+            };
+        };
+    };
+    AccountController_pause: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AccountController_unpause: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AccountController_requestExport: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExportDto"];
+                };
+            };
+        };
+    };
+    AccountController_getExport: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                exportId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExportDto"];
+                };
             };
         };
     };

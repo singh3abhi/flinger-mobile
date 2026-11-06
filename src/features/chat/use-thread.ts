@@ -9,6 +9,7 @@ import {
   markListRead,
   mergeMessages,
   newestFirst,
+  theirReadUpTo,
   type ConversationsData,
   type MessagesData,
 } from './cache';
@@ -137,6 +138,7 @@ export function useThread(conversationId: string) {
 
   return {
     messages,
+    theirReadUpTo: theirReadUpTo(query.data),
     pending,
     myId,
     isTyping: typingUntil > Date.now(),

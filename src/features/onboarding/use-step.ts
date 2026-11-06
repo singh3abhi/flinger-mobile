@@ -1,4 +1,4 @@
-import { router, type Href } from 'expo-router';
+import { router, useLocalSearchParams, type Href } from 'expo-router';
 import { errorMessage } from '@/core/i18n';
 import type { MyProfile, ProfileChanges } from './api';
 import { useMyProfile, useUpdateProfile } from './queries';
@@ -8,6 +8,16 @@ export function onboardingHref(route: OnboardingRoute): Href {
   return `/onboarding/${route}` as Href;
 }
 
+/** The same question screen, opened from Edit profile: saving goes back instead of onward. */
+export function editHref(route: OnboardingRoute): Href {
+  return `/onboarding/${route}?edit=1` as Href;
+}
+
+/** True when a question screen was opened from Edit profile. */
+export function useEditing(): boolean {
+  return useLocalSearchParams<{ edit?: string }>().edit === '1';
+}
+
 /**
  * What every onboarding screen needs: the saved answers (loaded by the onboarding layout before
  * any screen renders), a way to save and move on, and the save state.
@@ -15,8 +25,10 @@ export function onboardingHref(route: OnboardingRoute): Href {
 export function useStep(route: OnboardingRoute) {
   const profile = useMyProfile().data as MyProfile;
   const update = useUpdateProfile();
+  const editing = useEditing();
 
   const goNext = () => {
+    if (editing) return router.back();
     const next = nextRoute(route);
     if (next) router.push(onboardingHref(next));
   };
@@ -31,6 +43,7 @@ export function useStep(route: OnboardingRoute) {
     profile,
     saveAndContinue,
     goNext,
+    editing,
     saving: update.isPending,
     error: update.isError ? errorMessage(update.error) : undefined,
     rawError: update.error,

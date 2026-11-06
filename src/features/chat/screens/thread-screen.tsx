@@ -8,7 +8,6 @@ import {
   ActivityIndicator,
   FlatList,
   KeyboardAvoidingView,
-  Modal,
   Platform,
   Pressable,
   StyleSheet,
@@ -21,6 +20,7 @@ import { errorMessage } from '@/core/i18n';
 import { useRealtimeStatus } from '@/core/realtime';
 import { colors, fonts, radius } from '@/core/theme/tokens';
 import { ConfirmDialog } from '@/shared/ui/confirm-dialog';
+import { SafetySheet } from '@/features/safety';
 import { Text } from '@/shared/ui/text';
 import { unmatch, type Message } from '../api';
 import { chatKeys, type ConversationsData } from '../cache';
@@ -31,7 +31,7 @@ import { useThread } from '../use-thread';
 const MAX_LENGTH = 2000;
 
 type Row =
-  | { kind: 'message'; key: string; message: Message; mine: boolean }
+  | { kind: 'message'; key: string; message: Message; mine: boolean; status?: 'delivered' | 'read' }
   | { kind: 'pending'; key: string; pending: PendingMessage }
   | { kind: 'day'; key: string; label: string }
   | { kind: 'matched'; key: string };
@@ -42,10 +42,16 @@ function buildRows(
   messages: Message[],
   myId: string | undefined,
   showMatched: boolean,
+  theirReadUpTo: string | null,
 ): Row[] {
   const rows: Row[] = pending.map((p) => ({ kind: 'pending', key: `p-${p.clientMsgId}`, pending: p }));
+  // "Delivered" / "Read" under my latest message only.
+  const latestMine = messages.find((m) => m.senderId === myId)?.id;
   messages.forEach((m, i) => {
-    rows.push({ kind: 'message', key: m.id, message: m, mine: m.senderId === myId });
+    const mine = m.senderId === myId;
+    const status =
+      m.id === latestMine ? (theirReadUpTo && theirReadUpTo >= m.id ? 'read' : 'delivered') : undefined;
+    rows.push({ kind: 'message', key: m.id, message: m, mine, status });
     const older = messages[i + 1];
     if (!older || !sameDay(older.createdAt, m.createdAt)) {
       rows.push({ kind: 'day', key: `d-${m.id}`, label: dayLabel(m.createdAt) });
@@ -79,7 +85,13 @@ export function ThreadScreen() {
   const [menu, setMenu] = useState(false);
   const [confirmUnmatch, setConfirmUnmatch] = useState(false);
 
-  const rows = buildRows(thread.pending, thread.messages, thread.myId, !thread.loading);
+  const rows = buildRows(
+    thread.pending,
+    thread.messages,
+    thread.myId,
+    !thread.loading,
+    thread.theirReadUpTo,
+  );
 
   const submit = () => {
     if (!text.trim()) return;
@@ -149,6 +161,11 @@ export function ThreadScreen() {
                 {item.message.body}
               </Text>
             </View>
+            {item.status ? (
+              <Text variant="small" color="muted" style={styles.status}>
+                {item.status === 'read' ? t('thread.read') : t('thread.delivered')}
+              </Text>
+            ) : null}
           </View>
         ) : (
           <View style={[styles.bubble, styles.in]}>
@@ -252,30 +269,16 @@ export function ThreadScreen() {
         ) : null}
       </KeyboardAvoidingView>
 
-      <Modal visible={menu} transparent animationType="slide" onRequestClose={() => setMenu(false)}>
-        <Pressable style={styles.scrim} onPress={() => setMenu(false)} />
-        <View style={styles.sheet}>
-          <View style={styles.grab} />
-          <View style={styles.sheetTitle}>
-            {photoUrl ? <Image source={{ uri: photoUrl }} style={styles.sheetAvatar} contentFit="cover" /> : null}
-            <Text variant="label">{name}</Text>
-          </View>
-          <Pressable
-            accessibilityRole="button"
-            onPress={() => {
-              setMenu(false);
-              setConfirmUnmatch(true);
-            }}
-            style={styles.menuItem}
-          >
-            <Feather name="user-x" size={20} color={colors.ink} />
-            <Text variant="label">{t('thread.unmatch')}</Text>
-          </Pressable>
-          <Pressable accessibilityRole="button" onPress={() => setMenu(false)} style={styles.cancel}>
-            <Text variant="label">{t('common.cancel')}</Text>
-          </Pressable>
-        </View>
-      </Modal>
+      {memberId ? (
+        <SafetySheet
+          visible={menu}
+          onClose={() => setMenu(false)}
+          userId={memberId}
+          name={name}
+          extra={[{ label: t('thread.unmatch'), icon: 'user-x', onPress: () => setConfirmUnmatch(true) }]}
+          onBlocked={() => router.back()}
+        />
+      ) : null}
 
       <ConfirmDialog
         visible={confirmUnmatch}
@@ -367,33 +370,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   disabled: { opacity: 0.5 },
-  scrim: { flex: 1, backgroundColor: colors.scrim },
-  sheet: {
-    backgroundColor: colors.page,
-    borderTopLeftRadius: radius.sheet,
-    borderTopRightRadius: radius.sheet,
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 34,
-  },
-  grab: { alignSelf: 'center', width: 40, height: 5, borderRadius: 3, backgroundColor: colors.line, marginBottom: 12 },
-  sheetTitle: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    paddingBottom: 14,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.line,
-    marginBottom: 6,
-  },
-  sheetAvatar: { width: 44, height: 44, borderRadius: 22 },
-  menuItem: { flexDirection: 'row', alignItems: 'center', gap: 14, height: 56 },
-  cancel: {
-    marginTop: 10,
-    height: 52,
-    borderRadius: radius.control,
-    backgroundColor: colors.surface,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });

@@ -84,3 +84,17 @@ export function markListRead(data: ConversationsData | undefined, conversationId
     })),
   };
 }
+
+/** How far the other person has read (only known when both have read receipts on). */
+export function theirReadUpTo(data: MessagesData | undefined): string | null {
+  return data?.pages[0]?.theirReadUpTo ?? null;
+}
+
+/** The other person read further. Read positions only move forward. */
+export function applyTheirRead(data: MessagesData | undefined, upTo: string): MessagesData | undefined {
+  if (!data || data.pages.length === 0) return data;
+  const current = data.pages[0].theirReadUpTo;
+  if (current && current >= upTo) return data;
+  const [newest, ...older] = data.pages;
+  return { ...data, pages: [{ ...newest, theirReadUpTo: upTo }, ...older] };
+}

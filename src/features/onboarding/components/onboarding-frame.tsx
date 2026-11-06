@@ -8,6 +8,7 @@ import { RoundButton } from '@/shared/ui/round-button';
 import { Screen } from '@/shared/ui/screen';
 import { Text } from '@/shared/ui/text';
 import { stepNumber, TOTAL_STEPS, type OnboardingRoute } from '../steps';
+import { useEditing } from '../use-step';
 
 export interface OnboardingFrameProps {
   route: OnboardingRoute;
@@ -50,21 +51,27 @@ export function OnboardingFrame({
 }: OnboardingFrameProps) {
   const { t } = useTranslation();
   const step = stepNumber(route);
+  // From Edit profile: no progress bar, and there's always a way back.
+  const editing = useEditing();
 
   return (
     <Screen background="cream" padded={false}>
       <View style={styles.top}>
-        <View
-          style={styles.track}
-          accessibilityRole="progressbar"
-          accessibilityValue={{ min: 0, max: TOTAL_STEPS, now: step }}
-        >
-          <View style={[styles.fill, { width: `${(step / TOTAL_STEPS) * 100}%` }]} />
-        </View>
-        <Text variant="small" style={styles.step}>
-          {t('onboarding.stepOf', { step, total: TOTAL_STEPS })}
-        </Text>
-        {showBack ? (
+        {editing ? null : (
+          <>
+            <View
+              style={styles.track}
+              accessibilityRole="progressbar"
+              accessibilityValue={{ min: 0, max: TOTAL_STEPS, now: step }}
+            >
+              <View style={[styles.fill, { width: `${(step / TOTAL_STEPS) * 100}%` }]} />
+            </View>
+            <Text variant="small" style={styles.step}>
+              {t('onboarding.stepOf', { step, total: TOTAL_STEPS })}
+            </Text>
+          </>
+        )}
+        {showBack || editing ? (
           <View style={styles.back}>
             <RoundButton
               label={t('common.back')}

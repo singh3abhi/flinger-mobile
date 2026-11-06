@@ -18,6 +18,7 @@ import {
   useLimits,
   type LikeTarget,
 } from '@/features/discover';
+import { SafetySheet } from '@/features/safety';
 import { RoundButton } from '@/shared/ui/round-button';
 import { Text } from '@/shared/ui/text';
 
@@ -30,6 +31,7 @@ export function MemberScreen() {
   const { like, pass, isLimitError } = useDecisions();
   const [target, setTarget] = useState<LikeTarget | null>(null);
   const [limitOpen, setLimitOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const member = profile.data;
 
   const send = (comment?: string) => {
@@ -74,7 +76,14 @@ export function MemberScreen() {
       ) : (
         <>
           <ScrollView contentContainerStyle={styles.feed}>
-            <ProfileCard profile={member} onLike={(item) => { like.reset(); setTarget(item); }} />
+            <ProfileCard
+              profile={member}
+              onLike={(item) => {
+                like.reset();
+                setTarget(item);
+              }}
+              onMore={() => setMoreOpen(true)}
+            />
           </ScrollView>
           <Pressable
             accessibilityRole="button"
@@ -92,6 +101,13 @@ export function MemberScreen() {
             error={like.isError && !isLimitError(like.error) ? errorMessage(like.error) : undefined}
             onSend={send}
             onClose={() => setTarget(null)}
+          />
+          <SafetySheet
+            visible={moreOpen}
+            onClose={() => setMoreOpen(false)}
+            userId={member.userId}
+            name={member.displayName}
+            onBlocked={() => router.back()}
           />
           <LimitSheet
             visible={limitOpen}

@@ -1,4 +1,13 @@
-import { applyMessageToList, markListRead, mergeMessages, newestFirst, type ConversationsData, type MessagesData } from './cache';
+import {
+  applyMessageToList,
+  applyTheirRead,
+  markListRead,
+  mergeMessages,
+  newestFirst,
+  theirReadUpTo,
+  type ConversationsData,
+  type MessagesData,
+} from './cache';
 import type { Conversation, Message } from './api';
 
 const msg = (id: string, senderId = 'them', conversationId = 'c1'): Message => ({
@@ -12,8 +21,8 @@ const msg = (id: string, senderId = 'them', conversationId = 'c1'): Message => (
 
 const thread = (items: Message[], older: Message[] = []): MessagesData => ({
   pages: [
-    { items, hasMore: older.length > 0 },
-    ...(older.length ? [{ items: older, hasMore: false }] : []),
+    { items, hasMore: older.length > 0, theirReadUpTo: null },
+    ...(older.length ? [{ items: older, hasMore: false, theirReadUpTo: null }] : []),
   ],
   pageParams: [undefined, ...(older.length ? [items[0]?.id] : [])],
 });
@@ -68,5 +77,12 @@ describe('chat cache', () => {
     const read = markListRead(data, 'c1');
     expect(read?.pages[0].items[0].unreadCount).toBe(0);
     expect(read?.pages[0].unreadConversations).toBe(0);
+  });
+
+  it('keeps the other person\'s read position and never moves it back', () => {
+    const data = thread([msg('02'), msg('04')]);
+    const read = applyTheirRead(data, '04');
+    expect(theirReadUpTo(read)).toBe('04');
+    expect(theirReadUpTo(applyTheirRead(read, '02'))).toBe('04');
   });
 });

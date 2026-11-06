@@ -5,7 +5,8 @@
     "retry": "Try again",
     "signOut": "Sign out",
     "close": "Close",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "save": "Save"
   },
   "landing": {
     "tagline": "Flings, Love & Stories",
@@ -71,7 +72,11 @@
     "LIKE_ITEM_INVALID": "That photo or prompt is no longer on their profile.",
     "MEMBER_NOT_FOUND": "This profile is no longer available.",
     "DISCOVERY_NOT_READY": "Finish your profile to start discovering.",
-    "CONVERSATION_NOT_FOUND": "This conversation has ended."
+    "CONVERSATION_NOT_FOUND": "This conversation has ended.",
+    "ACCOUNT_PAUSED": "Your profile is paused.",
+    "REPORT_TARGET_INVALID": "We couldn’t find what you reported.",
+    "CONFIRMATION_REQUIRED": "Type DELETE to confirm.",
+    "CONFLICT": "That can’t be done right now."
   },
   "onboarding": {
     "stepOf": "Step {{step}} of {{total}}",
@@ -322,6 +327,11 @@
       "body": "Your likes reset at 4:00 AM. You can keep looking and passing, and people who like you will still show up.",
       "resetsIn": "Resets in {{h}}h {{m}}m",
       "ok": "Got it"
+    },
+    "paused": {
+      "title": "Your profile is paused",
+      "body": "Nobody new can see you, and you won’t see new people. Your chats stay open.",
+      "unpause": "Unpause my profile"
     }
   },
   "match": {
@@ -350,7 +360,24 @@
   },
   "me": {
     "title": "Profile",
-    "soon": "Editing your profile, preferences and settings are coming next."
+    "complete": "{{percent}}% complete",
+    "edit": "Edit profile",
+    "preferences": "Discovery preferences",
+    "settings": "Settings",
+    "nudge": {
+      "prompts": {
+        "title": "Add your third prompt",
+        "body": "Profiles with 3 prompts get more likes and better conversations."
+      },
+      "photos": {
+        "title": "Add more photos",
+        "body": "Six photos show more of who you are."
+      },
+      "bio": {
+        "title": "Write a short bio",
+        "body": "A line or two helps people start a conversation."
+      }
+    }
   },
   "thread": {
     "matched": "You matched with {{name}}",
@@ -367,7 +394,9 @@
     "notSent": "Not sent. Tap to retry",
     "unmatch": "Unmatch",
     "unmatchTitle": "Unmatch {{name}}?",
-    "unmatchBody": "You won’t see each other again and this conversation will be removed for both of you."
+    "unmatchBody": "You won’t see each other again and this conversation will be removed for both of you.",
+    "delivered": "Delivered",
+    "read": "Read"
   },
   "primer": {
     "matched": "You just matched with {{name}}",
@@ -375,5 +404,120 @@
     "body": "Enable notifications so you never miss new matches, messages, or important updates.",
     "enable": "Enable notifications",
     "later": "Maybe later"
+  },
+  "safety": {
+    "report": "Report",
+    "block": "Block",
+    "options": "Options for {{name}}",
+    "blockTitle": "Block {{name}}?",
+    "blockBody": "You won’t see each other on Flinger and your chat will close. You can unblock anytime in Settings.",
+    "reportTitle": "Report {{name}}",
+    "reportSubtitle": "Your report is private. We’ll review it and take action if it breaks our Community Guidelines.",
+    "reasons": {
+      "fake_or_spam": "Fake profile or spam",
+      "inappropriate": "Inappropriate photos or messages",
+      "harassment_or_hate": "Harassment or hate",
+      "underage": "Seems under 18",
+      "scam": "Scam or asking for money",
+      "other": "Something else"
+    },
+    "details": "Add details (optional)",
+    "detailsPlaceholder": "What happened?",
+    "alsoBlock": "Also block {{name}}",
+    "submit": "Submit report",
+    "reportedTitle": "Thanks for telling us",
+    "reportedBody": "We’ll review your report. You won’t hear from them again if you blocked them."
+  },
+  "editProfile": {
+    "photos": "Photos",
+    "photosHint": "Tap a photo to make it your main one or remove it. You need at least 4.",
+    "prompts": "Prompts",
+    "addPrompt": "Choose a prompt",
+    "bio": "About me",
+    "bioPlaceholder": "A few words about you",
+    "saveBio": "Save",
+    "about": "About you",
+    "name": "First name",
+    "birthday": "Birthday",
+    "locked": "Locked",
+    "gender": "Gender",
+    "interestedIn": "Interested in",
+    "hopingToFind": "Hoping to find",
+    "height": "Height",
+    "values": "Values",
+    "kids": "Kids & family",
+    "beliefs": "Beliefs",
+    "causes": "Causes",
+    "notSet": "Not set"
+  },
+  "preferences": {
+    "title": "Discovery preferences",
+    "showMe": "Show me",
+    "age": "Age range",
+    "from": "From",
+    "to": "To",
+    "ageHint": "People also need to be looking for someone your age.",
+    "distance": "Maximum distance",
+    "km": "{{km}} km",
+    "expand": "Show people further away",
+    "expandHint": "When you run out of people nearby.",
+    "showDistance": "Show my distance on my profile",
+    "save": "Save preferences"
+  },
+  "settings": {
+    "title": "Settings",
+    "account": "Account",
+    "email": "Email",
+    "phone": "Phone number",
+    "phoneSoon": "Coming soon",
+    "notifications": "Notifications",
+    "newMatches": "New matches",
+    "newMessages": "New messages",
+    "privacy": "Privacy",
+    "readReceipts": "Read receipts",
+    "readReceiptsHint": "Let people see when you’ve read their message. You’ll only see theirs if you both turn this on.",
+    "showDistance": "Show my distance",
+    "blocked": "Blocked people",
+    "status": "Account status",
+    "pause": "Pause my account",
+    "pauseHint": "Hide your profile. Your chats stay.",
+    "yourData": "Your data",
+    "export": "Download my data",
+    "exporting": "Preparing your file…",
+    "exportReadyTitle": "Your data is ready",
+    "exportReadyBody": "The download link works for the next hour; request a new one any time.",
+    "exportOpen": "Open",
+    "about": "About",
+    "legal": "Terms, Privacy and Guidelines",
+    "logout": "Log out",
+    "logoutAll": "Log out of all devices",
+    "logoutAllTitle": "Log out everywhere?",
+    "logoutAllBody": "You’ll be signed out on every phone, including this one.",
+    "delete": "Delete account",
+    "version": "Flinger {{version}}"
+  },
+  "blocked": {
+    "title": "Blocked people",
+    "empty": "You haven’t blocked anyone.",
+    "unblock": "Unblock",
+    "unblockA11y": "Unblock {{name}}",
+    "note": "Unblocking doesn’t bring back a match or chat that ended."
+  },
+  "deleteAccount": {
+    "header": "Delete account",
+    "title": "Delete your account?",
+    "subtitle": "This is permanent. Here’s what will happen.",
+    "hiddenTitle": "Your profile disappears now",
+    "hiddenBody": "You’ll be hidden from everyone straight away.",
+    "chatsTitle": "Matches and chats are removed",
+    "chatsBody": "You can’t get them back.",
+    "eraseTitle": "Your data is erased within 30 days",
+    "eraseBody": "Including your photos and answers.",
+    "typeToConfirm": "Type {{word}} to confirm",
+    "breakTitle": "Just need a break?",
+    "breakBody": "Pausing hides your profile but keeps your matches and chats.",
+    "pauseInstead": "Pause my account instead",
+    "confirm": "Delete my account",
+    "keep": "Keep my account"
   }
 }
